@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:id="@+id/group_item_1">
+
+        <item
+            android:id="@+id/bookmarks"
+            android:icon="@drawable/star"
+            android:title="@string/bookmarks" />
+
+        <item
+            android:id="@+id/about"
+            android:icon="@drawable/information"
+            android:title="@string/about" />
+
+        <item
+            android:id="@+id/settings"
+            android:icon="@drawable/settings"
+            android:title="@string/settings" />
+        <item
+            android:id="@+id/exit"
+            android:icon="@drawable/exit"
+            android:title="@string/exit" />
+
+    </group>
+
+    <group android:id="@+id/group_item_2">
+
+            <item
+                android:id="@+id/buy_premium"
+                android:icon="@drawable/cash_multiple"
+                android:title="@string/premium"
+                android:visible="false"/>
+
+    </group>
+
+</menu>

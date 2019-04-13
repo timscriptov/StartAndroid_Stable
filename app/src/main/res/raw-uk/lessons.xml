@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lesson>
+    <lesson>Урок 1. Введення.</lesson>
+    <lesson>Урок 2. Установка Android Studio</lesson>
+    <lesson>Урок 3. Створення AVD. Перше додаток. Структура Android-проекту.</lesson>
+    <lesson>Урок 4. Елементи екрану і їх властивості</lesson>
+    <lesson>Урок 5. Layout-файл в Activity. XML уявлення. Зміна орієнтації екрану.</lesson>
+    <lesson>Урок 6. Види Layouts. Ключові відмінності і властивості.</lesson>
+    <lesson>Урок 7. Layout параметри для View-елементів.</lesson>
+    <lesson>Урок 8. Працюємо з елементами екрану з коду</lesson>
+    <lesson>Урок 9. Обробники подій на прикладі Button.</lesson>
+    <lesson>Урок 10. оптимізуємо реалізацію обробників.</lesson>
+    <lesson>Урок 11. Папка res / values. Використовуємо ресурси програми.</lesson>
+    <lesson>Урок 12. Список і спливаючі повідомлення</lesson>
+    <lesson>Урок 13. Створення простого меню</lesson>
+    <lesson>Урок 14. Меню, групи, порядок. MenuInflater і xml-меню.</lesson>
+    <lesson>Урок 15. Контекстне меню</lesson>
+    <lesson>Урок 16. Програмне створення екрану. LayoutParams</lesson>
+    <lesson>Урок 17. Створення View-компонент в робочому додатку</lesson>
+    <lesson>Урок 18. Міняємо layoutParams в робочому додатку</lesson>
+    <lesson>Урок 19. Пишемо простий калькулятор</lesson>
+    <lesson>Урок 20. Анімація</lesson>
+    <lesson>Урок 21. Створення і виклик Activity</lesson>
+    <lesson>Урок 22. Intent, Intent Filter, Context - теорія</lesson>
+    <lesson>Урок 23. Activity Lifecycle. В яких станах може бути Activity</lesson>
+    <lesson>Урок 24. Activity Lifecycle, приклад зміни станів з двома Activity</lesson>
+    <lesson>Урок 25. Task. Що це таке і як формується</lesson>
+    <lesson>Урок 26. Intent Filter - практика</lesson>
+    <lesson>Урок 27. Читаємо action з Intent</lesson>
+    <lesson>Урок 28. Extras - передаємо дані за допомогою Intent</lesson>
+    <lesson>Урок 29. Викликаємо Activity і отримуємо результат. Метод startActivityForResult</lesson>
+    <lesson>Урок 30. Детальніше про onActivityResult. Навіщо потрібні requestCode і resultCode</lesson>
+    <lesson>Урок 31. Навіщо у Intent є атрибут data. Що таке Uri. Викликаємо системні програми</lesson>
+    <lesson>Урок 32. Пишемо простий браузер</lesson>
+    <lesson>Урок 33. Зберігання даних. Preferences.</lesson>
+    <lesson>Урок 34. Зберігання даних. SQLite</lesson>
+    <lesson>Урок 35. SQLite. Методи update і delete із зазначенням умови</lesson>
+    <lesson>Урок 36. SQLite. Детальніше про метод query. Умова, сортування, угруповання</lesson>
+    <lesson>Урок 37. Запити з пов'язаних таблиць. INNER JOIN в SQLite. Метод rawQuery.</lesson>
+    <lesson>Урок 38. Транзакції в SQLite. Невеликий FAQ по SQLite.</lesson>
+    <lesson>Урок 39. onUpgrade. Оновлюємо БД в SQLite</lesson>
+    <lesson>Урок 40. LayoutInflater. Вчимося використовувати.</lesson>
+    <lesson>Урок 41. Використовуємо LayoutInflater для створення списку</lesson>
+    <lesson>Урок 42. Список - ListView</lesson>
+    <lesson>Урок 43. Одиночний і множинний вибір в ListView</lesson>
+    <lesson>Урок 44. Події в ListView</lesson>
+    <lesson>Урок 45. Список-дерево ExpandableListView</lesson>
+    <lesson>Урок 46. Події ExpandableListView</lesson>
+    <lesson>Урок 47. Огляд адаптерів</lesson>
+    <lesson>Урок 48. Використовуємо SimpleAdapter.</lesson>
+    <lesson>Урок 49. SimpleAdapter. Методи SetViewText і SetViewImage</lesson>
+    <lesson>Урок 50. SimpleAdapter. Використовуємо ViewBinder</lesson>
+    <lesson>Урок 51. SimpleAdapter, додавання і видалення записів</lesson>
+    <lesson>Урок 52. SimpleCursorAdapter, приклад використання</lesson>
+    <lesson>Урок 53. SimpleCursorTreeAdapter, приклад використання</lesson>
+    <lesson>Урок 54. Кастомізація списку. Створюємо свій адаптер</lesson>
+    <lesson>Урок 55. Header і Footer в списках. HeaderViewListAdapter</lesson>
+    <lesson>Урок 56. Spinner - список, що випадає</lesson>
+    <lesson>Урок 57. GridView і його атрибути</lesson>
+    <lesson>Урок 58. Діалоги. TimePickerDialog</lesson>
+    <lesson>Урок 59. Діалоги. DatePickerDialog</lesson>
+    <lesson>Урок 60. Діалоги. AlertDialog: Title, Message, Icon, Buttons</lesson>
+    <lesson>Урок 61. Діалоги. AlertDialog.Метод onPrepareDialog</lesson>
+    <lesson>Урок 62. Діалоги. AlertDialog. Список</lesson>
+    <lesson>Урок 63. Діалоги. AlertDialog. Список з одиночним вибором</lesson>
+    <lesson>Урок 64. Діалоги. AlertDialog. Список з множинним вибором</lesson>
+    <lesson>Урок 65. Діалоги. AlertDialog. Кастомізація</lesson>
+    <lesson>Урок 66. Діалоги. Обробники і операції</lesson>
+    <lesson>Урок 67. Діалоги. ProgressDialog</lesson>
+    <lesson>Урок 68. Трохи про Parcel</lesson>
+    <lesson>Урок 69. Передаємо Parcelable об'єкти за допомогою Intent</lesson>
+    <lesson>Урок 70. onSaveInstanceState. Збереження даних Activity при повороті екрану</lesson>
+    <lesson>Урок 71. Preferences як налаштування програми. PreferenceActivity</lesson>
+    <lesson>Урок 72. Preferences. Список, екрани і категорії</lesson>
+    <lesson>Урок 73. Preferences. Управляємо активністю налаштувань (setEnabled)</lesson>
+    <lesson>Урок 74. Preferences. Програмне створення екрану налаштувань</lesson>
+    <lesson>Урок 75. Зберігання даних. Робота з файлами.</lesson>
+    <lesson>Урок 76. Tab - вкладки. Загальний огляд</lesson>
+    <lesson>Урок 77. Tab - вкладки. TabActivity. Activity, як вміст вкладки</lesson>
+    <lesson>Урок 78. Tab - вкладки. TabContentFactory, ручне створення вмісту вкладки</lesson>
+    <lesson>Урок 79. XmlPullParser. Парс XML</lesson>
+    <lesson>Урок 80. Handler. Трохи теорії. Наочний приклад використання</lesson>
+    <lesson>Урок 81. Handler. Надсилаємо просте повідомлення</lesson>
+    <lesson>Урок 82. Handler. Приклад з більш змістовними повідомленнями</lesson>
+    <lesson>Урок 83. Handler. Відкладені повідомлення, видалення з черги, Handler.Callback</lesson>
+    <lesson>Урок 84. Handler. Обробка Runnable</lesson>
+    <lesson>Урок 85. Ще кілька способів виконання коду в UI-потоці</lesson>
+    <lesson>Урок 86. AsyncTask. Знайомство, нескладний приклад</lesson>
+    <lesson>Урок 87. AsyncTask. Параметри. Проміжні результати</lesson>
+    <lesson>Урок 88. AsyncTask. Підсумковий результат. Метод get</lesson>
+    <lesson>Урок 89. AsyncTask. Cancel - скасовуємо завдання в процесі виконання</lesson>
+    <lesson>Урок 90. AsyncTask. Status - статуси завдання</lesson>
+    <lesson>Урок 91. AsyncTask. Поворот екрану</lesson>
+    <lesson>Урок 92. Service. Простий приклад</lesson>
+    <lesson>Урок 93. Service. Передача даних в сервіс. Методи зупинки сервісу</lesson>
+    <lesson>Урок 94. Service. Детально про onStartCommand</lesson>
+    <lesson>Урок 95. Service. Зворотній зв'язок з допомогою PendingIntent</lesson>
+    <lesson>Урок 96. Service. Зворотній зв'язок з допомогою BroadcastReceiver</lesson>
+    <lesson>Урок 97. Service. Біндінг. ServiceConnection</lesson>
+    <lesson>Урок 98. Service. Локальний Біндінг</lesson>
+    <lesson>Урок 99. Service. Повідомлення - notifications</lesson>
+    <lesson>Урок 100. Service. IntentService. Foreground. Автозавантаження сервісу</lesson>
+    <lesson>Урок 101. Створюємо свій ContentProvider</lesson>
+    <lesson>Урок 102. Touch - обробка торкання</lesson>
+    <lesson>Урок 103. MultiTouch - обробка множинних дотиків</lesson>
+    <lesson>Урок 104. Android 3. Fragments. Lifecycle</lesson>
+    <lesson>Урок 105. Android 3. Fragments. Динамічна робота</lesson>
+    <lesson>Урок 106. Android 3. Fragments. Взаємодія з Activity</lesson>
+    <lesson>Урок 107. Android 3. ActionBar. Розміщення елементів</lesson>
+    <lesson>Урок 108. Android 3. ActionBar. Навігація - таби і випадає</lesson>
+    <lesson>Урок 109. Android 3. Fragments. ListFragment - список</lesson>
+    <lesson>Урок 110. Android 3. Fragments. DialogFragment - діалог</lesson>
+    <lesson>Урок 111. Android 3. Fragments. PreferenceFragment - настройки. Headers</lesson>
+    <lesson>Урок 112. Android 3. ActionBar. Динамічне розміщення елементів</lesson>
+    <lesson>Урок 113. Android 3. ActionMode, як альтернатива контекстного меню</lesson>
+    <lesson>Урок 114. Android 3. Бібліотека Support Library. Навіщо потрібна і як її використовувати на прикладі фрагментів</lesson>
+    <lesson>Урок 115. Один додаток на різних екранах</lesson>
+    <lesson>Урок 116. Поведінка Activity в Task. Intent-прапори, launchMode, affinity</lesson>
+    <lesson>Урок 117. Віджети. Створення. Lifecycle</lesson>
+    <lesson>Урок 118. Віджети. Конфігураційний екран. Оновлення</lesson>
+    <lesson>Урок 119. PendingIntent - прапори, requestCode. AlarmManager</lesson>
+    <lesson>Урок 120. Віджети. Обробка натискань</lesson>
+    <lesson>Урок 121. Віджети. Список</lesson>
+    <lesson>Урок 122. Віджети. Прев'ю, зміна розміру, екран блокування, ручне оновлення</lesson>
+    <lesson>Урок 123. Як підписати додаток. Утиліти keytool і jarsigner</lesson>
+    <lesson>Урок 124. Що таке Package для програми</lesson>
+    <lesson>Урок 125. ViewPager</lesson>
+    <lesson>Урок 126. Медіа. MediaPlayer - аудіо / відео плеєр, основні можливості</lesson>
+    <lesson>Урок 127. Медіа. SoundPool</lesson>
+    <lesson>Урок 128. Медіа. Audio Focus</lesson>
+    <lesson>Урок 129. Медіа. Запис звуку за допомогою MediaRecorder</lesson>
+    <lesson>Урок 130. Медіа. Запис звуку за допомогою AudioRecorder</lesson>
+    <lesson>Урок 131. Камера. Використовуємо системне додаток</lesson>
+    <lesson>Урок 132. Камера. Висновок зображення на екран. Розмір preview. Обробка повороту пристрою</lesson>
+    <lesson>Урок 133. Камера. Робимо знімок і пишемо відео</lesson>
+    <lesson>Урок 134. Камера. Налаштування</lesson>
+    <lesson>Урок 135. Loader. LoaderManager. AsyncTaskLoader</lesson>
+    <lesson>Урок 136. CursorLoader</lesson>
+    <lesson>Урок 137. Сенсори. Прискорення, орієнтація.</lesson>
+    <lesson>Урок 138. Позиціонування. GPS координати.</lesson>
+    <lesson>Урок 139. Google maps. Створення та налагодження проекту. Карта, камера, події</lesson>
+    <lesson>Урок 140. Google maps. Свої об'єкти на карті</lesson>
+    <lesson>Урок 141. Малювання. Доступ до Canvas</lesson>
+    <lesson>Урок 142. Малювання. Прості фігури, текст</lesson>
+    <lesson>Урок 143. Малювання. Path</lesson>
+    <lesson>Урок 144. Малювання. Matrix-перетворення</lesson>
+    <lesson>Урок 145. Малювання. Matrix. setRectToRect і setPolyToPoly</lesson>
+    <lesson>Урок 146. Малювання. Canvas-перетворення. Методи save і restore.</lesson>
+    <lesson>Урок 147. Малювання. Region</lesson>
+    <lesson>Урок 148. Малювання. Canvas, clip</lesson>
+    <lesson>Урок 149. Малювання. Текст</lesson>
+    <lesson>Урок 150. Малювання. PathMeasure - інформація про Path-об'єкті</lesson>
+    <lesson>Урок 151. Малювання. PathEffect</lesson>
+    <lesson>Урок 152. Малювання. Picture</lesson>
+    <lesson>Урок 153. Малювання. ColorFilter, ColorMatrix</lesson>
+    <lesson>Урок 154. Малювання. PorterDuff.Mode, PorterDuffXfermode</lesson>
+    <lesson>Урок 155. Малювання. PorterDuffColorFilter</lesson>
+    <lesson>Урок 156. Малювання. AvoidXfermode</lesson>
+    <lesson>Урок 157. Малювання. Bitmap. BitmapFactory. Читання, вивід на канву, основна інформація</lesson>
+    <lesson>Урок 158. Малювання. Bitmap. Методи createBitmap, робота з пікселями, density, mutable</lesson>
+    <lesson>Урок 159. Малювання. Bitmap. BitmapFactory.Options, збереження в файл</lesson>
+    <lesson>Урок 160. Малювання. Bitmap. Читання зображень великого розміру</lesson>
+    <lesson>Урок 161. Малювання. Bitmap. Memory-кеш. Picasso</lesson>
+    <lesson>Урок 162. Графіка. Drawable. Shape, Gradient.</lesson>
+    <lesson>Урок 163. Графіка. Drawable. Bitmap, Layer List, State List.</lesson>
+    <lesson>Урок 164. Графіка. Drawable. Level List, Transition, Inset, Clip, Scale</lesson>
+    <lesson>Урок 165. Графіка. BitmapShader, LinearGradient, RadialGradient, SweepGradient</lesson>
+    <lesson>Урок 166. Графіка. Створення свого Drawable</lesson>
+    <lesson>Урок 167. Малювання. Метод Canvas saveLayer.</lesson>
+    <lesson>Урок 168. OpenGL. Введення.</lesson>
+    <lesson>Урок 169. OpenGL. Шейдери</lesson>
+    <lesson>Урок 170. OpenGL. Графічні примітиви</lesson>
+    <lesson>Урок 171. OpenGL. Колір.</lesson>
+    <lesson>Урок 172. OpenGL. Perspective. Frustum. Ortho.</lesson>
+    <lesson>Урок 173. OpenGL. Камера</lesson>
+    <lesson>Урок 174. OpenGL. Модель</lesson>
+    <lesson>Урок 175. OpenGL. Текстури.</lesson>
+    <lesson>Урок 176. OpenGL. Індекси, текстури для куба.</lesson>
+    <lesson>Урок 177. ConstraintLayout. Основи</lesson>
+    <lesson>Урок 178. ConstraintLayout: match_constraints, інструменти в toolbar, guidelines, aspect ratio</lesson>
+    <lesson>Урок 179. ConstraintLayout: chain, weight, barrier, group, circular</lesson>
+    <lesson>Урок 180. ConstraintSet. Програмна настройка ConstraintLayout</lesson>
+    <lesson>Урок 181. Android Notifications. Повідомлення. Основи</lesson>
+    <lesson>Урок 182. Notifications. Режими відкриття Activity</lesson>
+</lesson>

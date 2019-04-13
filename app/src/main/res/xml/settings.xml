@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
+	
+	<PreferenceCategory
+		android:title="@string/general">
+		
+		<ListPreference
+			android:key="lang"
+			android:title="@string/content_language"
+			android:dialogTitle="@string/choose_language"
+			android:entries="@array/languages"
+			android:entryValues="@array/language_values"
+			android:defaultValue="ru" />
+			
+	</PreferenceCategory>
+	
+	<PreferenceCategory
+		android:title="@string/appearance">
+		
+		<SwitchPreference
+			android:key="grid_mode"
+			android:title="@string/grid_view"
+			android:defaultValue="false"/>
+		
+		<SwitchPreference
+			android:key="fullscreen_mode"
+			android:title="@string/fullscreen_mode"
+			android:defaultValue="false"/>
+
+		<SwitchPreference
+			android:key="night_mode"
+			android:title="@string/night_mode"
+			android:defaultValue="false"/>
+		
+	</PreferenceCategory>
+	
+	<PreferenceCategory
+		android:title="@string/font">
+
+		<ListPreference
+			android:key="font_size"
+			android:title="@string/font_size"
+			android:dialogTitle="@string/select_font_size"
+			android:entries="@array/font_size"
+			android:entryValues="@array/font_size"
+			android:defaultValue="100%" />
+
+		<com.vanniktech.vntfontlistpreference.VNTFontListPreference
+			android:defaultValue="fonts/DroidSans.ttf"
+			android:key="font"
+			android:title="@string/font_type"
+			app:vnt_fontDirectory="fonts" />
+
+	</PreferenceCategory>
+
+</PreferenceScreen>
