@@ -99,7 +99,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         progressBar = findViewById(R.id.progress_bar);
         prev_lesson = findViewById(R.id.prev_lesson);
         next_lesson = findViewById(R.id.next_lesson);
-        bookmark = findViewById(R.id.day_night);
+        bookmark = findViewById(R.id.bookmark_lesson);
         prev_lesson.setOnClickListener(this);
         next_lesson.setOnClickListener(this);
         bookmark.setOnClickListener(this);
