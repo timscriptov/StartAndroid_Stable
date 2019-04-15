@@ -1,6 +1,7 @@
 package com.startandroid;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.view.menu.MenuBuilder;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -52,6 +54,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
     private Ads ads;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
+    private boolean isAdsBlocked = false;
 
     @Override
     public boolean onQueryTextSubmit(String p1) {
@@ -224,6 +227,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
     public void onBillingError(int errorCode, @Nullable Throwable error) {
         if (errorCode == Constants.BILLING_RESPONSE_RESULT_USER_CANCELED) {
             Toasty.error(this, getString(R.string.purchase_canceled)).show();
+            if(isAdsBlocked) System.exit(0);
         }
     }
 
@@ -233,6 +237,10 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
             adLayout.addView(ads.getBanner(this));
             ads.loadInterstitial(this);
             navigationView.getMenu().findItem(R.id.buy_premium).setVisible(true);
+            if(!billing.isPurchased(PREMIUM) & !ads.isAdsLoading()){
+                isAdsBlocked = true;
+                adsBlocked();
+            }
         }
     }
 
@@ -256,5 +264,24 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void adsBlocked(){
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.ads_blocked)
+                .setPositiveButton(R.string.buy, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        billing.purchase(MainActivity.this, PREMIUM, PREMIUM);
+                    }
+                })
+                .setNegativeButton(R.string.close, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        System.exit(0);
+                    }
+                })
+                .setCancelable(false)
+                .create().show();
     }
 }

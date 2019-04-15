@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RatingBar;
 
+import com.anjlab.android.iab.v3.BillingProcessor;
 import com.startandroid.App;
 import com.startandroid.R;
 import com.startandroid.data.Preferences;
@@ -29,20 +30,6 @@ public class Dialogs {
                 .setPositiveButton("ОК", null)
                 .setCancelable(true)
                 .create().show();
-    }*/
-
-    /*public static void rate(final Context context) {
-        new AlertDialog.Builder(context)
-                .setView(R.layout.rate)
-                .setPositiveButton(R.string.rate, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface p1, int p2) {
-                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.startandroid")));
-                        Preferences.setRated();
-                    }
-                })
-                .create()
-                .show();
     }*/
 
     public static void rate(final Context context) {

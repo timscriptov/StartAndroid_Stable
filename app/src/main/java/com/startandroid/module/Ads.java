@@ -51,4 +51,8 @@ public class Ads {
             lastShownTime = System.currentTimeMillis();
         }
     }
+
+    public boolean isAdsLoading(){
+        return interstitialAd.isLoading();
+    }
 }
