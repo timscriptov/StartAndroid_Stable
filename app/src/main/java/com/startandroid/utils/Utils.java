@@ -13,7 +13,8 @@ public class Utils {
     public static boolean isNetworkAvailable() {
         ConnectivityManager connection = (ConnectivityManager) App.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = connection.getActiveNetworkInfo();
-        return info.isConnected();
+        if(info == null) return false;
+        else return info.isConnected();
     }
 
     @NotNull

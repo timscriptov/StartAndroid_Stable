@@ -195,10 +195,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            if (!Utils.isNetworkAvailable()) {
-                Dialogs.noConnectionError(LessonActivity.this);
-                cancel(true);
-            } else progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override

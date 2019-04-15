@@ -61,9 +61,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
             holder.item.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View p1) {
-                    if(!Utils.isNetworkAvailable()){
-                        return;
-                    }
                     mainView.openLesson(url, holder.getAdapterPosition());
                 }
             });

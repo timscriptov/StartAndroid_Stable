@@ -52,9 +52,6 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
             @Override
             public void onClick(View p1) {
                 bookmarksFragment.dismiss();
-                if(!Utils.isNetworkAvailable()){
-                    return;
-                }
                 mainView.openLesson(url, holder.getAdapterPosition());
             }
         });

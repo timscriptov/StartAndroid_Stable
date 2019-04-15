@@ -57,9 +57,6 @@ public class GridAdapter extends ArrayAdapter<String> {
         item.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View p1) {
-                if(!Utils.isNetworkAvailable()){
-                    return;
-                }
                 mainView.openLesson(url, position);
             }
         });
