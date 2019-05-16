@@ -31,6 +31,7 @@ import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 import java.util.concurrent.TimeUnit;
 
 import static com.startandroid.data.Constants.RES_PATH;
+import static com.startandroid.data.Preferences.isOffline;
 import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
 import static com.startandroid.utils.LessonUtils.isRead;
 
@@ -43,11 +44,6 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onClick(View p1) {
-        if (!Utils.isNetworkAvailable()) {
-            Dialogs.noConnectionError(this);
-            return;
-        }
-
         switch (p1.getId()) {
             case R.id.bookmark_lesson:
                 int num = getLessonNumberByUrl(webView.getUrl());
@@ -64,7 +60,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                 bookmark.show();
                 break;
             case R.id.prev_lesson:
-                if (!Utils.isNetworkAvailable()) {
+                if (!isOffline() & !Utils.isNetworkAvailable()) {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
@@ -72,7 +68,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                 itemPosition--;
                 break;
             case R.id.next_lesson:
-                if (!Utils.isNetworkAvailable()) {
+                if (!isOffline() & !Utils.isNetworkAvailable()) {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
@@ -94,8 +90,6 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         webView.setWebViewClient(new WebClient());
         webView.setWebChromeClient(new ChromeClient());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAppCachePath(getCacheDir().getPath());
-        webView.getSettings().setAppCacheEnabled(true);
         progressBar = findViewById(R.id.progress_bar);
         prev_lesson = findViewById(R.id.prev_lesson);
         next_lesson = findViewById(R.id.next_lesson);
@@ -155,6 +149,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
+
             prev_lesson.setVisibility(getLessonNumberByUrl(url) != 1 ? View.VISIBLE : View.GONE);
             next_lesson.setVisibility(getLessonNumberByUrl(url) != 182 ? View.VISIBLE : View.GONE);
         }
@@ -194,8 +189,13 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             progressBar.setVisibility(View.VISIBLE);
+
+            if (isOffline()) {
+                link = "file:///" + link;
+                webView.loadDataWithBaseURL(link, new HtmlRenderer().renderHtml(FileReader.fromStorage(link.replace("file:///", ""))), "text/html", "UTF-8", link);
+                cancel(true);
+            }
         }
 
         @Override

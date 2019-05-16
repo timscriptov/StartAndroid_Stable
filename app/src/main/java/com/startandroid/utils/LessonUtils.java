@@ -9,7 +9,8 @@ import com.startandroid.data.Database;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.startandroid.data.Constants.RES_PATH;
+import static com.startandroid.data.Constants.PACKAGE_NAME;
+import static com.startandroid.data.Preferences.isOffline;
 
 public class LessonUtils {
     public static boolean isRead(int num) {
@@ -31,7 +32,10 @@ public class LessonUtils {
     }
 
     public static int getLessonNumberByUrl(String url) {
-        Pattern p = Pattern.compile(RES_PATH + "/lesson_(\\d+).html.*");
+        Pattern p;
+        if (isOffline()) {
+            p = Pattern.compile("file:///data/data/" + PACKAGE_NAME + "/files/resources/pages/lesson_(\\d+).html");
+        } else p = Pattern.compile("https://mcal-llc.github.io/sa/pages/lesson_(\\d+).html");
         Matcher m = p.matcher(url);
         if (m.matches()) return Integer.parseInt(m.group(1));
         return 1;

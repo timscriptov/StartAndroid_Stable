@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RatingBar;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
 import com.startandroid.App;
 import com.startandroid.R;
 import com.startandroid.data.Preferences;
@@ -24,13 +23,12 @@ public class Dialogs {
                 .create().show();
     }
 
-    /*public static void show(Context c, String text) {
+    public static void show(Context c, String text) {
         new AlertDialog.Builder(c)
                 .setMessage(text)
                 .setPositiveButton("ОК", null)
-                .setCancelable(true)
                 .create().show();
-    }*/
+    }
 
     public static void rate(final Context context) {
         View v = LayoutInflater.from(context).inflate(R.layout.rate, null);

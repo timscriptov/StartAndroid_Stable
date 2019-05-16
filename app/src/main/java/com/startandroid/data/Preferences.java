@@ -67,4 +67,8 @@ public final class Preferences {
     public static void setFirstLaunch(boolean value) {
         preferences.edit().putBoolean("firstLaunch", value).apply();
     }
+
+    public static boolean isOffline() {
+        return preferences.getBoolean("offline", false);
+    }
 }

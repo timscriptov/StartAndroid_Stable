@@ -47,5 +47,8 @@
     <string name="version_available">Доступна версия</string>
     <string name="ads_blocked">We have determined that you\'re blocking ads! You can\'t use this app without ads if you haven\'t bought Premium!</string>
 	<string name="buy">Buy</string>
+    <string name="offline">Offline</string>
+    <string name="downloading">Downloading</string>
+    <string name="only_prem">Available only for Premium users</string>
 
 </resources>

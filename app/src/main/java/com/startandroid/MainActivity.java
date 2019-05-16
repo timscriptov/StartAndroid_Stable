@@ -44,6 +44,7 @@ import es.dmoral.toasty.Toasty;
 import static com.startandroid.data.Constants.LK;
 import static com.startandroid.data.Constants.MI;
 import static com.startandroid.data.Constants.PREMIUM;
+import static com.startandroid.data.Preferences.isOffline;
 
 public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, IBillingHandler, NavigationView.OnNavigationItemSelectedListener {
 
@@ -71,7 +72,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
     @Override
     public void openLesson(String url, int position) {
-        if (!Utils.isNetworkAvailable()) {
+        if (!isOffline() & !Utils.isNetworkAvailable()) {
             Dialogs.noConnectionError(this);
             return;
         }
@@ -171,7 +172,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                 getDelegate().applyDayNight();
                 break;
             case R.id.continue_lesson:
-                if (Utils.isNetworkAvailable())
+                if (isOffline() || Utils.isNetworkAvailable())
                     resumeLesson();
                 else Dialogs.noConnectionError(this);
         }
@@ -254,7 +255,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                 startActivity(new Intent(this, AboutActivity.class));
                 break;
             case R.id.settings:
-                startActivityForResult(new Intent(this, SettingsActivity.class), REQUEST_CODE_SETTINGS);
+                startActivityForResult(new Intent(this, SettingsActivity.class).putExtra("isPremium", billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
                 break;
             case R.id.exit:
                 finish();
