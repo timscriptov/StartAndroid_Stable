@@ -44,7 +44,7 @@ public class FileReader {
             StringBuilder sb = new StringBuilder();
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
             String line;
-            while ((line = br.readLine()) != null) sb.append(line);
+            while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
         } catch (Exception exception) {
             return "<p style='color:red;'>Произошла ошибка:</p>" + Log.getStackTraceString(exception);
