@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
+    <com.startandroid.view.NestedWebViewAppBarLayout
         android:id="@+id/lesson_toolbar_abl"
         android:layout_width="match_parent"
         android:layout_height="175dip"
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:expandedTitleGravity="center"
-            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:maxLines="3">
 
             <android.support.v7.widget.Toolbar
@@ -27,7 +27,7 @@
 
         </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
 
-    </android.support.design.widget.AppBarLayout>
+    </com.startandroid.view.NestedWebViewAppBarLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/prev_lesson"
