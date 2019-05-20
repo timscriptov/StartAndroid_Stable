@@ -44,14 +44,13 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
     public void onBindViewHolder(@NotNull final BookmarksAdapter.ViewHolder holder, final int position) {
         final String text = items.get(position);
         final int number = getLessonNumberByTitle(text);
-        final String url = getResPath() + "/lesson_" + number + ".html#googtrans(ru|" + Preferences.getLang() + ")";
 
         holder.itemText.setText(text);
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View p1) {
                 bookmarksFragment.dismiss();
-                mainView.openLesson(url, holder.getAdapterPosition());
+                mainView.openLesson(getResPath() + "/lesson_" + number + ".html#googtrans(ru|" + Preferences.getLang() + ")", holder.getAdapterPosition());
             }
         });
 

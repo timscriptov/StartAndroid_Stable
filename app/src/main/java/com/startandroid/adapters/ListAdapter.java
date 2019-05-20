@@ -48,7 +48,6 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     public void onBindViewHolder(@NotNull final ListAdapter.ViewHolder holder, final int position) {
         final String text = items.get(position);
         final int number = getLessonNumberByTitle(text);
-        final String url = getResPath() + "/lesson_" + number + ".html";
 
         try {
             if (getClass().forName(Constants.ANTIPATCH) != null||
@@ -60,7 +59,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
             holder.item.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View p1) {
-                    mainView.openLesson(url, holder.getAdapterPosition());
+                    mainView.openLesson(getResPath() + "/lesson_" + number + ".html", holder.getAdapterPosition());
                 }
             });
         }

@@ -51,12 +51,11 @@ public class GridAdapter extends ArrayAdapter<String> {
 
         final String text = items.get(position);
         final int lessonNum = LessonUtils.getLessonNumberByTitle(text);
-        final String url = getResPath() + "/lesson_" + lessonNum + ".html";
 
         item.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View p1) {
-                mainView.openLesson(url, position);
+                mainView.openLesson(getResPath() + "/lesson_" + lessonNum + ".html", position);
             }
         });
         itemText.setText(text);
