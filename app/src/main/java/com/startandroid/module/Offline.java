@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.preference.SwitchPreference;
 import android.webkit.URLUtil;
 
-import com.startandroid.data.Constants;
 import com.startandroid.model.ProgressDialog;
 
 import org.zeroturnaround.zip.ZipUtil;
@@ -86,8 +85,8 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
     protected void onPostExecute(Boolean bool) {
         super.onPostExecute(bool);
         progressDialog.dismiss();
-        if (bool) {
-            Constants.RES_PATH = "data/data/" + PACKAGE_NAME + "/files/resources/pages";
-        } else offline.setChecked(false);
+        if (!bool) {
+            offline.setChecked(false);
+        }
     }
 }

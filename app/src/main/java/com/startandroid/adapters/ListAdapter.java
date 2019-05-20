@@ -13,14 +13,13 @@ import android.widget.TextView;
 
 import com.startandroid.R;
 import com.startandroid.data.Constants;
-import com.startandroid.utils.Utils;
 import com.startandroid.view.MainView;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import static com.startandroid.data.Constants.RES_PATH;
+import static com.startandroid.data.Constants.getResPath;
 import static com.startandroid.utils.LessonUtils.getLessonNumberByTitle;
 import static com.startandroid.utils.LessonUtils.isRead;
 
@@ -49,7 +48,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     public void onBindViewHolder(@NotNull final ListAdapter.ViewHolder holder, final int position) {
         final String text = items.get(position);
         final int number = getLessonNumberByTitle(text);
-        final String url = RES_PATH + "/lesson_" + number + ".html";
+        final String url = getResPath() + "/lesson_" + number + ".html";
 
         try {
             if (getClass().forName(Constants.ANTIPATCH) != null||

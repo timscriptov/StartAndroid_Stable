@@ -13,7 +13,6 @@ import com.daimajia.swipe.SwipeLayout;
 import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Preferences;
-import com.startandroid.utils.Utils;
 import com.startandroid.view.BookmarksFragment;
 import com.startandroid.view.MainView;
 
@@ -21,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import static com.startandroid.data.Constants.RES_PATH;
+import static com.startandroid.data.Constants.getResPath;
 import static com.startandroid.utils.LessonUtils.getLessonNumberByTitle;
 import static com.startandroid.utils.LessonUtils.isRead;
 
@@ -45,7 +44,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
     public void onBindViewHolder(@NotNull final BookmarksAdapter.ViewHolder holder, final int position) {
         final String text = items.get(position);
         final int number = getLessonNumberByTitle(text);
-        final String url = RES_PATH + "/lesson_" + number + ".html#googtrans(ru|" + Preferences.getLang() + ")";
+        final String url = getResPath() + "/lesson_" + number + ".html#googtrans(ru|" + Preferences.getLang() + ")";
 
         holder.itemText.setText(text);
         holder.item.setOnClickListener(new View.OnClickListener() {

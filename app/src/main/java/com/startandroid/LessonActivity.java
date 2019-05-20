@@ -30,7 +30,7 @@ import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.startandroid.data.Constants.RES_PATH;
+import static com.startandroid.data.Constants.getResPath;
 import static com.startandroid.data.Preferences.isOffline;
 import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
 import static com.startandroid.utils.LessonUtils.isRead;
@@ -64,7 +64,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
-                new PageLoader(RES_PATH + "/lesson_" + (getLessonNumberByUrl(webView.getUrl()) - 1) + ".html").execute();
+                new PageLoader(getResPath() + "/lesson_" + (getLessonNumberByUrl(webView.getUrl()) - 1) + ".html").execute();
                 itemPosition--;
                 break;
             case R.id.next_lesson:
@@ -72,7 +72,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
-                new PageLoader(RES_PATH + "/lesson_" + (getLessonNumberByUrl(webView.getUrl()) + 1) + ".html").execute();
+                new PageLoader(getResPath() + "/lesson_" + (getLessonNumberByUrl(webView.getUrl()) + 1) + ".html").execute();
                 itemPosition++;
         }
     }

@@ -10,7 +10,6 @@ import android.preference.SwitchPreference;
 import android.support.v7.app.AppCompatActivity;
 
 import com.startandroid.R;
-import com.startandroid.data.Constants;
 import com.startandroid.data.NightMode;
 import com.startandroid.module.Dialogs;
 import com.startandroid.module.Offline;
@@ -49,7 +48,6 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                             try {
                                 File resourcesDir = new File("data/data/" + PACKAGE_NAME + "/files/resources");
                                 FileUtils.deleteDirectory(resourcesDir);
-                                Constants.RES_PATH = "https://mcal-llc.github.io/sa/pages";
                             } catch (IOException ignored) {
                             }
                         }

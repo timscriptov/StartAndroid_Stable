@@ -14,14 +14,13 @@ import android.widget.TextView;
 import com.startandroid.App;
 import com.startandroid.R;
 import com.startandroid.utils.LessonUtils;
-import com.startandroid.utils.Utils;
 import com.startandroid.view.MainView;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-import static com.startandroid.data.Constants.RES_PATH;
+import static com.startandroid.data.Constants.getResPath;
 
 public class GridAdapter extends ArrayAdapter<String> {
     private SearchFilter filter;
@@ -52,7 +51,7 @@ public class GridAdapter extends ArrayAdapter<String> {
 
         final String text = items.get(position);
         final int lessonNum = LessonUtils.getLessonNumberByTitle(text);
-        final String url = RES_PATH + "/lesson_" + lessonNum + ".html";
+        final String url = getResPath() + "/lesson_" + lessonNum + ".html";
 
         item.setOnClickListener(new OnClickListener() {
             @Override
