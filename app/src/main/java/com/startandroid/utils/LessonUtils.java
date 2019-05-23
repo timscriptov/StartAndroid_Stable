@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import com.startandroid.App;
 import com.startandroid.data.Database;
 
 import java.util.regex.Matcher;
@@ -32,13 +33,10 @@ public class LessonUtils {
     }
 
     public static int getLessonNumberByUrl(String url) {
-        Pattern p;
-        if (isOffline()) {
-            p = Pattern.compile("file:///data/data/" + PACKAGE_NAME + "/files/resources/pages/lesson_(\\d+).html");
-        } else p = Pattern.compile("https://mcal-llc.github.io/sa/pages/lesson_(\\d+).html");
+        Pattern p = Pattern.compile(".*/lesson_(\\d+).html.*");
         Matcher m = p.matcher(url);
         if (m.matches()) return Integer.parseInt(m.group(1));
-        return 1;
+        return 24;
     }
 
 }
