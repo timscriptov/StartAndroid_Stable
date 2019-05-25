@@ -217,7 +217,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
     @Override
     public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
-        Toasty.success(this, getString(R.string.premium_activated)).show();
+		Toasty.success(this, getString(R.string.p_a)).show();// premium_activated
     }
 
     @Override
@@ -256,7 +256,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                 startActivity(new Intent(this, AboutActivity.class));
                 break;
             case R.id.settings:
-                startActivityForResult(new Intent(this, SettingsActivity.class).putExtra("isPremium", billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
+                startActivityForResult(new Intent(this, SettingsActivity.class).putExtra(IS_PREMIUM, billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
                 break;
             case R.id.exit:
                 finish();

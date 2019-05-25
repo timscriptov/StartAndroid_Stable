@@ -22,7 +22,7 @@
 	<string name="night_mode">Night mode</string>
 	<string name="font_type">Type</string>
 	<string name="update">Update</string>
-	<string name="premium">Premium</string>
+	<string name="p">Premium</string>
 	<string name="error">Error</string>
 	<string name="no_connection">No internet connection!</string>
 	<string name="close">Close</string>
@@ -35,7 +35,7 @@
 	<string name="removed_from_bookmarks">Lesson %d removed from bookmarks</string>
 	<string name="marked_as_read">Lesson %d marked as read</string>
 	<string name="press_back_once_more">Press back once more to exit</string>
-	<string name="premium_activated">Premium activated!</string>
+	<string name="p_a">Premium activated!</string>
 	<string name="purchase_canceled">Purchase canceled!</string>
 	<string name="bookmarks_delete">Bookmark deleted</string>
 	<string name="accept">Accept</string>

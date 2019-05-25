@@ -27,7 +27,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     private ListPreference font_size;
     private ListPreference lang;
     private SwitchPreference offline;
-    private boolean isVip, hasResult;
+    private boolean isVip;//hasResult;
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences p1, String p2) {

@@ -22,7 +22,7 @@
 	<string name="night_mode">Нічний режим</string>
 	<string name="font_type">Тип</string>
 	<string name="update">Оновити</string>
-	<string name="premium">Premium</string>
+	<string name="p">Premium</string>
 	<string name="error">Помилка</string>
 	<string name="no_connection">Підключення до Інтернету відсутнє!</string>
 	<string name="close">Закрити</string>
@@ -35,7 +35,7 @@
 	<string name="removed_from_bookmarks">Урок %d видалено з закладок</string>
 	<string name="marked_as_read">Урок %d відмічено прочитаним</string>
 	<string name="press_back_once_more">Натисніть ще раз, щоб вийти</string>
-	<string name="premium_activated">Premium активований!</string>
+	<string name="p_a">Premium активований!</string>
 	<string name="purchase_canceled">Покупка відмінена!</string>
 	<string name="bookmarks_delete">Закладка видалена</string>
 	<string name="accept">Принять</string>
