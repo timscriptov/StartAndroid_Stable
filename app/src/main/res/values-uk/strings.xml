@@ -42,13 +42,13 @@
     <string name="no_bookmarks">Закладок немає</string>
     <string name="navigation_drawer_open">Открыть drawer</string>
 	<string name="navigation_drawer_close">Закрыть drawer</string>
-    <string name="version_nav_header">Версія 11.0.0</string>
-	<string name="thanks">Thanks!</string>
+    <string name="version_nav_header">Версія 11.4.2</string>
+	<string name="thanks">Спасибі!</string>
     <string name="version_available">Доступна версия</string>
-    <string name="ads_blocked">We have determined that you\'re blocking ads! You can\'t use this app without ads if you haven\'t bought Premium!</string>
-	<string name="buy">Buy</string>
+    <string name="ads_blocked">Ми визначили, що ви блокуєте рекламу! Ви можете користуватися цією програмою без реклами, якщо ви придбаєте Premium!</string>
+	<string name="buy">Придбати</string>
     <string name="offline">Offline</string>
-    <string name="downloading">Downloading</string>
-    <string name="only_prem">Available only for Premium users</string>
+    <string name="downloading">Завантаження</string>
+    <string name="only_prem">Доступно лише для Premium користувачів</string>
 
 </resources>

@@ -42,10 +42,10 @@
     <string name="no_bookmarks">Закладок нет</string>
     <string name="navigation_drawer_open">Открыть drawer</string>
     <string name="navigation_drawer_close">Закрыть drawer</string>
-    <string name="version_nav_header">Версия 11.0.0</string>
+    <string name="version_nav_header">Версия 11.4.2</string>
 	<string name="thanks">Спасибо!</string>
 	<string name="version_available">Доступна версия</string>
-    <string name="ads_blocked">We have determined that you\'re blocking ads! You can\'t use this app without ads if you haven\'t bought Premium!</string>
+    <string name="ads_blocked">Мы определили, что вы блокируете рекламу!  Вы не можете использовать это приложение без рекламы, если вы не купили Премиум!</string>
 	<string name="buy">Buy</string>
 	<string name="offline">Оффлайн</string>
 	<string name="downloading">Загрузка</string>

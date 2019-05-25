@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static com.startandroid.data.Constants.PACKAGE_NAME;
+import static com.startandroid.data.Constants.IS_PREMIUM;
 
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     private ListPreference font_size;
@@ -85,7 +86,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         lang = (ListPreference) findPreference("lang");
         lang.setSummary(lang.getEntry());
         offline = (SwitchPreference) findPreference("offline");
-        isVip = getActivity().getIntent().getBooleanExtra("isPremium", false);
+        isVip = getActivity().getIntent().getBooleanExtra(IS_PREMIUM, false);
     }
 
     @Override

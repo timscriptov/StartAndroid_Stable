@@ -13,6 +13,7 @@ public final class Constants {
     public static final String LK = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjwVwPnZ+iwu4+dAUMoO+SOY4XKsLIzsE9hCgxcgjZdKY0poUgqcadOAebfW+LkZfced9VaRodxQIXVZcdYruFW9mDMW69/dqnvjY7adYMMBpEh58E6Mq2Yt4AZYbOaquW+I6DmtvlHa34Vh3eyj3RDiaY3bS2yhpeCd5Rdwcnhjk7mE15gY+wM9bSe9AGmqx+FKlU6xww8drqWYR/xnov5seF1NuIQTzWoe0muKB+lnqhOeN9q8cOawoZqlSRagqYe9zrQ0SrfJ7N3e5nT2LpgQ33IC+Tvzkz3TwfFPbVGheuTlcWV0PweXwvaMkf2dYRcfiF4zFhIZnzKmm46aELwIDAQAB";
     public static final String MI = "00384380151574298327";
     public static final String PREMIUM = BuildConfig.DEBUG ? "android.test.purchased" : Utils.fromBase64("cHJlbWl1bQ=="); // premium
+	public static final String IS_PREMIUM = Utils.fromBase64("aXNQcmVtaXVt"); // isPremium
     public static final String ANTIPATCH = Utils.fromBase64("Y2MuYmlubXQuc2lnbmF0dXJlLlBtc0hvb2tBcHBsaWNhdGlvbg=="); // cc.binmt.signature.PmsHookApplication
     public static final String ANTIPATCH1 = Utils.fromBase64("YW55bXkuc2lnbi5CaW5TaWduYXR1cmVGaXg="); // anymy.sign.BinSignatureFix
     public static final String ANTIPATCH2 = Utils.fromBase64("YXBrZWRpdG9yLnBhdGNoLnNpZ25hdHVyZS5GaXg="); // apkeditor.patch.signature.Fix

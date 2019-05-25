@@ -36,7 +36,7 @@ public class LessonUtils {
         Pattern p = Pattern.compile(".*/lesson_(\\d+).html.*");
         Matcher m = p.matcher(url);
         if (m.matches()) return Integer.parseInt(m.group(1));
-        return 24;
+        return 1;
     }
 
 }

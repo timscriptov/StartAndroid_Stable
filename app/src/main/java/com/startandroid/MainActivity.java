@@ -44,6 +44,7 @@ import es.dmoral.toasty.Toasty;
 import static com.startandroid.data.Constants.LK;
 import static com.startandroid.data.Constants.MI;
 import static com.startandroid.data.Constants.PREMIUM;
+import static com.startandroid.data.Constants.IS_PREMIUM;
 import static com.startandroid.data.Preferences.isOffline;
 
 public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, IBillingHandler, NavigationView.OnNavigationItemSelectedListener {
@@ -237,7 +238,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         if (!billing.isPurchased(PREMIUM)) {
             adLayout.addView(ads.getBanner(this));
             ads.loadInterstitial(this);
-            navigationView.getMenu().findItem(R.id.buy_premium).setVisible(true);
+			navigationView.getMenu().findItem(R.id.b_p).setVisible(true);//buy_premium
             if(!billing.isPurchased(PREMIUM) & !ads.isAdsLoading()){
                 isAdsBlocked = true;
                 adsBlocked();
@@ -260,8 +261,8 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
             case R.id.exit:
                 finish();
                 break;
-            case R.id.buy_premium:
-                billing.purchase(this, PREMIUM, "premium");
+			case R.id.b_p://buy_premium
+                billing.purchase(this, PREMIUM, PREMIUM);
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
