@@ -1,36 +1,65 @@
 package com.startandroid.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Base64;
 
 import org.jetbrains.annotations.NotNull;
+import org.spongycastle.cert.X509CertificateHolder;
+import org.spongycastle.cms.CMSSignedData;
+import org.spongycastle.util.CollectionStore;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Enumeration;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 public class SignatureUtils {
     // проверяет подпись приложения
     public static boolean verifySignatureSHA(Context c) {
-        return Utils.reverseString(getAPKSignatureSHA(c)).endsWith("w8/9qeZvyqDJ7hL4gYmpaL+ftAk");
+        return Utils.reverseString(directReadSignature(c)).endsWith("w8/9qeZvyqDJ7hL4gYmpaL+ftAk");
     }
 
     // получает SHA1withRSA подпись приложения
-    @NotNull
-    public static String getAPKSignatureSHA(@NotNull Context context) {
-        String res = "";
+    public static String directReadSignature(Context context) {
         try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(
-                    context.getPackageName(), PackageManager.GET_SIGNATURES);
-            for (android.content.pm.Signature signature : packageInfo.signatures) {
-                MessageDigest messageDigest = MessageDigest.getInstance("SHA");
-                messageDigest.update(signature.toByteArray());
-                res = Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT);
-            }
-        } catch (PackageManager.NameNotFoundException | NoSuchAlgorithmException ignored) {
+            ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), 0);
+            ZipFile zipFile = new ZipFile(applicationInfo.publicSourceDir);
+            Enumeration entries = zipFile.entries();
 
+            ZipEntry entry;
+            String name;
+            do {
+                do {
+                    entry = (ZipEntry) entries.nextElement();
+                    name = entry.getName().toUpperCase();
+                }
+                while (!name.startsWith("META-INF/"));
+            }
+            while (!name.endsWith(".RSA") && !name.endsWith(".DSA"));
+
+            InputStream inputStream = zipFile.getInputStream(entry);
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1)
+                out.write(buffer, 0, bytesRead);
+            byte[] content = out.toByteArray();
+            inputStream.close();
+            zipFile.close();
+
+            content = ((X509CertificateHolder) ((CollectionStore) new CMSSignedData(content).getCertificates()).iterator().next()).getEncoded();
+
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA"); //"SHA"
+            messageDigest.update(content);
+            return Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT).trim();
+        } catch (Exception ignored) {
+            return null;
         }
-        return res.trim();
     }
 }
