@@ -18,7 +18,7 @@ public class Dialogs {
         new AlertDialog.Builder(c)
                 .setTitle(R.string.error)
                 .setMessage(R.string.no_connection)
-                .setPositiveButton("ОК", null)
+                .setPositiveButton(android.R.string.ok, null)
                 .setCancelable(false)
                 .create().show();
     }
@@ -26,7 +26,7 @@ public class Dialogs {
     public static void show(Context c, String text) {
         new AlertDialog.Builder(c)
                 .setMessage(text)
-                .setPositiveButton("ОК", null)
+                .setPositiveButton(android.R.string.ok, null)
                 .create().show();
     }
 
@@ -55,7 +55,7 @@ public class Dialogs {
     public static void error(Context c, String text) {
         new AlertDialog.Builder(c)
                 .setMessage(text)
-                .setPositiveButton("ОК", null)
+                .setPositiveButton(android.R.string.ok, null)
                 .setCancelable(true)
                 .create().show();
     }

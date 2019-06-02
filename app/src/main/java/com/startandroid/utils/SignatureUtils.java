@@ -16,12 +16,16 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import com.startandroid.data.Constants;
+import static com.startandroid.data.Constants.SHA;
+import static com.startandroid.data.Constants.RSA;
+import static com.startandroid.data.Constants.DSA;
+import static com.startandroid.data.Constants.SIGNATURE;
+import static com.startandroid.data.Constants.META_INF;
 
 public class SignatureUtils {
     // проверяет подпись приложения
     public static boolean verifySignatureSHA(Context c) {
-        return Utils.reverseString(directReadSignature(c)).endsWith(Constants.SIGNATURE);
+        return Utils.reverseString(directReadSignature(c)).endsWith(SIGNATURE);
     }
 
     // получает SHA1withRSA подпись приложения
@@ -39,9 +43,9 @@ public class SignatureUtils {
                     entry = (ZipEntry) entries.nextElement();
                     name = entry.getName().toUpperCase();
                 }
-                while (!name.startsWith(Constants.META_INF));
+                while (!name.startsWith(META_INF));
             }
-            while (!name.endsWith(Constants.RSA) && !name.endsWith(Constants.DSA));
+            while (!name.endsWith(RSA) && !name.endsWith(DSA));
 
             InputStream inputStream = zipFile.getInputStream(entry);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -55,7 +59,7 @@ public class SignatureUtils {
 
             content = ((X509CertificateHolder) ((CollectionStore) new CMSSignedData(content).getCertificates()).iterator().next()).getEncoded();
 
-            MessageDigest messageDigest = MessageDigest.getInstance(Constants.SHA); //"SHA"
+            MessageDigest messageDigest = MessageDigest.getInstance(SHA); //"SHA"
             messageDigest.update(content);
             return Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT).trim();
         } catch (Exception ignored) {

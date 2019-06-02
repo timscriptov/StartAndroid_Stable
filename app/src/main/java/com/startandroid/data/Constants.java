@@ -26,9 +26,11 @@ public final class Constants {
     public static final String DSA = Utils.fromBase64("LkRTQQ=="); // .DSA
     public static final String SHA = Utils.fromBase64("U0hB"); // SHA
 	public static final String SIGNATURE = Utils.fromBase64("dzgvOXFlWnZ5cURKN2hMNGdZbXBhTCtmdEFr"); // w8/9qeZvyqDJ7hL4gYmpaL+ftAk
-    @NotNull
+    public static final String STARTANDROID_ZIP = Utils.fromBase64("aHR0cHM6Ly90aW1zY3JpcHRvdi5naXRodWIuaW8vbGVzc29ucy9zdGFydGFuZHJvaWQuemlw"); // https://timscriptov.github.io/lessons/startandroid.zip
+	public static final String MCAL_LLC = Utils.fromBase64("aHR0cHM6Ly9tY2FsLWxsYy5naXRodWIuaW8vc2EvcGFnZXM="); // https://mcal-llc.github.io/sa/pages
+	@NotNull
     public static String getResPath() {
         if (isOffline()) return "data/data/" + PACKAGE_NAME + "/files/resources/pages";
-        else return "https://mcal-llc.github.io/sa/pages";
+        else return MCAL_LLC;
     }
 }
