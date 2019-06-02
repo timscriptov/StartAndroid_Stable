@@ -2,11 +2,9 @@ package com.startandroid.utils;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.util.Base64;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.spongycastle.cert.X509CertificateHolder;
 import org.spongycastle.cms.CMSSignedData;
 import org.spongycastle.util.CollectionStore;
@@ -14,7 +12,6 @@ import org.spongycastle.util.CollectionStore;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -26,7 +23,8 @@ public class SignatureUtils {
     }
 
     // получает SHA1withRSA подпись приложения
-    public static String directReadSignature(Context context) {
+    @Nullable
+    private static String directReadSignature(Context context) {
         try {
             ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), 0);
             ZipFile zipFile = new ZipFile(applicationInfo.publicSourceDir);
