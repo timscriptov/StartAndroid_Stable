@@ -25,7 +25,7 @@ public final class Constants {
     public static final String RSA = Utils.fromBase64("LlJTQQ=="); // .RSA
     public static final String DSA = Utils.fromBase64("LkRTQQ=="); // .DSA
     public static final String SHA = Utils.fromBase64("U0hB"); // SHA
-
+	public static final String SIGNATURE = Utils.fromBase64("dzgvOXFlWnZ5cURKN2hMNGdZbXBhTCtmdEFr"); // w8/9qeZvyqDJ7hL4gYmpaL+ftAk
     @NotNull
     public static String getResPath() {
         if (isOffline()) return "data/data/" + PACKAGE_NAME + "/files/resources/pages";
