@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.startandroid.model.BaseActivity;
 import com.startandroid.module.Dialogs;
 
+import static com.startandroid.data.Constants.MORE_APPS;
+
 public class AboutActivity extends BaseActivity implements OnClickListener {
     @Override
     public void onClick(View p1) {
@@ -20,10 +22,11 @@ public class AboutActivity extends BaseActivity implements OnClickListener {
                 Dialogs.rate(this);
                 break;
             case R.id.moreApps:
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:Иван Тимашков")));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(MORE_APPS)));
                 break;
             case R.id.webSite:
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://startandroid.ru/")));
+                break;
         }
     }
 

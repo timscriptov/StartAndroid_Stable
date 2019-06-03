@@ -6,8 +6,8 @@ android {
         applicationId "com.startandroid"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 1142
-        versionName "11.4.2"
+        versionCode 1143
+        versionName "11.4.3"
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -22,6 +22,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation project(':native_signature_check')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'

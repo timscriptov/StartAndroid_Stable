@@ -13,6 +13,8 @@ import com.startandroid.App;
 import com.startandroid.R;
 import com.startandroid.data.Preferences;
 
+import static com.startandroid.data.Constants.RATE;
+
 public class Dialogs {
     public static void noConnectionError(Context c) {
         new AlertDialog.Builder(c)
@@ -40,7 +42,7 @@ public class Dialogs {
                     @Override
                     public void onClick(DialogInterface p1, int p2) {
                         if(ratingBar.getRating() > 3) {
-                            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.startandroid")));
+                            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RATE)));
                             Preferences.setRated();
                         } else {
                             App.toast(R.string.thanks);

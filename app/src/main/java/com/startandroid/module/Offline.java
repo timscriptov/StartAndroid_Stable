@@ -18,7 +18,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import static com.startandroid.data.Constants.PACKAGE_NAME;
-import static com.startandroid.data.Constants.STARTANDROID_ZIP;
+import static com.startandroid.data.Constants.DOWNLOAD_ZIP;
 
 public class Offline extends AsyncTask<Void, Integer, Boolean> {
     private ProgressDialog progressDialog;
@@ -38,7 +38,7 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
     @Override
     protected Boolean doInBackground(Void... voids) {
         try {
-            URL url = new URL(STARTANDROID_ZIP);
+            URL url = new URL(DOWNLOAD_ZIP);
             URLConnection connection = url.openConnection();
             connection.connect();
 
