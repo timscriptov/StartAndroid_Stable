@@ -8,7 +8,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
+
 import com.anjlab.android.iab.v3.data.*;
+import static com.anjlab.android.iab.v3.data.Constants.LOCALE_US_2;
 
 public class SkuDetails implements Parcelable
 {
@@ -39,13 +41,6 @@ public class SkuDetails implements Parcelable
 
     public final int introductoryPriceCycles;
 
-    /**
-     * Use this value to return the raw price from the product.
-     * This allows math to be performed without needing to worry about errors
-     * caused by floating point representations of the product's price.
-     * <p>
-     * This is in micros from the Play Store.
-     */
     public final long priceLong;
 
     public final String priceText;
@@ -83,7 +78,7 @@ public class SkuDetails implements Parcelable
     @Override
     public String toString()
     {
-        return String.format(Locale.US, "%s: %s(%s) %f in %s (%s)",
+        return String.format(Locale.US, LOCALE_US_2,
                 productId,
                 title,
                 description,
@@ -130,44 +125,44 @@ public class SkuDetails implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-        dest.writeString(this.productId);
-        dest.writeString(this.title);
-        dest.writeString(this.description);
+        dest.writeString(productId);
+        dest.writeString(title);
+        dest.writeString(description);
         dest.writeByte(isSubscription ? (byte) 1 : (byte) 0);
-        dest.writeString(this.currency);
-        dest.writeDouble(this.priceValue);
-        dest.writeLong(this.priceLong);
-        dest.writeString(this.priceText);
-        dest.writeString(this.subscriptionPeriod);
-        dest.writeString(this.subscriptionFreeTrialPeriod);
-        dest.writeByte(this.haveTrialPeriod ? (byte) 1 : (byte) 0);
-        dest.writeDouble(this.introductoryPriceValue);
-        dest.writeLong(this.introductoryPriceLong);
-        dest.writeString(this.introductoryPriceText);
-        dest.writeString(this.introductoryPricePeriod);
-        dest.writeByte(this.haveIntroductoryPeriod ? (byte) 1 : (byte) 0);
-        dest.writeInt(this.introductoryPriceCycles);
+        dest.writeString(currency);
+        dest.writeDouble(priceValue);
+        dest.writeLong(priceLong);
+        dest.writeString(priceText);
+        dest.writeString(subscriptionPeriod);
+        dest.writeString(subscriptionFreeTrialPeriod);
+        dest.writeByte(haveTrialPeriod ? (byte) 1 : (byte) 0);
+        dest.writeDouble(introductoryPriceValue);
+        dest.writeLong(introductoryPriceLong);
+        dest.writeString(introductoryPriceText);
+        dest.writeString(introductoryPricePeriod);
+        dest.writeByte(haveIntroductoryPeriod ? (byte) 1 : (byte) 0);
+        dest.writeInt(introductoryPriceCycles);
     }
 
     protected SkuDetails(Parcel in)
     {
-        this.productId = in.readString();
-        this.title = in.readString();
-        this.description = in.readString();
-        this.isSubscription = in.readByte() != 0;
-        this.currency = in.readString();
-        this.priceValue = in.readDouble();
-        this.priceLong = in.readLong();
-        this.priceText = in.readString();
-        this.subscriptionPeriod = in.readString();
-        this.subscriptionFreeTrialPeriod = in.readString();
-        this.haveTrialPeriod = in.readByte() != 0;
-        this.introductoryPriceValue = in.readDouble();
-        this.introductoryPriceLong = in.readLong();
-        this.introductoryPriceText = in.readString();
-        this.introductoryPricePeriod = in.readString();
-        this.haveIntroductoryPeriod = in.readByte() != 0;
-        this.introductoryPriceCycles = in.readInt();
+        productId = in.readString();
+        title = in.readString();
+        description = in.readString();
+        isSubscription = in.readByte() != 0;
+        currency = in.readString();
+        priceValue = in.readDouble();
+        priceLong = in.readLong();
+        priceText = in.readString();
+        subscriptionPeriod = in.readString();
+        subscriptionFreeTrialPeriod = in.readString();
+        haveTrialPeriod = in.readByte() != 0;
+        introductoryPriceValue = in.readDouble();
+        introductoryPriceLong = in.readLong();
+        introductoryPriceText = in.readString();
+        introductoryPricePeriod = in.readString();
+        haveIntroductoryPeriod = in.readByte() != 0;
+        introductoryPriceCycles = in.readInt();
     }
 
     public static final Parcelable.Creator<SkuDetails> CREATOR =

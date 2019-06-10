@@ -6,30 +6,19 @@ import android.os.Parcelable;
 import java.util.Date;
 import java.util.Locale;
 
+import static com.anjlab.android.iab.v3.data.Constants.LOCALE_US;
+
 public class TransactionDetails implements Parcelable
 {
-
-	/**
-	 * @deprecated use {@see purchaseInfo.purchaseData.productId}} instead.
-	 */
 	@Deprecated
 	public final String productId;
 
-	/**
-	 * @deprecated use {@see purchaseInfo.purchaseData.orderId}} instead.
-	 */
 	@Deprecated
 	public final String orderId;
 
-	/**
-	 * @deprecated use {@see purchaseInfo.purchaseData.purchaseToken}} instead.
-	 */
 	@Deprecated
 	public final String purchaseToken;
 
-	/**
-	 * @deprecated use {@see purchaseInfo.purchaseData.purchaseTime}} instead.
-	 */
 	@Deprecated
 	public final Date purchaseTime;
 
@@ -47,7 +36,7 @@ public class TransactionDetails implements Parcelable
 	@Override
 	public String toString()
 	{
-		return String.format(Locale.US, "%s purchased at %s(%s). Token: %s, Signature: %s",
+		return String.format(Locale.US, LOCALE_US,
 							 productId,
 							 purchaseTime,
 							 orderId,
@@ -87,16 +76,16 @@ public class TransactionDetails implements Parcelable
 	@Override
 	public void writeToParcel(Parcel dest, int flags)
 	{
-		dest.writeParcelable(this.purchaseInfo, flags);
+		dest.writeParcelable(purchaseInfo, flags);
 	}
 
 	protected TransactionDetails(Parcel in)
 	{
-		this.purchaseInfo = in.readParcelable(PurchaseInfo.class.getClassLoader());
-		this.productId = purchaseInfo.purchaseData.productId;
-		this.orderId = purchaseInfo.purchaseData.orderId;
-		this.purchaseToken = purchaseInfo.purchaseData.purchaseToken;
-		this.purchaseTime = purchaseInfo.purchaseData.purchaseTime;
+		purchaseInfo = in.readParcelable(PurchaseInfo.class.getClassLoader());
+		productId = purchaseInfo.purchaseData.productId;
+		orderId = purchaseInfo.purchaseData.orderId;
+		purchaseToken = purchaseInfo.purchaseData.purchaseToken;
+		purchaseTime = purchaseInfo.purchaseData.purchaseTime;
 	}
 
 	public static final Parcelable.Creator<TransactionDetails> CREATOR =

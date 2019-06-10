@@ -12,17 +12,9 @@ import java.util.Date;
 import static com.anjlab.android.iab.v3.data.Constants.*;
 import com.anjlab.android.iab.v3.data.*;
 
-/**
- * With this PurchaseInfo a developer is able verify
- * a purchase from the google play store on his own
- * server. An example implementation of how to verify
- * a purchase you can find <a href="https://github.com/mgoldsborough/google-play-in-app-billing-
- * verification/blob/master/library/GooglePlay/InAppBilling/GooglePlayResponseValidator.php#L64">here</a>
- */
 public class PurchaseInfo implements Parcelable
 {
     private static final String LOG_TAG = IABV3_PURCHASEINFO;
-
     public final String responseData;
     public final String signature;
     public final PurchaseData purchaseData;
@@ -31,12 +23,9 @@ public class PurchaseInfo implements Parcelable
     {
         this.responseData = responseData;
         this.signature = signature;
-        this.purchaseData = parseResponseDataImpl();
+        purchaseData = parseResponseDataImpl();
     }
 
-    /**
-     * @deprecated don't call it directly, use {@see purchaseData} instead.
-     */
     @Deprecated
     public PurchaseData parseResponseData()
     {
@@ -76,15 +65,15 @@ public class PurchaseInfo implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-        dest.writeString(this.responseData);
-        dest.writeString(this.signature);
+        dest.writeString(responseData);
+        dest.writeString(signature);
     }
 
     protected PurchaseInfo(Parcel in)
     {
-        this.responseData = in.readString();
-        this.signature = in.readString();
-        this.purchaseData = parseResponseDataImpl();
+        responseData = in.readString();
+        signature = in.readString();
+        purchaseData = parseResponseDataImpl();
     }
 
     public static final Parcelable.Creator<PurchaseInfo> CREATOR =

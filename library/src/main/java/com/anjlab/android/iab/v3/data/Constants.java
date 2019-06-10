@@ -7,6 +7,8 @@ public final class Constants {
 	
 	public static final String COM_ANDROID_VENDING_BILLING_IINAPPBILLINGSERVICE = Utils.fromBase64("Y29tLmFuZHJvaWQudmVuZGluZy5iaWxsaW5nLklJbkFwcEJpbGxpbmdTZXJ2aWNl"); // com.android.vending.billing.IInAppBillingService
 	
+	public static final String LOCALE_US = Utils.fromBase64("JXMgcHVyY2hhc2VkIGF0ICVzKCVzKS4gVG9rZW46ICVzLCBTaWduYXR1cmU6ICVz"); // "%s purchased at %s(%s). Token: %s, Signature: %s"
+	public static final String LOCALE_US_2 = Utils.fromBase64("JXM6ICVzKCVzKSAlZiBpbiAlcyAoJXMp"); // "%s: %s(%s) %f in %s (%s)"
 	public static final String PREFERENCES = Utils.fromBase64("X3ByZWZlcmVuY2Vz"); // _preferences
 	public static final String VERSION = Utils.fromBase64("LnZlcnNpb24="); // .version
 	public static final String IABV3_PURCHASEINFO = Utils.fromBase64("aWFidjMucHVyY2hhc2VJbmZv"); // iabv3.purchaseInfo

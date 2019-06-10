@@ -9,7 +9,7 @@ public interface IInAppBillingService extends android.os.IInterface
 		private static final java.lang.String DESCRIPTOR = COM_ANDROID_VENDING_BILLING_IINAPPBILLINGSERVICE;
 		public Stub()
 		{
-			this.attachInterface(this, DESCRIPTOR);
+			attachInterface(this, DESCRIPTOR);
 		}
 
 		public static com.android.vending.billing.IInAppBillingService asInterface(android.os.IBinder obj)
@@ -48,7 +48,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						_arg1 = data.readString();
 						java.lang.String _arg2;
 						_arg2 = data.readString();
-						int _result = this.isBillingSupported(_arg0, _arg1, _arg2);
+						int _result = isBillingSupported(_arg0, _arg1, _arg2);
 						reply.writeNoException();
 						reply.writeInt(_result);
 						return true;
@@ -71,7 +71,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						{
 							_arg3 = null;
 						}
-						android.os.Bundle _result = this.getSkuDetails(_arg0, _arg1, _arg2, _arg3);
+						android.os.Bundle _result = getSkuDetails(_arg0, _arg1, _arg2, _arg3);
 						reply.writeNoException();
 						if ((_result != null))
 						{
@@ -97,7 +97,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						_arg3 = data.readString();
 						java.lang.String _arg4;
 						_arg4 = data.readString();
-						android.os.Bundle _result = this.getBuyIntent(_arg0, _arg1, _arg2, _arg3, _arg4);
+						android.os.Bundle _result = getBuyIntent(_arg0, _arg1, _arg2, _arg3, _arg4);
 						reply.writeNoException();
 						if ((_result != null))
 						{
@@ -121,7 +121,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						_arg2 = data.readString();
 						java.lang.String _arg3;
 						_arg3 = data.readString();
-						android.os.Bundle _result = this.getPurchases(_arg0, _arg1, _arg2, _arg3);
+						android.os.Bundle _result = getPurchases(_arg0, _arg1, _arg2, _arg3);
 						reply.writeNoException();
 						if ((_result != null))
 						{
@@ -143,7 +143,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						_arg1 = data.readString();
 						java.lang.String _arg2;
 						_arg2 = data.readString();
-						int _result = this.consumePurchase(_arg0, _arg1, _arg2);
+						int _result = consumePurchase(_arg0, _arg1, _arg2);
 						reply.writeNoException();
 						reply.writeInt(_result);
 						return true;
@@ -157,7 +157,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						_arg1 = data.readString();
 						java.lang.String _arg2;
 						_arg2 = data.readString();
-						int _result = this.stub(_arg0, _arg1, _arg2);
+						int _result = stub(_arg0, _arg1, _arg2);
 						reply.writeNoException();
 						reply.writeInt(_result);
 						return true;
@@ -177,7 +177,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						_arg4 = data.readString();
 						java.lang.String _arg5;
 						_arg5 = data.readString();
-						android.os.Bundle _result = this.getBuyIntentToReplaceSkus(_arg0, _arg1, _arg2, _arg3, _arg4, _arg5);
+						android.os.Bundle _result = getBuyIntentToReplaceSkus(_arg0, _arg1, _arg2, _arg3, _arg4, _arg5);
 						reply.writeNoException();
 						if ((_result != null))
 						{
@@ -212,7 +212,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						{
 							_arg5 = null;
 						}
-						android.os.Bundle _result = this.getBuyIntentExtraParams(_arg0, _arg1, _arg2, _arg3, _arg4, _arg5);
+						android.os.Bundle _result = getBuyIntentExtraParams(_arg0, _arg1, _arg2, _arg3, _arg4, _arg5);
 						reply.writeNoException();
 						if ((_result != null))
 						{
@@ -245,7 +245,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						{
 							_arg4 = null;
 						}
-						android.os.Bundle _result = this.getPurchaseHistory(_arg0, _arg1, _arg2, _arg3, _arg4);
+						android.os.Bundle _result = getPurchaseHistory(_arg0, _arg1, _arg2, _arg3, _arg4);
 						reply.writeNoException();
 						if ((_result != null))
 						{
@@ -276,7 +276,7 @@ public interface IInAppBillingService extends android.os.IInterface
 						{
 							_arg3 = null;
 						}
-						int _result = this.isBillingSupportedExtraParams(_arg0, _arg1, _arg2, _arg3);
+						int _result = isBillingSupportedExtraParams(_arg0, _arg1, _arg2, _arg3);
 						reply.writeNoException();
 						reply.writeInt(_result);
 						return true;

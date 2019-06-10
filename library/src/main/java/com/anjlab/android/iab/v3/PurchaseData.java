@@ -25,13 +25,13 @@ public class PurchaseData implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-        dest.writeString(this.orderId);
-        dest.writeString(this.packageName);
-        dest.writeString(this.productId);
+        dest.writeString(orderId);
+        dest.writeString(packageName);
+        dest.writeString(productId);
         dest.writeLong(purchaseTime != null ? purchaseTime.getTime() : -1);
-        dest.writeInt(this.purchaseState == null ? -1 : this.purchaseState.ordinal());
-        dest.writeString(this.developerPayload);
-        dest.writeString(this.purchaseToken);
+        dest.writeInt(purchaseState == null ? -1 : purchaseState.ordinal());
+        dest.writeString(developerPayload);
+        dest.writeString(purchaseToken);
         dest.writeByte(autoRenewing ? (byte) 1 : (byte) 0);
     }
 
@@ -41,17 +41,17 @@ public class PurchaseData implements Parcelable
 
     protected PurchaseData(Parcel in)
     {
-        this.orderId = in.readString();
-        this.packageName = in.readString();
-        this.productId = in.readString();
+        orderId = in.readString();
+        packageName = in.readString();
+        productId = in.readString();
         long tmpPurchaseTime = in.readLong();
-        this.purchaseTime = tmpPurchaseTime == -1 ? null : new Date(tmpPurchaseTime);
+        purchaseTime = tmpPurchaseTime == -1 ? null : new Date(tmpPurchaseTime);
         int tmpPurchaseState = in.readInt();
-        this.purchaseState =
+        purchaseState =
                 tmpPurchaseState == -1 ? null : PurchaseState.values()[tmpPurchaseState];
-        this.developerPayload = in.readString();
-        this.purchaseToken = in.readString();
-        this.autoRenewing = in.readByte() != 0;
+        developerPayload = in.readString();
+        purchaseToken = in.readString();
+        autoRenewing = in.readByte() != 0;
     }
 
     public static final Parcelable.Creator<PurchaseData> CREATOR =

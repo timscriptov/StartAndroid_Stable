@@ -18,7 +18,6 @@ import static com.anjlab.android.iab.v3.data.Constants.*;
 class Security
 {
     private static final String TAG = IABUTIL_SECURITY;
-
     private static final String KEY_FACTORY_ALGORITHM = RSA;
     private static final String SIGNATURE_ALGORITHM = SHA1WITHRSA;
 

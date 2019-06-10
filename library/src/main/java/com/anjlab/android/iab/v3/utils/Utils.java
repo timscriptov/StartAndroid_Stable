@@ -1,6 +1,6 @@
 package com.anjlab.android.iab.v3.utils;
-import android.util.*;
 
+import android.util.*;
 import org.jetbrains.annotations.NotNull;
 
 public class Utils
