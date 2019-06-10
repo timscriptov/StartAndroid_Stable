@@ -4,6 +4,9 @@ import com.anjlab.android.iab.v3.BuildConfig;
 import com.anjlab.android.iab.v3.utils.Utils;
 
 public final class Constants {
+	
+	public static final String COM_ANDROID_VENDING_BILLING_IINAPPBILLINGSERVICE = Utils.fromBase64("Y29tLmFuZHJvaWQudmVuZGluZy5iaWxsaW5nLklJbkFwcEJpbGxpbmdTZXJ2aWNl"); // com.android.vending.billing.IInAppBillingService
+	
 	public static final String PREFERENCES = Utils.fromBase64("X3ByZWZlcmVuY2Vz"); // _preferences
 	public static final String VERSION = Utils.fromBase64("LnZlcnNpb24="); // .version
 	public static final String IABV3_PURCHASEINFO = Utils.fromBase64("aWFidjMucHVyY2hhc2VJbmZv"); // iabv3.purchaseInfo
