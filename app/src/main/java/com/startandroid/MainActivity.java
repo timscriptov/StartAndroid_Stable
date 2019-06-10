@@ -23,7 +23,6 @@ import android.widget.LinearLayout;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.BillingProcessor.IBillingHandler;
-import com.anjlab.android.iab.v3.Constants;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.startandroid.adapters.GridAdapter;
 import com.startandroid.adapters.ListAdapter;
@@ -46,6 +45,7 @@ import static com.startandroid.data.Constants.MI;
 import static com.startandroid.data.Constants.PREMIUM;
 import static com.startandroid.data.Constants.IS_PREMIUM;
 import static com.startandroid.data.Preferences.isOffline;
+import com.anjlab.android.iab.v3.data.*;
 
 public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, IBillingHandler, NavigationView.OnNavigationItemSelectedListener {
 
