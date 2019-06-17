@@ -4,14 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import com.startandroid.App;
 import com.startandroid.data.Database;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static com.startandroid.data.Constants.PACKAGE_NAME;
-import static com.startandroid.data.Preferences.isOffline;
 
 public class LessonUtils {
     public static boolean isRead(int num) {

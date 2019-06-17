@@ -4,26 +4,27 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.view.menu.MenuBuilder;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.BillingProcessor.IBillingHandler;
 import com.anjlab.android.iab.v3.TransactionDetails;
+import com.google.android.material.navigation.NavigationView;
 import com.startandroid.adapters.GridAdapter;
 import com.startandroid.adapters.ListAdapter;
 import com.startandroid.data.ListMode;
@@ -40,12 +41,11 @@ import com.startandroid.view.MainView;
 
 import es.dmoral.toasty.Toasty;
 
+import static com.startandroid.data.Constants.IS_PREMIUM;
 import static com.startandroid.data.Constants.LK;
 import static com.startandroid.data.Constants.MI;
 import static com.startandroid.data.Constants.PREMIUM;
-import static com.startandroid.data.Constants.IS_PREMIUM;
 import static com.startandroid.data.Preferences.isOffline;
-import com.anjlab.android.iab.v3.data.*;
 
 public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, IBillingHandler, NavigationView.OnNavigationItemSelectedListener {
 

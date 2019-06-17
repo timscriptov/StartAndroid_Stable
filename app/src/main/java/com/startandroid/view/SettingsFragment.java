@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.startandroid.R;
 import com.startandroid.data.NightMode;
@@ -20,8 +21,8 @@ import org.zeroturnaround.zip.commons.FileUtils;
 import java.io.File;
 import java.io.IOException;
 
-import static com.startandroid.data.Constants.PACKAGE_NAME;
 import static com.startandroid.data.Constants.IS_PREMIUM;
+import static com.startandroid.data.Constants.PACKAGE_NAME;
 
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     private ListPreference font_size;

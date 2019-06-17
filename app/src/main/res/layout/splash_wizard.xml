@@ -9,7 +9,7 @@
 	android:background="@android:color/transparent"
 	android:gravity="top|center">
 
-	<android.support.v7.widget.CardView
+	<androidx.cardview.widget.CardView
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:orientation="vertical"
@@ -64,9 +64,9 @@
 
 		</LinearLayout>
 
-	</android.support.v7.widget.CardView>
+	</androidx.cardview.widget.CardView>
 
-	<android.support.v7.widget.CardView
+	<androidx.cardview.widget.CardView
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:orientation="vertical"
@@ -115,9 +115,9 @@
 
 		</LinearLayout>
 
-	</android.support.v7.widget.CardView>
+	</androidx.cardview.widget.CardView>
 
-	<android.support.v7.widget.CardView
+	<androidx.cardview.widget.CardView
 		android:layout_height="wrap_content"
 		android:layout_width="match_parent"
 		android:orientation="vertical"
@@ -135,7 +135,7 @@
 			android:background="#FF01875F"
 			android:foreground="?android:attr/selectableItemBackground"/>
 
-	</android.support.v7.widget.CardView>
+	</androidx.cardview.widget.CardView>
 
 </LinearLayout>
 

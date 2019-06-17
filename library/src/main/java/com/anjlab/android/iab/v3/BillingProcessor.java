@@ -12,8 +12,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.UUID;
 
 import static com.anjlab.android.iab.v3.data.Constants.*;
-import com.anjlab.android.iab.v3.data.*;
 
 public class BillingProcessor extends BillingBase
 {

@@ -22,7 +22,7 @@
             android:gravity="center"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.AppCompatImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/remove_bookmark"
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 card_view:cardCornerRadius="2dip"
                 android:layout_margin="4dp"
                 android:layout_width="match_parent"
@@ -73,7 +73,7 @@
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

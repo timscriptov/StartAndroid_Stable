@@ -16,11 +16,11 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import static com.startandroid.data.Constants.SHA;
-import static com.startandroid.data.Constants.RSA;
 import static com.startandroid.data.Constants.DSA;
-import static com.startandroid.data.Constants.SIGNATURE;
 import static com.startandroid.data.Constants.META_INF;
+import static com.startandroid.data.Constants.RSA;
+import static com.startandroid.data.Constants.SHA;
+import static com.startandroid.data.Constants.SIGNATURE;
 
 public class SignatureUtils {
     // проверяет подпись приложения

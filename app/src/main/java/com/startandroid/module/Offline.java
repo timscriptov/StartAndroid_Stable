@@ -17,8 +17,8 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import static com.startandroid.data.Constants.PACKAGE_NAME;
 import static com.startandroid.data.Constants.DOWNLOAD_ZIP;
+import static com.startandroid.data.Constants.PACKAGE_NAME;
 
 public class Offline extends AsyncTask<Void, Integer, Boolean> {
     private ProgressDialog progressDialog;
