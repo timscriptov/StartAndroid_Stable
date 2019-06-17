@@ -12,7 +12,6 @@
 	android:layout_marginRight="7dip"
 	android:layout_marginLeft="7dip">
 
-
 	<LinearLayout
 		android:padding="5dp"
 		android:gravity="center_vertical"

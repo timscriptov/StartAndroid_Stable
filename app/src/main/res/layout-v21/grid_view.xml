@@ -4,5 +4,6 @@
 	android:layout_height="match_parent"
 	android:layout_width="match_parent"
 	android:numColumns="auto_fit"
+	android:nestedScrollingEnabled="true"
 	android:horizontalSpacing="3dip"
 	android:verticalSpacing="3dip"/>

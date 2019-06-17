@@ -2,6 +2,7 @@
 <LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:card_view="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
@@ -30,7 +31,6 @@
 				android:text="@string/choose_language"
 				android:layout_marginTop="10dp"
 				android:textColor="#FFFFFF"
-				android:layout_marginLeft="10dp"
 				android:layout_marginStart="10dp" />
 
 			<RadioGroup
@@ -44,7 +44,6 @@
 					android:layout_width="wrap_content"
 					android:text="English"
 					android:id="@+id/eng"
-					android:layout_marginLeft="15dp"
 					android:layout_marginStart="15dp" />
 
 				<RadioButton
@@ -52,7 +51,6 @@
 					android:layout_width="wrap_content"
 					android:text="Русский"
 					android:id="@+id/rus"
-					android:layout_marginLeft="15dp"
 					android:layout_marginStart="15dp" />
 
 				<RadioButton
@@ -60,7 +58,6 @@
 					android:layout_width="wrap_content"
 					android:text="Українська"
 					android:id="@+id/uk"
-					android:layout_marginLeft="15dp"
 					android:layout_marginBottom="10dp"
 					android:layout_marginStart="15dp" />
 
@@ -95,7 +92,6 @@
 					android:id="@+id/nightTheme"
 					android:text="@string/night_mode"
 					android:textAppearance="?android:attr/textAppearanceMedium"
-					android:layout_marginLeft="10dp"
 					android:layout_marginStart="10dp" />
 
 			</FrameLayout>
@@ -108,12 +104,14 @@
 				<Switch
 					android:layout_height="wrap_content"
 					android:layout_width="match_parent"
+					android:layout_gravity="left"
 					android:id="@+id/fullscreenMode"
 					android:text="@string/fullscreen_mode"
 					android:textAppearance="?android:attr/textAppearanceMedium"
 					android:layout_marginLeft="10dp"
 					android:layout_marginBottom="10dp"
-					android:layout_marginStart="10dp" />
+					android:layout_marginStart="10dp"
+					tools:ignore="RtlHardcoded" />
 
 			</FrameLayout>
 
@@ -135,7 +133,8 @@
 			android:layout_width="match_parent"
 			android:text="@string/accept"
 			android:id="@+id/done"
-			android:background="#FF01875F"/>
+			android:background="#FF01875F"
+			android:foreground="?android:attr/selectableItemBackground"/>
 
 	</androidx.cardview.widget.CardView>
 

@@ -45,6 +45,7 @@ import static com.startandroid.data.Constants.IS_PREMIUM;
 import static com.startandroid.data.Constants.LK;
 import static com.startandroid.data.Constants.MI;
 import static com.startandroid.data.Constants.PREMIUM;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_RESPONSE_RESULT_USER_CANCELED;
 import static com.startandroid.data.Preferences.isOffline;
 
 public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, IBillingHandler, NavigationView.OnNavigationItemSelectedListener {
@@ -227,7 +228,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
     @Override
     public void onBillingError(int errorCode, @Nullable Throwable error) {
-        if (errorCode == Constants.BILLING_RESPONSE_RESULT_USER_CANCELED) {
+        if (errorCode == BILLING_RESPONSE_RESULT_USER_CANCELED) {
             Toasty.error(this, getString(R.string.purchase_canceled)).show();
             if(isAdsBlocked) System.exit(0);
         }

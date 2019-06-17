@@ -13,7 +13,8 @@
 		android:layout_width="match_parent"
 		android:orientation="vertical"
 		android:gravity="center_horizontal"
-		android:id="@+id/logo">
+		android:id="@+id/logo"
+		tools:ignore="UseCompoundDrawables">
 
 		<ImageView
 			android:layout_width="wrap_content"
@@ -41,4 +42,3 @@
 		android:id="@+id/preferencesFrame"/>
 
 </LinearLayout>
-

@@ -7,6 +7,8 @@
 -dontwarn
 -dontnote
 
--obfuscationdictionary proguard-dictionary.txt
--packageobfuscationdictionary proguard-dictionary.txt
--classobfuscationdictionary proguard-dictionary.txt
+-obfuscationdictionary proguard-dictionary2.txt
+-packageobfuscationdictionary proguard-dictionary2.txt
+-classobfuscationdictionary proguard-dictionary2.txt
+
+-keep class com.android.vending.billing.**

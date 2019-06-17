@@ -8,7 +8,7 @@ import android.content.pm.Signature;
 public class SignatureCheck {
 	
 	public native int getSomeValue();
-	public native void init(Context ctx)
+	public native void init(Context ctx);
 	
     // проверяет подпись приложения
     public static boolean verifySignature(Context c) {

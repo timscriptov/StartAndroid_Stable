@@ -70,6 +70,7 @@
 			android:clickable="true"
 			android:id="@+id/rateApp"
 			android:focusable="true"
+			android:foreground="?android:attr/selectableItemBackground"
 			android:gravity="left|center"
 			tools:ignore="RtlHardcoded,UseCompoundDrawables">
 
@@ -80,7 +81,6 @@
 				android:gravity="center"
 				android:background="@drawable/star"
 				android:layout_marginLeft="5dp"
-				android:layout_marginStart="5dp"
 				tools:ignore="ContentDescription" />
 
 			<TextView
@@ -112,6 +112,7 @@
 			android:clickable="true"
 			android:id="@+id/moreApps"
 			android:focusable="true"
+			android:foreground="?android:attr/selectableItemBackground"
 			android:gravity="left|center"
 			tools:ignore="RtlHardcoded,UseCompoundDrawables">
 

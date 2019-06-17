@@ -1,17 +1,18 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         versionCode 1
         versionName "1.0.44"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         consumerProguardFiles 'progress-proguard.txt'
     }
     buildTypes {
         release {
+            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -19,5 +20,5 @@ android {
 dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
 	implementation 'org.jetbrains:annotations-java5:15.0'
-	implementation 'com.android.billingclient:billing:+'
+	//implementation 'com.android.billingclient:billing:+'
 }
