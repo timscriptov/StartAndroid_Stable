@@ -47,7 +47,20 @@ public final class Constants {
     public static final String DSA = Utils.fromBase64("LkRTQQ=="); // .DSA
     public static final String SHA = Utils.fromBase64("U0hB"); // SHA
 	public static final String MORE_APPS = Utils.fromBase64("bWFya2V0Oi8vc2VhcmNoP3E9cHViOtCY0LLQsNC9INCi0LjQvNCw0YjQutC+0LI="); // market://search?q=pub:Иван Тимашков
-
+	public static final String HTML = Utils.fromBase64("Lmh0bWw="); // .html
+	public static final String LESSON_PATH = Utils.fromBase64("L2xlc3Nvbl8="); // /lesson_
+	public static final String LESSON = Utils.fromBase64("bGVzc29u"); // lesson
+	public static final String OFFLINE = Utils.fromBase64("b2ZmbGluZQ=="); // offline
+	public static final String FIRSTLAUNCH = Utils.fromBase64("Zmlyc3RMYXVuY2g="); // firstLaunch
+	public static final String FONT_SIZE = Utils.fromBase64("Zm9udF9zaXpl"); // font_size
+	public static final String FONT = Utils.fromBase64("Zm9udA=="); // font
+	public static final String LANG = Utils.fromBase64("bGFuZw=="); // lang
+	public static final String BOOKMARK = Utils.fromBase64("Ym9va21hcms="); // bookmark
+	public static final String IS_RATED = Utils.fromBase64("aXNSYXRlZA=="); // isRated
+	public static final String FULLSCREEN_MODE = Utils.fromBase64("ZnVsbHNjcmVlbl9tb2Rl"); // fullscreen_mode
+	public static final String NIGHT_MODE = Utils.fromBase64("bmlnaHRfbW9kZQ=="); // night_mode
+	public static final String GRID_MODE = Utils.fromBase64("Z3JpZF9tb2Rl"); // grid_mode
+	
 	@NotNull
     public static String getResPath() {
         if (isOffline()) return "data/data/" + PACKAGE_NAME + "/files/resources/pages";

@@ -35,6 +35,7 @@ import static com.startandroid.data.Constants.getResPath;
 import static com.startandroid.data.Preferences.isOffline;
 import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
 import static com.startandroid.utils.LessonUtils.isRead;
+import com.startandroid.data.*;
 
 public class LessonActivity extends BaseActivity implements OnClickListener {
     private MCProgressBar progressBar;
@@ -65,7 +66,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
-                new PageLoader(getResPath() + "/lesson_" + (getLessonNumberByUrl(webView.getUrl()) - 1) + ".html").execute();
+                new PageLoader(getResPath() + Constants.LESSON_PATH + (getLessonNumberByUrl(webView.getUrl()) - 1) + ".html").execute();
                 itemPosition--;
                 break;
             case R.id.next_lesson:
@@ -73,7 +74,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
-                new PageLoader(getResPath() + "/lesson_" + (getLessonNumberByUrl(webView.getUrl()) + 1) + ".html").execute();
+                new PageLoader(getResPath() + Constants.LESSON_PATH + (getLessonNumberByUrl(webView.getUrl()) + 1) + ".html").execute();
                 itemPosition++;
         }
     }

@@ -8,5 +8,4 @@ public final class ScreenMode {
     public enum Mode {
         DEFAULT, FULLSCREEN
     }
-
 }

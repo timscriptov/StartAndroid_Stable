@@ -13,13 +13,13 @@ import com.startandroid.data.Constants;
 
 public class Ads {
     private static InterstitialAd interstitialAd;
-    private final String ADMOB_BANNER_ID = BuildConfig.DEBUG ? "ca-app-pub-3940256099942544/6300978111" : Constants.ADMOB_BANNER;//ca-app-pub-1411495427741055/5959092554
-    private final String ADMOB_INTERSTITIAL_ID = BuildConfig.DEBUG ? "ca-app-pub-3940256099942544/1033173712" : Constants.ADMOB_INTERSTITIAL;//ca-app-pub-1411495427741055/3241004842
+    private final String ADMOB_BANNER_ID = BuildConfig.DEBUG ? "ca-app-pub-3940256099942544/6300978111" : Constants.ADMOB_BANNER;
+    private final String ADMOB_INTERSTITIAL_ID = BuildConfig.DEBUG ? "ca-app-pub-3940256099942544/1033173712" : Constants.ADMOB_INTERSTITIAL;
     private long lastShownTime = 0;
     private AdView adView;
 
     public static void initialize(Context context) {
-        MobileAds.initialize(context, Constants.INITIALIZE);//ca-app-pub-1411495427741055~3216954118
+        MobileAds.initialize(context, Constants.INITIALIZE);
     }
 
     public AdView getBanner(Context context) {

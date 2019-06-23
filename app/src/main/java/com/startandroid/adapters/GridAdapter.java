@@ -21,6 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 import static com.startandroid.data.Constants.getResPath;
+import com.startandroid.data.*;
 
 public class GridAdapter extends ArrayAdapter<String> {
     private SearchFilter filter;
@@ -55,7 +56,7 @@ public class GridAdapter extends ArrayAdapter<String> {
         item.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View p1) {
-                mainView.openLesson(getResPath() + "/lesson_" + lessonNum + ".html", position);
+                mainView.openLesson(getResPath() + Constants.LESSON_PATH + lessonNum + Constants.HTML, position);
             }
         });
         itemText.setText(text);

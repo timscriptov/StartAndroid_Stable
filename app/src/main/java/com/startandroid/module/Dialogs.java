@@ -15,6 +15,7 @@ import com.startandroid.R;
 import com.startandroid.data.Preferences;
 
 import static com.startandroid.data.Constants.RATE;
+import com.startandroid.data.*;
 
 public class Dialogs {
     public static void noConnectionError(Context c) {
@@ -47,7 +48,7 @@ public class Dialogs {
                             Preferences.setRated();
                         } else {
                             App.toast(R.string.thanks);
-                            App.preferences.edit().putBoolean("isRated", true).apply();
+                            App.preferences.edit().putBoolean(Constants.IS_RATED, true).apply();
                         }
                     }
                 })

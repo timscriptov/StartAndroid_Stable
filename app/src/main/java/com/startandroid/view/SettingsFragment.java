@@ -23,6 +23,7 @@ import java.io.IOException;
 
 import static com.startandroid.data.Constants.IS_PREMIUM;
 import static com.startandroid.data.Constants.PACKAGE_NAME;
+import com.startandroid.data.*;
 
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     private ListPreference font_size;
@@ -82,11 +83,11 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
 
-        font_size = (ListPreference) findPreference("font_size");
+        font_size = (ListPreference) findPreference(Constants.FONT_SIZE);
         font_size.setSummary(font_size.getValue() + "%");
-        lang = (ListPreference) findPreference("lang");
+        lang = (ListPreference) findPreference(Constants.LANG);
         lang.setSummary(lang.getEntry());
-        offline = (SwitchPreference) findPreference("offline");
+        offline = (SwitchPreference) findPreference(Constants.OFFLINE);
         isVip = getActivity().getIntent().getBooleanExtra(IS_PREMIUM, false);
     }
 

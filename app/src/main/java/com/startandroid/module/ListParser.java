@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import com.startandroid.data.*;
 
 public class ListParser {
     private ArrayList<String> items = new ArrayList<>();
@@ -28,7 +29,7 @@ public class ListParser {
                 DocumentBuilder builder = dbf.newDocumentBuilder();
                 Document doc = builder.parse(is);
                 is.close();
-                NodeList lessons = doc.getElementsByTagName("lesson");
+                NodeList lessons = doc.getElementsByTagName(Constants.LESSON);
                 for (int x = 0; x < lessons.getLength(); x++) {
                     items.add(lessons.item(x).getTextContent());
                 }

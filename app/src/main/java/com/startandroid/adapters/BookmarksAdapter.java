@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import static com.startandroid.data.Constants.getResPath;
 import static com.startandroid.utils.LessonUtils.getLessonNumberByTitle;
 import static com.startandroid.utils.LessonUtils.isRead;
+import com.startandroid.data.*;
 
 public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.ViewHolder> {
     private ArrayList<String> items;
@@ -51,7 +52,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
             @Override
             public void onClick(View p1) {
                 bookmarksFragment.dismiss();
-                mainView.openLesson(getResPath() + "/lesson_" + number + ".html#googtrans(ru|" + Preferences.getLang() + ")", holder.getAdapterPosition());
+                mainView.openLesson(getResPath() + Constants.LESSON_PATH + number + ".html#googtrans(ru|" + Preferences.getLang() + ")", holder.getAdapterPosition());
             }
         });
 

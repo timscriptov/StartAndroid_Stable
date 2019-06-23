@@ -61,7 +61,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
             holder.item.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View p1) {
-                    mainView.openLesson(getResPath() + "/lesson_" + number + ".html", holder.getAdapterPosition());
+                    mainView.openLesson(getResPath() + Constants.LESSON_PATH + number + Constants.HTML, holder.getAdapterPosition());
                 }
             });
         }
