@@ -55,7 +55,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
                     getClass().forName(Constants.ANTIPATCH1) != null ||
                     getClass().forName(Constants.ANTIPATCH2) != null ||
                     getClass().forName(Constants.ANTIPATCH3) != null ||
-					getClass().forName(Constants.ANTIPATCH4) != null) return;
+					getClass().forName(Constants.ANTIPATCH4) != null ||
+					getClass().forName(Constants.ANTIPATCH5) != null) return;
         } catch (ClassNotFoundException e){
             holder.itemText.setText(text);
             holder.item.setOnClickListener(new OnClickListener() {
