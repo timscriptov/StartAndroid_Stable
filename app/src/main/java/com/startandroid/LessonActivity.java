@@ -66,7 +66,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
-                new PageLoader(getResPath() + Constants.LESSON_PATH + (getLessonNumberByUrl(webView.getUrl()) - 1) + ".html").execute();
+                new PageLoader(getResPath() + Constants.LESSON_PATH + (getLessonNumberByUrl(webView.getUrl()) - 1) + Constants.HTML).execute();
                 itemPosition--;
                 break;
             case R.id.next_lesson:
@@ -74,7 +74,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
-                new PageLoader(getResPath() + Constants.LESSON_PATH + (getLessonNumberByUrl(webView.getUrl()) + 1) + ".html").execute();
+                new PageLoader(getResPath() + Constants.LESSON_PATH + (getLessonNumberByUrl(webView.getUrl()) + 1) + Constants.HTML).execute();
                 itemPosition++;
         }
     }
