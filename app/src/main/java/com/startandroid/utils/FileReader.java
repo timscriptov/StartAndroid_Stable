@@ -2,6 +2,9 @@ package com.startandroid.utils;
 
 import android.util.Log;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.security.ProviderInstaller;
 import com.startandroid.App;
 
 import org.jetbrains.annotations.NotNull;
@@ -10,6 +13,8 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+
+import javax.net.ssl.SSLException;
 
 public class FileReader {
     @NotNull
@@ -34,6 +39,16 @@ public class FileReader {
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
         } catch (Exception e) {
+            if(e instanceof SSLException){
+                try {
+                    ProviderInstaller.installIfNeeded(App.getContext());
+                    return fromUrl(url);
+                } catch (GooglePlayServicesRepairableException e1) {
+                    return "<p style='color:red;'>Произошла ошибка:</p>" + Log.getStackTraceString(e1);
+                } catch (GooglePlayServicesNotAvailableException e1) {
+                    return "<p style='color:red;'>Сервисы Google Play недоступны!</p>";
+                }
+            }
             return "<p style='color:red;'>Произошла ошибка:</p>" + Log.getStackTraceString(e);
         }
     }
