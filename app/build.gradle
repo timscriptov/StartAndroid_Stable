@@ -2,12 +2,13 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
+
     defaultConfig {
         applicationId "com.startandroid"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 1145
-        versionName "11.4.5"
+        versionCode 1146
+        versionName "11.4.6"
         vectorDrawables.useSupportLibrary true
     }
     buildTypes {
@@ -22,11 +23,11 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 	implementation project(':library')
-    implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation 'com.google.android.material:material:1.1.0-alpha07'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.vectordrawable:vectordrawable:1.1.0-beta02'
-    implementation 'com.google.android.gms:play-services-ads-lite:17.2.1'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0-rc01'
+    implementation 'com.google.android.gms:play-services-ads-lite:18.0.0'
     implementation 'com.daimajia.swipelayout:library:1.2.0'
     implementation 'net.opacapp:multiline-collapsingtoolbar:27.1.1'
     implementation 'com.vanniktech:vntfontlistpreference:1.0.0'

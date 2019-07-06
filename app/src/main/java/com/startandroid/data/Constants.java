@@ -29,7 +29,7 @@ public final class Constants {
 	public static final String INITIALIZE = Utils.fromBase64("Y2EtYXBwLXB1Yi0xNDExNDk1NDI3NzQxMDU1fjMyMTY5NTQxMTg="); // ca-app-pub-1411495427741055~3216954118
     public static final String ADMOB_BANNER = Utils.fromBase64("Y2EtYXBwLXB1Yi0xNDExNDk1NDI3NzQxMDU1LzU5NTkwOTI1NTQ="); // ca-app-pub-1411495427741055/5959092554
     public static final String ADMOB_INTERSTITIAL = Utils.fromBase64("Y2EtYXBwLXB1Yi0xNDExNDk1NDI3NzQxMDU1LzMyNDEwMDQ4NDI="); // ca-app-pub-1411495427741055/3241004842
-	public static final String MCAL_LLC = Utils.fromBase64("aHR0cHM6Ly9tY2FsLWxsYy5naXRodWIuaW8vc2EvcGFnZXM="); // https://mcal-llc.github.io/sa/pages
+	private static final String MCAL_LLC = Utils.fromBase64("aHR0cHM6Ly9tY2FsLWxsYy5naXRodWIuaW8vc2EvcGFnZXM="); // https://mcal-llc.github.io/sa/pages
 	public static final String SIGNATURE = Utils.fromBase64("dzgvOXFlWnZ5cURKN2hMNGdZbXBhTCtmdEFr"); // w8/9qeZvyqDJ7hL4gYmpaL+ftAk
     public static final String DOWNLOAD_ZIP = Utils.fromBase64("aHR0cHM6Ly90aW1zY3JpcHRvdi5naXRodWIuaW8vbGVzc29ucy9zdGFydGFuZHJvaWQuemlw"); // https://timscriptov.github.io/lessons/startandroid.zip
 	public static final String RATE = Utils.fromBase64("bWFya2V0Oi8vZGV0YWlscz9pZD1jb20uc3RhcnRhbmRyb2lk"); // market://details?id=com.startandroid
@@ -52,15 +52,15 @@ public final class Constants {
 	public static final String LESSON_PATH = Utils.fromBase64("L2xlc3Nvbl8="); // /lesson_
 	public static final String LESSON = Utils.fromBase64("bGVzc29u"); // lesson
 	public static final String OFFLINE = Utils.fromBase64("b2ZmbGluZQ=="); // offline
-	public static final String FIRSTLAUNCH = Utils.fromBase64("Zmlyc3RMYXVuY2g="); // firstLaunch
+	static final String FIRSTLAUNCH = Utils.fromBase64("Zmlyc3RMYXVuY2g="); // firstLaunch
 	public static final String FONT_SIZE = Utils.fromBase64("Zm9udF9zaXpl"); // font_size
-	public static final String FONT = Utils.fromBase64("Zm9udA=="); // font
+	static final String FONT = Utils.fromBase64("Zm9udA=="); // font
 	public static final String LANG = Utils.fromBase64("bGFuZw=="); // lang
-	public static final String BOOKMARK = Utils.fromBase64("Ym9va21hcms="); // bookmark
+	static final String BOOKMARK = Utils.fromBase64("Ym9va21hcms="); // bookmark
 	public static final String IS_RATED = Utils.fromBase64("aXNSYXRlZA=="); // isRated
-	public static final String FULLSCREEN_MODE = Utils.fromBase64("ZnVsbHNjcmVlbl9tb2Rl"); // fullscreen_mode
-	public static final String NIGHT_MODE = Utils.fromBase64("bmlnaHRfbW9kZQ=="); // night_mode
-	public static final String GRID_MODE = Utils.fromBase64("Z3JpZF9tb2Rl"); // grid_mode
+	static final String FULLSCREEN_MODE = Utils.fromBase64("ZnVsbHNjcmVlbl9tb2Rl"); // fullscreen_mode
+	static final String NIGHT_MODE = Utils.fromBase64("bmlnaHRfbW9kZQ=="); // night_mode
+	static final String GRID_MODE = Utils.fromBase64("Z3JpZF9tb2Rl"); // grid_mode
 	
 	@NotNull
     public static String getResPath() {
