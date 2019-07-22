@@ -42,7 +42,7 @@
     <string name="no_bookmarks">No bookmarks</string>
 	<string name="navigation_drawer_open">Open drawer</string>
 	<string name="navigation_drawer_close">Close drawer</string>
-    <string name="version_nav_header">Version 11.4.6</string>
+    <string name="version_nav_header">Version 11.4.7</string>
 	<string name="thanks">ขอบคุณ!</string>
 	<string name="version_available">Version %s ใหม่มาแล้ว</string>
     <string name="ads_blocked">We have determined that you\'re blocking ads! You can\'t use this app without ads if you haven\'t bought Premium!</string>

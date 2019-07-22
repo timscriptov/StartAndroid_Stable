@@ -3,24 +3,9 @@ package com.startandroid.data;
 import com.startandroid.BuildConfig;
 import com.startandroid.utils.Utils;
 
-import org.jetbrains.annotations.NotNull;
-
 import static com.startandroid.data.Preferences.isOffline;
 
 public final class Constants {
-	//Kotlin
-	/*
-	 public static final String PACKAGE_NAME = Utils.fromBase64("Y29tLm1jYWwua290bGlu"); // com.mcal.kotlin
-	 public static final String UPDATE_PATH = Utils.fromBase64("aHR0cHM6Ly9tY2FsLWxsYy5naXRodWIuaW8va3QvY29uZmlnL3VwZGF0ZS54bWw="); // https://mcal-llc.github.io/kt/config/update.xml
-	 public static final String PREMIUM = BuildConfig.DEBUG ? "android.test.purchased" : Utils.fromBase64("a290bGluX3ByZW1pdW0="); // kotlin_premium
-	 public static final String INITIALIZE = Utils.fromBase64("Y2EtYXBwLXB1Yi0xNDExNDk1NDI3NzQxMDU1fjMyMTY5NTQxMTg="); // ca-app-pub-1411495427741055~3216954118
-	 public static final String ADMOB_BANNER = Utils.fromBase64("Y2EtYXBwLXB1Yi0xNDExNDk1NDI3NzQxMDU1LzU5NTkwOTI1NTQ="); // ca-app-pub-1411495427741055/5959092554
-	 public static final String ADMOB_INTERSTITIAL = Utils.fromBase64("Y2EtYXBwLXB1Yi0xNDExNDk1NDI3NzQxMDU1LzMyNDEwMDQ4NDI="); // ca-app-pub-1411495427741055/3241004842
-	 public static final String MCAL_LLC = Utils.fromBase64("aHR0cHM6Ly9tY2FsLWxsYy5naXRodWIuaW8va3QvcGFnZXM="); // https://mcal-llc.github.io/kt/pages
-	 public static final String SIGNATURE = Utils.fromBase64("czdtaWFCaWZ6U2RpZHlEa1JlWW5PSXM4UXBM"); // s7miaBifzSdidyDkReYnOIs8QpL
-	 public static final String DOWNLOAD_ZIP = Utils.fromBase64("aHR0cHM6Ly90aW1zY3JpcHRvdi5naXRodWIuaW8vbGVzc29ucy9rb3RsaW4uemlw"); // https://timscriptov.github.io/lessons/kotlin.zip
-	 public static final String RATE = Utils.fromBase64("bWFya2V0Oi8vZGV0YWlscz9pZD1jb20ubWNhbC5rb3RsaW4="); // market://details?id=com.mcal.kotlin
-	 */
 
 	//StartAndroid
 	public static final String PACKAGE_NAME = Utils.fromBase64("Y29tLnN0YXJ0YW5kcm9pZA==");//com.startandroid
@@ -61,8 +46,7 @@ public final class Constants {
 	static final String FULLSCREEN_MODE = Utils.fromBase64("ZnVsbHNjcmVlbl9tb2Rl"); // fullscreen_mode
 	static final String NIGHT_MODE = Utils.fromBase64("bmlnaHRfbW9kZQ=="); // night_mode
 	static final String GRID_MODE = Utils.fromBase64("Z3JpZF9tb2Rl"); // grid_mode
-	
-	@NotNull
+
     public static String getResPath() {
         if (isOffline()) return "data/data/" + PACKAGE_NAME + "/files/resources/pages";
         else return MCAL_LLC;
