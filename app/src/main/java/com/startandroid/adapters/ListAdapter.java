@@ -16,8 +16,6 @@ import com.startandroid.R;
 import com.startandroid.data.Constants;
 import com.startandroid.view.MainView;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 import static com.startandroid.data.Constants.getResPath;
@@ -46,7 +44,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     }
 
     @Override
-    public void onBindViewHolder(@NotNull final ListAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position) {
         final String text = items.get(position);
         final int number = getLessonNumberByTitle(text);
 
@@ -71,9 +69,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         holder.checkMark.setVisibility(isRead(number) ? View.VISIBLE : View.GONE);
     }
 
-    @NotNull
     @Override
-    public ListAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int p2) {
+    public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int p2) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.lesson_list_item, parent, false);
         return new ViewHolder(item);
     }

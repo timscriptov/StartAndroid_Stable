@@ -8,8 +8,6 @@ import android.preference.PreferenceManager;
 
 import com.startandroid.module.Ads;
 
-import org.jetbrains.annotations.Contract;
-
 import es.dmoral.toasty.Toasty;
 
 public class App extends Application {
@@ -17,7 +15,6 @@ public class App extends Application {
     @SuppressLint("StaticFieldLeak")
     private static Context context;
 
-    @Contract(pure = true)
     public static Context getContext() {
         return context;
     }

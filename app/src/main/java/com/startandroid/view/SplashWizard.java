@@ -16,8 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.startandroid.MainActivity;
 import com.startandroid.R;
 
-import org.jetbrains.annotations.NotNull;
-
 import static com.startandroid.data.Preferences.setFirstLaunch;
 import static com.startandroid.data.Preferences.setFullscreenMode;
 import static com.startandroid.data.Preferences.setLang;
@@ -25,7 +23,7 @@ import static com.startandroid.data.Preferences.setNightMode;
 
 public class SplashWizard extends Fragment {
     @Override
-    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         @SuppressLint("InflateParams") View view = LayoutInflater.from(getActivity()).inflate(R.layout.splash_wizard, null);
 
         final RadioGroup langSelect = view.findViewById(R.id.langSelect);

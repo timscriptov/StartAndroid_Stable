@@ -16,8 +16,6 @@ import com.startandroid.R;
 import com.startandroid.utils.LessonUtils;
 import com.startandroid.view.MainView;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 import static com.startandroid.data.Constants.getResPath;
@@ -35,15 +33,13 @@ public class GridAdapter extends ArrayAdapter<String> {
         filter = new SearchFilter();
     }
 
-    @NotNull
     @Override
     public Filter getFilter() {
         return filter;
     }
 
-    @NotNull
     @Override
-    public View getView(final int position, View convertView, @NotNull ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         @SuppressLint("ViewHolder") View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.lesson_grid_item, parent, false);
 
         final LinearLayout item = view.findViewById(R.id.lesson_item);

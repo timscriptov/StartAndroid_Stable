@@ -14,8 +14,6 @@ import com.startandroid.R;
 import com.startandroid.adapters.BookmarksAdapter;
 import com.startandroid.data.Bookmarks;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 
 public class BookmarksFragment extends DialogFragment {
@@ -33,7 +31,6 @@ public class BookmarksFragment extends DialogFragment {
         }
     }
 
-    @NotNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = getActivity().getLayoutInflater().inflate(R.layout.bookmarks_fragment, null);

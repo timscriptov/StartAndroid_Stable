@@ -5,9 +5,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.startandroid.App;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 public final class Database extends SQLiteOpenHelper {
     private static SQLiteDatabase database;
 
@@ -16,13 +13,12 @@ public final class Database extends SQLiteOpenHelper {
         database = getWritableDatabase();
     }
 
-    @Contract(pure = true)
     public static SQLiteDatabase getDatabase() {
         return database;
     }
 
     @Override
-    public void onCreate(@NotNull SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE ReadLessons (Number INTEGER PRIMARY KEY)");
         db.execSQL("CREATE TABLE Bookmarks (Number INTEGER PRIMARY KEY, Title TEXT)");
     }
