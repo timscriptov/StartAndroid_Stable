@@ -1,1 +1,1 @@
-include ':app', ':library', ':swipe-layout'
+include ':app', ':library', ':swipe-layout', ':multiline-collapsingtoolbar'
