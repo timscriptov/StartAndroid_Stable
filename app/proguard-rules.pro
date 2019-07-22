@@ -1,10 +1,8 @@
-#-keepattributes SourceFile, LineNumberTable
+-keepattributes SourceFile, LineNumberTable
 
-#-renamesourcefileattribute SourceFile
-#-repackageclasses
+-renamesourcefileattribute SourceFile
+-repackageclasses
 
--dontobfuscate
-
-#-obfuscationdictionary proguard-dictionary.txt
-#-packageobfuscationdictionary proguard-dictionary.txt
-#-classobfuscationdictionary proguard-dictionary.txt
+-obfuscationdictionary proguard-dictionary.txt
+-packageobfuscationdictionary proguard-dictionary.txt
+-classobfuscationdictionary proguard-dictionary.txt
