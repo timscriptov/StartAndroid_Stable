@@ -4,13 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import com.anjlab.android.iab.v3.data.Constants;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
 
-import static com.anjlab.android.iab.v3.data.Constants.*;
-import com.anjlab.android.iab.v3.data.*;
+import static com.anjlab.android.iab.v3.data.Constants.IABV3_PURCHASEINFO;
 
 public class PurchaseInfo implements Parcelable
 {

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import static com.anjlab.android.iab.v3.data.Constants.*;
+import static com.anjlab.android.iab.v3.data.Constants.PREFERENCES;
 
 class BillingBase
 {

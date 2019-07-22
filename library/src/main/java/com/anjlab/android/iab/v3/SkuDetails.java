@@ -4,12 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
+import com.anjlab.android.iab.v3.data.Constants;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
 
-import com.anjlab.android.iab.v3.data.*;
 import static com.anjlab.android.iab.v3.data.Constants.LOCALE_US_2;
 
 public class SkuDetails implements Parcelable

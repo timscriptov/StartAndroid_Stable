@@ -12,10 +12,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.android.vending.billing.IInAppBillingService;
 
@@ -28,7 +29,36 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import static com.anjlab.android.iab.v3.data.Constants.*;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_ERROR_BIND_PLAY_STORE_FAILED;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_ERROR_CONSUME_FAILED;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_ERROR_FAILED_LOAD_PURCHASES;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_ERROR_FAILED_TO_INITIALIZE_PURCHASE;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_ERROR_INVALID_MERCHANT_ID;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_ERROR_INVALID_SIGNATURE;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_ERROR_LOST_CONTEXT;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_ERROR_OTHER_ERROR;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_ERROR_SKUDETAILS_FAILED;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED;
+import static com.anjlab.android.iab.v3.data.Constants.BILLING_RESPONSE_RESULT_OK;
+import static com.anjlab.android.iab.v3.data.Constants.BUY_INTENT;
+import static com.anjlab.android.iab.v3.data.Constants.COM_ANDROID_VENDING;
+import static com.anjlab.android.iab.v3.data.Constants.COM_ANDROID_VENDING_BILLING_INAPPBILLINGSERVICE_BIND;
+import static com.anjlab.android.iab.v3.data.Constants.DETAILS_LIST;
+import static com.anjlab.android.iab.v3.data.Constants.EXTRA_PARAMS_KEY_SKU_TO_REPLACE;
+import static com.anjlab.android.iab.v3.data.Constants.GOOGLE_API_SUBSCRIPTION_CHANGE_VERSION;
+import static com.anjlab.android.iab.v3.data.Constants.GOOGLE_API_VERSION;
+import static com.anjlab.android.iab.v3.data.Constants.GOOGLE_API_VR_SUPPORTED_VERSION;
+import static com.anjlab.android.iab.v3.data.Constants.IABV3;
+import static com.anjlab.android.iab.v3.data.Constants.INAPP_DATA_SIGNATURE_LIST;
+import static com.anjlab.android.iab.v3.data.Constants.INAPP_PURCHASE_DATA;
+import static com.anjlab.android.iab.v3.data.Constants.INAPP_PURCHASE_DATA_LIST;
+import static com.anjlab.android.iab.v3.data.Constants.PRODUCTS_LIST;
+import static com.anjlab.android.iab.v3.data.Constants.PRODUCT_TYPE_MANAGED;
+import static com.anjlab.android.iab.v3.data.Constants.PRODUCT_TYPE_SUBSCRIPTION;
+import static com.anjlab.android.iab.v3.data.Constants.RESPONSE_AUTO_RENEWING;
+import static com.anjlab.android.iab.v3.data.Constants.RESPONSE_CODE;
+import static com.anjlab.android.iab.v3.data.Constants.RESPONSE_INAPP_SIGNATURE;
+import static com.anjlab.android.iab.v3.data.Constants.RESPONSE_PRODUCT_ID;
 
 public class BillingProcessor extends BillingBase
 {

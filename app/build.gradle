@@ -25,13 +25,13 @@ dependencies {
 	implementation project(':library')
     implementation project(':swipe-layout')
     implementation project(':multiline-collapsingtoolbar')
+    implementation project(':toasty')
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation 'com.google.android.material:material:1.1.0-alpha07'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0-rc01'
     implementation 'com.google.android.gms:play-services-ads-lite:18.0.0'
     implementation 'com.vanniktech:vntfontlistpreference:1.0.0'
-    implementation 'com.github.GrenderG:Toasty:1.4.2'
     implementation 'org.jetbrains:annotations-java5:15.0'
     implementation 'org.zeroturnaround:zt-zip:1.13'
     implementation 'com.madgag.spongycastle:pkix:1.54.0.0'

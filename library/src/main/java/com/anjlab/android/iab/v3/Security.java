@@ -13,7 +13,13 @@ import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
-import static com.anjlab.android.iab.v3.data.Constants.*;
+import static com.anjlab.android.iab.v3.data.Constants.ANDROID_TEST_CANCELED;
+import static com.anjlab.android.iab.v3.data.Constants.ANDROID_TEST_ITEM_UNAVAILABLE;
+import static com.anjlab.android.iab.v3.data.Constants.ANDROID_TEST_PURCHASED;
+import static com.anjlab.android.iab.v3.data.Constants.ANDROID_TEST_REFUNDED;
+import static com.anjlab.android.iab.v3.data.Constants.IABUTIL_SECURITY;
+import static com.anjlab.android.iab.v3.data.Constants.RSA;
+import static com.anjlab.android.iab.v3.data.Constants.SHA1WITHRSA;
 
 class Security
 {

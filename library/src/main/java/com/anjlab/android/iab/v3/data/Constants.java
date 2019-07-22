@@ -1,6 +1,5 @@
 package com.anjlab.android.iab.v3.data;
 
-import com.anjlab.android.iab.v3.BuildConfig;
 import com.anjlab.android.iab.v3.utils.Utils;
 
 public final class Constants {

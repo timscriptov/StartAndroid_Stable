@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import static com.anjlab.android.iab.v3.data.Constants.*;
+import static com.anjlab.android.iab.v3.data.Constants.VERSION;
 
 class BillingCache extends BillingBase
 {
