@@ -1,1 +1,1 @@
-include ':app', ':library', ':swipe-layout', ':multiline-collapsingtoolbar', ':toasty'
+include ':app', ':melissa', ':billing'

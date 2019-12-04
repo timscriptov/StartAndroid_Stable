@@ -18,21 +18,21 @@ public class MCProgressBar extends ProgressBar {
         super(context);
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.parseColor("#F44336"));
+        mPaint.setColor(Color.parseColor("#448aff"));
     }
 
     public MCProgressBar(android.content.Context context, android.util.AttributeSet attrs) {
         super(context, attrs);
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.parseColor("#F44336"));
+        mPaint.setColor(Color.parseColor("#448aff"));
     }
 
     public MCProgressBar(android.content.Context context, android.util.AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setColor(Color.parseColor("#F44336"));
+        mPaint.setColor(Color.parseColor("#448aff"));
     }
 
     @Override
@@ -91,4 +91,3 @@ public class MCProgressBar extends ProgressBar {
         invalidate();
     }
 }
- 

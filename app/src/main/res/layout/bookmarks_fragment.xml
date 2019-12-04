@@ -1,45 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="fill_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-	android:padding="10dp">
+    android:padding="10dp">
 
-	<androidx.recyclerview.widget.RecyclerView
-		android:id="@+id/bookmarksList"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:scrollbars="vertical"
-		android:visibility="gone" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookmarksList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:visibility="gone" />
 
-	<LinearLayout
-		android:id="@+id/no_bookmarks"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_gravity="center"
-		android:gravity="center"
-		android:orientation="vertical"
-		android:visibility="gone"
-		tools:ignore="UseCompoundDrawables">
+    <LinearLayout
+        android:id="@+id/no_bookmarks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:ignore="UseCompoundDrawables">
 
-		<ImageView
-			android:layout_width="80dp"
-			android:layout_height="80dp"
-			android:layout_gravity="center"
-			app:srcCompat="@drawable/star"
-			tools:ignore="ContentDescription" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/star"
+            tools:ignore="ContentDescription" />
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:layout_marginTop="0dp"
-			android:text="@string/no_bookmarks"
-			android:textAppearance="?android:textAppearanceLarge" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:text="@string/no_bookmarks"
+            android:textAppearance="?android:textAppearanceLarge" />
 
-	</LinearLayout>
-    
+    </LinearLayout>
+
 </LinearLayout>

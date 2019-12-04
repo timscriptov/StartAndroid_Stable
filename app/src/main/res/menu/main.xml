@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
-	
-	<item
-		app:showAsAction="always|collapseActionView"
-		app:actionViewClass="androidx.appcompat.widget.SearchView"
-		android:id="@+id/search"
-		android:icon="@drawable/search"
-        android:title="@string/search"/>
-	
-	<item
-		app:showAsAction="always"
-		android:id="@+id/continue_lesson"
-		android:icon="@drawable/bookmark"
-        android:title="@string/continue_lesson"/>
-	
-	<item
-		app:showAsAction="always"
-		android:id="@+id/day_night"
-		android:icon="@drawable/ic_day"
-		android:title="@string/bookmarks"/>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@drawable/search"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always|collapseActionView" />
+
+    <item
+        android:id="@+id/continue_lesson"
+        android:icon="@drawable/bookmark"
+        android:title="@string/continue_lesson"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/day_night"
+        android:icon="@drawable/ic_day"
+        android:title="@string/bookmarks"
+        app:showAsAction="always" />
 
 </menu>

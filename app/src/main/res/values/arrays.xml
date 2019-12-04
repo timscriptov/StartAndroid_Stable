@@ -1,40 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	
-	<string-array name="languages" formatted="false">
-		<item>Русский</item>
-		<item>English</item>
-		<item>Spanish</item>
-		<item>Arabic</item>
-		<item>Deutsch</item>
-		<item>Italian</item>
-		<item>Українська</item>
-		<item>French</item>
-		<item>Chinese</item>
-	</string-array>
-	
-	<string-array name="language_values" formatted="false">
-		<item>ru</item>
-		<item>en</item>
-		<item>es</item>
-		<item>ar</item>
-		<item>de</item>
-		<item>it</item>
-		<item>uk</item>
-		<item>fr</item>
-		<item>zh-CN</item>
-	</string-array>
-	
-	<string-array name="font_size" formatted="false">
-		<item>80%</item>
-		<item>85%</item>
-		<item>90%</item>
-		<item>95%</item>
-		<item>100%</item>
-		<item>105%</item>
-		<item>110%</item>
-		<item>115%</item>
-		<item>120%</item>
-	</string-array>
-	
+
+    <string-array name="languages" formatted="false">
+        <item>Русский</item>
+        <item>English(Google translate)</item>
+        <item>Spanish(Google translate)</item>
+        <item>Arabic(Google translate)</item>
+        <item>Deutsch(Google translate)</item>
+        <item>Italian(Google translate)</item>
+        <item>Українська(Google translate)</item>
+        <item>French(Google translate)</item>
+        <item>Chinese(Google translate)</item>
+    </string-array>
+
+    <string-array name="language_values" formatted="false">
+        <item>ru</item>
+        <item>en</item>
+        <item>uk</item>
+        <item>zh-CN</item>
+    </string-array>
+
+    <string-array name="languages_main" formatted="false">
+        <item>Default</item>
+        <item>Русский</item>
+        <item>English</item>
+        <item>Українська</item>
+        <item>Chinese</item>
+    </string-array>
+
+    <string-array name="language_values_main" formatted="false">
+        <item>default</item>
+        <item>ru</item>
+        <item>en</item>
+        <item>es</item>
+        <item>ar</item>
+        <item>de</item>
+        <item>it</item>
+        <item>uk</item>
+        <item>fr</item>
+        <item>zh-CN</item>
+    </string-array>
+
+    <string-array name="fonts_values" formatted="false">
+        <item>fonts/Aaargh_Cyrillic.ttf</item>
+        <item>fonts/Cuprum.ttf</item>
+        <item>fonts/DroidSans.ttf</item>
+        <item>fonts/DroidSansMono.ttf</item>
+        <item>fonts/GrotesqueMT.otf</item>
+        <item>fonts/NotoSerif-Regular.ttf</item>
+        <item>fonts/PT_Sans.ttf</item>
+        <item>fonts/Yandex.ttf</item>
+    </string-array>
+
+    <string-array name="fonts" formatted="false">
+        <item>AaarghCyrillic</item>
+        <item>Cuprum</item>
+        <item>DroidSans</item>
+        <item>DroidSansMono</item>
+        <item>GrotesqueMT</item>
+        <item>NotoSerifRegular</item>
+        <item>PTSans</item>
+        <item>Yandex</item>
+    </string-array>
+
+    <string-array name="font_size" formatted="false">
+        <item>80%</item>
+        <item>85%</item>
+        <item>90%</item>
+        <item>95%</item>
+        <item>100%</item>
+        <item>105%</item>
+        <item>110%</item>
+        <item>115%</item>
+        <item>120%</item>
+    </string-array>
+
 </resources>

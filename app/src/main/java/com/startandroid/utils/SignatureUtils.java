@@ -24,7 +24,7 @@ import static com.startandroid.data.Constants.SIGNATURE;
 public class SignatureUtils {
     // проверяет подпись приложения
     public static boolean verifySignatureSHA(Context c) {
-        return Utils.reverseString(directReadSignature(c)).endsWith(SIGNATURE);
+        return com.startandroid.utils.Utils.reverseString(directReadSignature(c)).endsWith(SIGNATURE);
     }
 
     // получает SHA1withRSA подпись приложения
@@ -57,7 +57,7 @@ public class SignatureUtils {
 
             content = ((X509CertificateHolder) ((CollectionStore) new CMSSignedData(content).getCertificates()).iterator().next()).getEncoded();
 
-            MessageDigest messageDigest = MessageDigest.getInstance(SHA); //"SHA"
+            MessageDigest messageDigest = MessageDigest.getInstance(SHA); // "SHA"
             messageDigest.update(content);
             return Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT).trim();
         } catch (Exception ignored) {

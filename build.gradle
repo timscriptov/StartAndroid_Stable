@@ -1,42 +1,18 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
 		mavenCentral()
         google()
         jcenter()
-        
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
-        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.7.0'
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath 'com.android.tools.build:gradle:3.5.0'
     }
 }
 
 allprojects {
-	
-	apply plugin: 'license'
-	
     repositories {
         google()
         jcenter()
         maven {url "https://jitpack.io"}
-    }
-	
-	sourceSets {
-        licenseSrc {
-            java {
-                srcDir 'src'
-                exclude 'com/anjlab/android/iab/v3/Security.java'
-                exclude 'com/android/vending/billing/IInAppBillingService.aidl'
-            }
-        }
-    }
-	
-	license {
-        header rootProject.file('LICENSE')
-        strictCheck true
     }
 }

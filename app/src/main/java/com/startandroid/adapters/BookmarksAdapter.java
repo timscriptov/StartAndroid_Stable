@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.SwipeLayout;
 import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
+import com.startandroid.data.Constants;
 import com.startandroid.data.Preferences;
 import com.startandroid.view.BookmarksFragment;
 import com.startandroid.view.MainView;
@@ -22,7 +23,6 @@ import java.util.ArrayList;
 import static com.startandroid.data.Constants.getResPath;
 import static com.startandroid.utils.LessonUtils.getLessonNumberByTitle;
 import static com.startandroid.utils.LessonUtils.isRead;
-import com.startandroid.data.*;
 
 public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.ViewHolder> {
     private ArrayList<String> items;

@@ -1,7 +1,6 @@
 package com.startandroid.module;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -12,19 +11,22 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.startandroid.App;
 import com.startandroid.R;
+import com.startandroid.data.Constants;
 import com.startandroid.data.Preferences;
 
+import ru.svolf.melissa.sheet.SweetViewDialog;
+
 import static com.startandroid.data.Constants.RATE;
-import com.startandroid.data.*;
 
 public class Dialogs {
-    public static void noConnectionError(Context c) {
-        new AlertDialog.Builder(c)
-                .setTitle(R.string.error)
-                .setMessage(R.string.no_connection)
-                .setPositiveButton(android.R.string.ok, null)
-                .setCancelable(false)
-                .create().show();
+    public static void noConnectionError(final Context context) {
+        View v = LayoutInflater.from(context).inflate(R.layout.no_connection_error, null);
+
+        final SweetViewDialog dialog = new SweetViewDialog(context);
+        dialog.setTitle(R.string.error);
+        dialog.setView(v);
+        dialog.setPositive(android.R.string.ok, null);
+        dialog.show();
     }
 
     public static void show(Context c, String text) {
@@ -38,22 +40,19 @@ public class Dialogs {
         View v = LayoutInflater.from(context).inflate(R.layout.rate, null);
         final RatingBar ratingBar = v.findViewById(R.id.rating_bar);
 
-        new AlertDialog.Builder(context)
-                .setView(v)
-                .setPositiveButton(R.string.rate, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface p1, int p2) {
-                        if(ratingBar.getRating() > 3) {
-                            context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RATE)));
-                            Preferences.setRated();
-                        } else {
-                            App.toast(R.string.thanks);
-                            App.preferences.edit().putBoolean(Constants.IS_RATED, true).apply();
-                        }
+        SweetViewDialog dialog = new SweetViewDialog(context);
+                dialog.setTitle(R.string.rate);
+                dialog.setView(v);
+                dialog.setPositive(R.string.rate, v1 -> {
+                    if (ratingBar.getRating() > 3) {
+                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RATE)));
+                        Preferences.setRated();
+                    } else {
+                        App.toast(R.string.thanks);
+                        App.preferences.edit().putBoolean(Constants.IS_RATED, true).apply();
                     }
-                })
-                .create()
-                .show();
+                });
+                dialog.show();
     }
 
     public static void error(Context c, String text) {
@@ -63,5 +62,4 @@ public class Dialogs {
                 .setCancelable(true)
                 .create().show();
     }
-
 }

@@ -9,7 +9,7 @@ public final class Database extends SQLiteOpenHelper {
     private static SQLiteDatabase database;
 
     public Database() {
-        super(App.getContext(), "startandroid", null, 1);
+        super(App.getContext(), "kotlin", null, 1);
         database = getWritableDatabase();
     }
 

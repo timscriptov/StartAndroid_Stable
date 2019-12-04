@@ -71,4 +71,8 @@ public final class Preferences {
     public static boolean isOffline() {
         return preferences.getBoolean(Constants.OFFLINE, false);
     }
+
+    public static void setOffline(boolean value) {
+        preferences.edit().putBoolean(Constants.OFFLINE, value).apply();
+    }
 }

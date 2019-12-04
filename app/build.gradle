@@ -2,38 +2,55 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
+    buildToolsVersion "29.0.2"
 
     defaultConfig {
         applicationId "com.startandroid"
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 1149
-        versionName "11.4.9"
+        versionCode 1171
+        versionName "11.7.1"
         vectorDrawables.useSupportLibrary true
+        multiDexEnabled = true
     }
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-	implementation project(':library')
-    implementation project(':swipe-layout')
-    implementation project(':multiline-collapsingtoolbar')
-    implementation project(':toasty')
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
-    implementation 'com.google.android.material:material:1.1.0-alpha07'
+    implementation project(path: ':melissa')
+    implementation project(path: ':billing')
+
+    // Android libs
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.vectordrawable:vectordrawable:1.1.0-rc01'
-    implementation 'com.google.android.gms:play-services-ads:18.1.0'
-    implementation 'com.google.android.gms:play-services-measurement:17.0.1'
-    implementation 'com.google.android.gms:play-services-measurement-sdk:17.0.1'
-    implementation 'com.vanniktech:vntfontlistpreference:1.0.0'
-    implementation 'org.zeroturnaround:zt-zip:1.13'
+    implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation 'androidx.preference:preference:1.1.0'
+
+    // Google libs
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
+
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+    implementation 'com.daimajia.swipelayout:library:1.2.0'
+    //implementation 'com.anjlab.android.iab.v3:library:1.1.0'
     implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
+
+    implementation 'org.zeroturnaround:zt-zip:1.13'
+    implementation 'net.opacapp:multiline-collapsingtoolbar:27.1.1'
 }

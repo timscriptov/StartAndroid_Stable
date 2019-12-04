@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 public final class NightMode {
 
     public static Mode getCurrentMode() {
-        return Preferences.isInNightMode() ? Mode.NIGHT : Mode.DAY;
+        return com.startandroid.data.Preferences.isInNightMode() ? Mode.NIGHT : Mode.DAY;
     }
 
     public static void setMode(Mode mode) {

@@ -52,7 +52,7 @@ public class Ads {
         }
     }
 
-    public boolean isAdsLoading(){
+    public boolean isAdsLoading() {
         return interstitialAd.isLoading();
     }
 }

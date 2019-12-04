@@ -1,63 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto">
-	
-	<PreferenceCategory
-		android:title="@string/general">
-		
-		<ListPreference
-			android:key="lang"
-			android:title="@string/content_language"
-			android:dialogTitle="@string/choose_language"
-			android:entries="@array/languages"
-			android:entryValues="@array/language_values"
-			android:defaultValue="ru" />
-			
-	</PreferenceCategory>
-	
-	<PreferenceCategory
-		android:title="@string/appearance">
-		
-		<SwitchPreference
-			android:key="grid_mode"
-			android:title="@string/grid_view"
-			android:defaultValue="false"/>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-		<SwitchPreference
-			android:defaultValue="false"
-			android:key="offline"
-			android:title="@string/offline" />
-		
-		<SwitchPreference
-			android:key="fullscreen_mode"
-			android:title="@string/fullscreen_mode"
-			android:defaultValue="false"/>
+    <androidx.preference.PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="@string/general">
 
-		<SwitchPreference
-			android:key="night_mode"
-			android:title="@string/night_mode"
-			android:defaultValue="false"/>
-		
-	</PreferenceCategory>
-	
-	<PreferenceCategory
-		android:title="@string/font">
+        <androidx.preference.ListPreference
+            android:entries="@array/languages_main"
+            android:entryValues="@array/language_values_main"
+            android:icon="@drawable/ic_language"
+            android:key="sys.language"
+            android:title="@string/pref_sys_lang" />
 
-		<ListPreference
-			android:key="font_size"
-			android:title="@string/font_size"
-			android:dialogTitle="@string/select_font_size"
-			android:entries="@array/font_size"
-			android:entryValues="@array/font_size"
-			android:defaultValue="100%" />
+        <androidx.preference.ListPreference
+            android:defaultValue="ru"
+            android:dialogTitle="@string/choose_language"
+            android:entries="@array/languages"
+            android:entryValues="@array/language_values"
+            android:icon="@drawable/ic_language"
+            android:key="lang"
+            android:title="@string/content_language" />
 
-		<com.vanniktech.vntfontlistpreference.VNTFontListPreference
-			android:defaultValue="fonts/DroidSans.ttf"
-			android:key="font"
-			android:title="@string/font_type"
-			app:vnt_fontDirectory="fonts" />
+    </androidx.preference.PreferenceCategory>
 
-	</PreferenceCategory>
+    <androidx.preference.PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="@string/appearance">
 
-</PreferenceScreen>
+        <androidx.preference.SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_grid"
+            android:key="grid_mode"
+            android:title="@string/grid_view" />
+
+        <androidx.preference.SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_offline"
+            android:key="offline"
+            android:title="@string/offline" />
+
+        <androidx.preference.SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_fullscreen"
+            android:key="fullscreen_mode"
+            android:title="@string/fullscreen_mode" />
+
+        <androidx.preference.SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_daynight"
+            android:key="night_mode"
+            android:title="@string/night_mode" />
+
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="@string/font">
+
+        <androidx.preference.ListPreference
+            android:defaultValue="100%"
+            android:dialogTitle="@string/select_font_size"
+            android:entries="@array/font_size"
+            android:entryValues="@array/font_size"
+            android:icon="@drawable/ic_fontsize"
+            android:key="font_size"
+            android:title="@string/font_size" />
+
+        <androidx.preference.ListPreference
+            android:defaultValue="2"
+            android:entries="@array/fonts"
+            android:entryValues="@array/fonts_values"
+            android:icon="@drawable/ic_font"
+            android:key="font"
+            android:title="@string/font_type" />
+
+    </androidx.preference.PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

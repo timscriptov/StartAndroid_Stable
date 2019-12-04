@@ -13,5 +13,4 @@ public interface ProgressDialog {
     void dismiss();
 
     void setMax(int max);
-
 }

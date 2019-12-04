@@ -49,13 +49,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         final int number = getLessonNumberByTitle(text);
 
         try {
-            if (getClass().forName(Constants.ANTIPATCH) != null||
+            if (getClass().forName(Constants.ANTIPATCH) != null ||
                     getClass().forName(Constants.ANTIPATCH1) != null ||
                     getClass().forName(Constants.ANTIPATCH2) != null ||
                     getClass().forName(Constants.ANTIPATCH3) != null ||
-					getClass().forName(Constants.ANTIPATCH4) != null ||
-					getClass().forName(Constants.ANTIPATCH5) != null) return;
-        } catch (ClassNotFoundException e){
+                    getClass().forName(Constants.ANTIPATCH4) != null ||
+                    getClass().forName(Constants.ANTIPATCH5) != null) return;
+        } catch (ClassNotFoundException e) {
             holder.itemText.setText(text);
             holder.item.setOnClickListener(new OnClickListener() {
                 @Override
@@ -71,7 +71,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
 
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int p2) {
-        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.lesson_list_item, parent, false);
+        View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
         return new ViewHolder(item);
     }
 
@@ -110,6 +110,5 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
             items = filteredItems;
             notifyDataSetChanged();
         }
-
     }
 }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
     <com.daimajia.swipe.SwipeLayout
@@ -18,14 +17,15 @@
         <LinearLayout
             android:id="@+id/bottom_wrapper"
             android:layout_width="160dp"
-            android:weightSum="1"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:layout_height="match_parent">
+            android:weightSum="1">
 
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/remove_bookmark"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/remove_bookmark"
                 app:srcCompat="@drawable/trash_can_outline"
                 tools:ignore="ContentDescription" />
 
@@ -37,43 +37,49 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                card_view:cardCornerRadius="2dip"
-                android:layout_margin="4dp"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="2dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#AFAFAF"
+                app:strokeWidth="0.5dp"
+                card_view:cardCornerRadius="4dp">
 
                 <LinearLayout
-                    android:padding="8dip"
-                    android:gravity="center_vertical"
+                    android:id="@+id/lesson_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:id="@+id/lesson_item"
                     android:background="?android:attr/selectableItemBackground"
-                    android:focusable="true">
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:padding="8dip">
 
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dip"
+                        android:layout_marginBottom="4dip"
                         android:layout_weight="1.0"
                         android:text="Medium Text"
-                        android:id="@+id/text"
-                        android:layout_marginTop="4dip"
-                        android:layout_marginBottom="4dip"/>
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/checkMark"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_gravity="end|bottom"
-                        android:id="@+id/checkMark"
                         app:srcCompat="@drawable/done"
                         tools:ignore="ContentDescription" />
 
                 </LinearLayout>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

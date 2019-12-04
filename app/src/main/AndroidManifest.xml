@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.startandroid">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -7,18 +8,18 @@
     <!--uses-permission android:name="com.android.vending.BILLING" /-->
 
     <application
-        android:name=".App"
+        android:name="com.startandroid.App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:resizeableActivity="true">
+        android:resizeableActivity="true"
+        tools:ignore="UnusedAttribute">
 
         <activity
-            android:theme="@style/Theme.AppCompat"
-            android:name=".SplashActivity"
-            android:configChanges="screenSize|orientation">
+            android:configChanges="screenSize|orientation"
+            android:name="com.startandroid.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW"/>
@@ -28,31 +29,16 @@
 
         <activity
             android:configChanges="screenSize|orientation"
-            android:name=".MainActivity"/>
+            android:name="com.startandroid.LessonActivity"/>
 
         <activity
             android:configChanges="screenSize|orientation"
-            android:name=".LessonActivity"/>
-
-        <activity
-            android:configChanges="screenSize|orientation"
-            android:name=".AboutActivity"
-            android:label="@string/about"/>
-
-        <activity
-            android:configChanges="screenSize|orientation"
-            android:name=".SettingsActivity"
+            android:name="com.startandroid.SettingsActivity"
             android:label="@string/settings"/>
-            
-        <!--StartAndroid-->
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-1411495427741055~3216954118" />
-            
-        <!--Kotlin-->
-        <!--meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1411495427741055~3216954118" /-->
             
     </application>
 

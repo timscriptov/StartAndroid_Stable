@@ -2,8 +2,8 @@ package com.startandroid.module;
 
 import com.startandroid.App;
 import com.startandroid.R;
-import com.startandroid.adapters.GridAdapter;
 import com.startandroid.adapters.ListAdapter;
+import com.startandroid.data.Constants;
 import com.startandroid.view.MainView;
 
 import org.w3c.dom.Document;
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import com.startandroid.data.*;
 
 public class ListParser {
     private ArrayList<String> items = new ArrayList<>();
@@ -38,12 +37,7 @@ public class ListParser {
         }
     }
 
-    public GridAdapter getGridAdapter() {
-        return new GridAdapter(items, mainView);
-    }
-
     public ListAdapter getListAdapter() {
         return new ListAdapter(items, mainView);
     }
-
 }
