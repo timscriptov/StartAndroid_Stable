@@ -5,12 +5,12 @@
         android:layout="@layout/preference_category_custom"
         android:title="@string/general">
 
-        <androidx.preference.ListPreference
+        <!-- androidx.preference.ListPreference
             android:entries="@array/languages_main"
             android:entryValues="@array/language_values_main"
             android:icon="@drawable/ic_language"
             android:key="sys.language"
-            android:title="@string/pref_sys_lang" />
+            android:title="@string/pref_sys_lang" / -->
 
         <androidx.preference.ListPreference
             android:defaultValue="ru"

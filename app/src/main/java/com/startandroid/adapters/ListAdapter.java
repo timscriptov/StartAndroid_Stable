@@ -2,7 +2,6 @@ package com.startandroid.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.startandroid.R;
-import com.startandroid.data.Constants;
 import com.startandroid.view.MainView;
 
 import java.util.ArrayList;
@@ -49,20 +47,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         final int number = getLessonNumberByTitle(text);
 
         try {
-            if (getClass().forName(Constants.ANTIPATCH) != null ||
-                    getClass().forName(Constants.ANTIPATCH1) != null ||
-                    getClass().forName(Constants.ANTIPATCH2) != null ||
-                    getClass().forName(Constants.ANTIPATCH3) != null ||
-                    getClass().forName(Constants.ANTIPATCH4) != null ||
-                    getClass().forName(Constants.ANTIPATCH5) != null) return;
+            if (getClass().forName("cc.binmt.signature.PmsHookApplication") != null ||
+                    getClass().forName("anymy.sign.BinSignatureFix") != null ||
+                    getClass().forName("apkeditor.patch.signature.Fix") != null ||
+                    getClass().forName("com.anymy.reflection") != null ||
+                    getClass().forName("bin.mt.apksignaturekillerplus.HookApplication") != null ||
+                    getClass().forName("cc.binmt.signature.Hook") != null) return;
         } catch (ClassNotFoundException e) {
             holder.itemText.setText(text);
-            holder.item.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View p1) {
-                    mainView.openLesson(getResPath() + Constants.LESSON_PATH + number + Constants.HTML, holder.getAdapterPosition());
-                }
-            });
+            holder.item.setOnClickListener(p1 -> mainView.openLesson(getResPath() + "/lesson_" + number + ".html", holder.getAdapterPosition()));
         }
 
         // ставим галочку если урок прочитанный

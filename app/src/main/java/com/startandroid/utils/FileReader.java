@@ -15,13 +15,11 @@ import java.net.URL;
 
 import javax.net.ssl.SSLException;
 
-import static com.startandroid.data.Constants.UTF_8;
-
 public class FileReader {
     public static String fromAssets(String path) {
         try {
             StringBuilder sb = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader(App.getContext().getAssets().open(path), UTF_8));
+            BufferedReader br = new BufferedReader(new InputStreamReader(App.getContext().getAssets().open(path), "UTF-8"));
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
@@ -33,7 +31,7 @@ public class FileReader {
     public static String fromUrl(String url) {
         try {
             StringBuilder sb = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader((new URL(url).openStream()), UTF_8));
+            BufferedReader br = new BufferedReader(new InputStreamReader((new URL(url).openStream()), "UTF-8"));
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
@@ -55,7 +53,7 @@ public class FileReader {
     public static String fromStorage(String path) {
         try {
             StringBuilder sb = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), UTF_8));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();

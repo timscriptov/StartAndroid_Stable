@@ -12,10 +12,8 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
 
 import com.startandroid.data.NightMode;
-import com.startandroid.module.Dialogs;
 import com.startandroid.module.Offline;
 import com.startandroid.utils.SignatureUtils;
-import com.startandroid.utils.Utils;
 
 import org.zeroturnaround.zip.commons.FileUtils;
 
@@ -25,9 +23,6 @@ import java.io.IOException;
 import ru.svolf.melissa.sheet.SweetViewDialog;
 
 import static android.app.Activity.RESULT_OK;
-import static com.startandroid.data.Constants.IS_PREMIUM;
-import static com.startandroid.data.Constants.OFFLINE;
-import static com.startandroid.data.Constants.RESOURCES;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
     private boolean isPremium;
@@ -37,9 +32,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.settings, rootKey);
 
-        isPremium = requireActivity().getIntent().getBooleanExtra(IS_PREMIUM, false);
-        offline = findPreference(OFFLINE);
-
+        isPremium = requireActivity().getIntent().getBooleanExtra("isPremium", false);
+        offline = findPreference("offline");
     }
 
     @Override
@@ -59,17 +53,17 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         switch (key) {
             case "offline":
                 if (preferences.getBoolean(key, true) && isPremium && SignatureUtils.verifySignatureSHA(App.getContext()) || BuildConfig.DEBUG) {
-                    if (Utils.isNetworkAvailable()) {
-                        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-                        progressDialog.setTitle(getString(R.string.downloading));
-                        new Offline(getActivity()).execute();
-                    } else {
-                        Dialogs.noConnectionError(getContext());
-                    }
+                    //if (Utils.isNetworkAvailable()) {
+                    final ProgressDialog progressDialog = new ProgressDialog(getContext());
+                    progressDialog.setTitle(getString(R.string.downloading));
+                    new Offline(getActivity()).execute();
+                    //} else {
+                    //    Dialogs.noConnectionError(getContext());
+                    //}
                 } else if (isPremium) {
                     AsyncTask.execute(() -> {
                         try {
-                            File resourcesDir = new File(requireActivity().getFilesDir(), RESOURCES);
+                            File resourcesDir = new File(requireActivity().getFilesDir(), "resources");
                             FileUtils.deleteDirectory(resourcesDir);
                         } catch (IOException ignored) {
                         }
@@ -97,7 +91,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         }
     }
 
-    private void restartPerfect(Intent intent){
+    private void restartPerfect(Intent intent) {
         requireActivity().finish();
         requireActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         startActivity(intent);

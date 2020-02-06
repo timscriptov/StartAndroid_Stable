@@ -1,5 +1,6 @@
 package com.startandroid.module;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -24,11 +25,8 @@ import java.net.URLConnection;
 
 import es.dmoral.toasty.Toasty;
 
-import static com.startandroid.data.Constants.DOWNLOAD_ZIP;
-import static com.startandroid.data.Constants.OFFLINE_ZIP;
-import static com.startandroid.data.Constants.RESOURCES;
-
 public class Offline extends AsyncTask<Void, Integer, Boolean> {
+    @SuppressLint("StaticFieldLeak")
     private Activity settingsActivity;
     private ProgressDialog progressDialog;
 
@@ -39,7 +37,7 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
 
     private void deleteResources() {
         try {
-            File resourcesDir = new File(settingsActivity.getPackageName(), RESOURCES);
+            File resourcesDir = new File(settingsActivity.getPackageName(), "resources");
             FileUtilsV2_2.deleteDirectory(resourcesDir);
         } catch (IOException e) {
         }
@@ -63,14 +61,14 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
     protected Boolean doInBackground(Void... voids) {
         try {
             try {
-                URL url = new URL(DOWNLOAD_ZIP);
+                URL url = new URL("https://timscriptov.github.io/lessons/startandroid.zip");
                 URLConnection connection = url.openConnection();
 
                 progressDialog.setMax(connection.getContentLength());
                 progressDialog.show();
 
-                File offline = new File(settingsActivity.getFilesDir(), OFFLINE_ZIP);
-                File resourcesDir = new File(settingsActivity.getFilesDir(), RESOURCES);
+                File offline = new File(settingsActivity.getFilesDir(), "offline.zip");
+                File resourcesDir = new File(settingsActivity.getFilesDir(), "resources");
 
                 InputStream inputStream = new BufferedInputStream(connection.getInputStream());
                 OutputStream outputStream = new FileOutputStream(offline);

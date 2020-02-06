@@ -14,7 +14,6 @@ import android.webkit.WebViewClient;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.startandroid.data.Bookmarks;
-import com.startandroid.data.Constants;
 import com.startandroid.data.Preferences;
 import com.startandroid.model.BaseActivity;
 import com.startandroid.module.Dialogs;
@@ -30,13 +29,6 @@ import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 
 import java.util.concurrent.TimeUnit;
 
-import static com.startandroid.data.Constants.FILE;
-import static com.startandroid.data.Constants.IS_PREMIUM;
-import static com.startandroid.data.Constants.IS_READ;
-import static com.startandroid.data.Constants.POSITION;
-import static com.startandroid.data.Constants.TEXT_HTML;
-import static com.startandroid.data.Constants.URL;
-import static com.startandroid.data.Constants.UTF_8;
 import static com.startandroid.data.Constants.getResPath;
 import static com.startandroid.data.Preferences.isOffline;
 import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
@@ -73,7 +65,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
-                new PageLoader(getResPath() + Constants.LESSON_PATH + (getLessonNumberByUrl(webView.getUrl()) - 1) + Constants.HTML).execute();
+                new PageLoader(getResPath() + "/lesson_" + (getLessonNumberByUrl(webView.getUrl()) - 1) + ".html").execute();
                 itemPosition--;
                 break;
             case R.id.next_lesson:
@@ -81,7 +73,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
-                new PageLoader(getResPath() + Constants.LESSON_PATH + (getLessonNumberByUrl(webView.getUrl()) + 1) + Constants.HTML).execute();
+                new PageLoader(getResPath() + "/lesson_" + (getLessonNumberByUrl(webView.getUrl()) + 1) + ".html").execute();
                 itemPosition++;
         }
     }
@@ -106,11 +98,11 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         prev_lesson.setOnClickListener(this);
         next_lesson.setOnClickListener(this);
         bookmark.setOnClickListener(this);
-        itemPosition = getIntent().getIntExtra(POSITION, 0);
+        itemPosition = getIntent().getIntExtra("position", 0);
 
-        new PageLoader(getIntent().getStringExtra(URL)).execute();
+        new PageLoader(getIntent().getStringExtra("url")).execute();
 
-        isPremium = getIntent().getBooleanExtra(IS_PREMIUM, false);
+        isPremium = getIntent().getBooleanExtra("isPremium", false);
     }
 
     @Override
@@ -136,7 +128,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
     private void markAsRead(int num) {
         if (LessonUtils.markAsRead(num)) {
             Snackbar.make(webView, getString(R.string.marked_as_read, num), Snackbar.LENGTH_LONG).show();
-            setResult(RESULT_OK, new Intent().putExtra(IS_READ, true).putExtra(POSITION, itemPosition));
+            setResult(RESULT_OK, new Intent().putExtra("isRead", true).putExtra("position", itemPosition));
             AsyncTask.execute(() -> {
                 try {
                     TimeUnit.SECONDS.sleep(2);
@@ -195,13 +187,13 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
             progressBar.setVisibility(View.VISIBLE);
 
             if (isOffline()) {
-                if (isPremium != true  || BuildConfig.DEBUG) {
+                if (isPremium != true || BuildConfig.DEBUG) {
                     if (SignatureUtils.verifySignatureSHA(getApplicationContext()) || BuildConfig.DEBUG) {
-                        link = FILE + link;
-                        webView.loadDataWithBaseURL(link, HtmlRenderer.renderHtml(FileReader.fromStorage(link.replace(FILE, ""))), TEXT_HTML, UTF_8, link);
+                        link = "file:///" + link;
+                        webView.loadDataWithBaseURL(link, HtmlRenderer.renderHtml(FileReader.fromStorage(link.replace("file:///", ""))), "text/html", "UTF-8", link);
                         cancel(true);
                     } else {
-                        webView.loadData(html, TEXT_HTML, UTF_8);
+                        webView.loadData(html, "text/html", "UTF-8");
                     }
                 }
             }
@@ -219,9 +211,9 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
 
             if (SignatureUtils.verifySignatureSHA(getApplicationContext()) || BuildConfig.DEBUG) {
                 link += "#googtrans(ru|" + Preferences.getLang() + ")";
-                webView.loadDataWithBaseURL(link, html, TEXT_HTML, UTF_8, link);
+                webView.loadDataWithBaseURL(link, html, "text/html", "UTF-8", link);
             } else {
-                webView.loadData(html, TEXT_HTML, UTF_8);
+                webView.loadData(html, "text/html", "UTF-8");
             }
         }
     }

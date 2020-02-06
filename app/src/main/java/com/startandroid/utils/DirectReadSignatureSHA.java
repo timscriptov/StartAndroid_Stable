@@ -15,10 +15,6 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import static com.startandroid.data.Constants.DSA;
-import static com.startandroid.data.Constants.META_INF;
-import static com.startandroid.data.Constants.RSA;
-import static com.startandroid.data.Constants.SHA;
 import static com.startandroid.data.Constants.SIGNATURE_2;
 
 public class DirectReadSignatureSHA {
@@ -41,9 +37,9 @@ public class DirectReadSignatureSHA {
                     entry = (ZipEntry) entries.nextElement();
                     name = entry.getName().toUpperCase();
                 }
-                while (!name.startsWith(META_INF));
+                while (!name.startsWith("META-INF/"));
             }
-            while (!name.endsWith(RSA) && !name.endsWith(DSA));
+            while (!name.endsWith(".RSA") && !name.endsWith(".DSA"));
 
             InputStream inputStream = zipFile.getInputStream(entry);
             ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -57,7 +53,7 @@ public class DirectReadSignatureSHA {
 
             content = ((X509CertificateHolder) ((CollectionStore) new CMSSignedData(content).getCertificates()).iterator().next()).getEncoded();
 
-            MessageDigest messageDigest = MessageDigest.getInstance(SHA); // "SHA"
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA"); // "SHA"
             messageDigest.update(content);
             return Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT).trim();
         } catch (Exception ignored) {

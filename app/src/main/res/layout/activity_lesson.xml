@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -38,7 +39,8 @@
         app:fabSize="mini"
         app:layout_anchor="@id/lesson_toolbar_abl"
         app:layout_anchorGravity="bottom|left|start"
-        app:srcCompat="@drawable/arrow_left_bold" />
+        app:srcCompat="@drawable/arrow_left_bold"
+        tools:ignore="RtlHardcoded" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/bookmark_lesson"
@@ -58,7 +60,8 @@
         app:fabSize="mini"
         app:layout_anchor="@id/lesson_toolbar_abl"
         app:layout_anchorGravity="bottom|right|end"
-        app:srcCompat="@drawable/arrow_right_bold" />
+        app:srcCompat="@drawable/arrow_right_bold"
+        tools:ignore="RtlHardcoded" />
 
     <com.startandroid.view.NestedWebView
         android:id="@+id/webView"

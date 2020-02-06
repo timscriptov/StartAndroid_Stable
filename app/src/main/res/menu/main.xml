@@ -11,7 +11,7 @@
 
     <item
         android:id="@+id/continue_lesson"
-        android:icon="@drawable/bookmark"
+        android:icon="@drawable/star_bookmark"
         android:title="@string/continue_lesson"
         app:showAsAction="always" />
 

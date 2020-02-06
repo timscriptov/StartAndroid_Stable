@@ -19,8 +19,6 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import static com.startandroid.data.Constants.UPDATE_PATH;
-
 public class AppUpdater extends AsyncTask<Void, Void, Void> {
     private String version_name;
     private int version_code;
@@ -36,7 +34,7 @@ public class AppUpdater extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         try {
-            URL url = new URL(UPDATE_PATH);
+            URL url = new URL("https://mcal-llc.github.io/sa/config/update.xml");
             HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = dbf.newDocumentBuilder();
@@ -57,10 +55,9 @@ public class AppUpdater extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
         try {
-            if (version_code > 1171/*App.getContext().getPackageManager().getPackageInfo(PACKAGE_NAME, PackageManager.GET_META_DATA).versionCode*/) {
+            if (version_code > 1171) {
                 updateApp();
             }
-        //} catch (PackageManager.NameNotFoundException ignored) {
         } catch (Exception ignored) {
         }
     }

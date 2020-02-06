@@ -3,7 +3,6 @@ package com.startandroid.module;
 import com.startandroid.App;
 import com.startandroid.R;
 import com.startandroid.adapters.ListAdapter;
-import com.startandroid.data.Constants;
 import com.startandroid.view.MainView;
 
 import org.w3c.dom.Document;
@@ -28,7 +27,7 @@ public class ListParser {
                 DocumentBuilder builder = dbf.newDocumentBuilder();
                 Document doc = builder.parse(is);
                 is.close();
-                NodeList lessons = doc.getElementsByTagName(Constants.LESSON);
+                NodeList lessons = doc.getElementsByTagName("lesson");
                 for (int x = 0; x < lessons.getLength(); x++) {
                     items.add(lessons.item(x).getTextContent());
                 }

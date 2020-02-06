@@ -15,14 +15,16 @@
 
     <string-array name="language_values" formatted="false">
         <item>ru</item>
+        <item>th</item>
         <item>en</item>
         <item>uk</item>
-        <item>zh-CN</item>
+        <item>zh-rCN</item>
     </string-array>
 
     <string-array name="languages_main" formatted="false">
         <item>Default</item>
         <item>Русский</item>
+        <item>ไทย</item>
         <item>English</item>
         <item>Українська</item>
         <item>Chinese</item>

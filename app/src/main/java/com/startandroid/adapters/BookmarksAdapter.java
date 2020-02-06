@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.daimajia.swipe.SwipeLayout;
 import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
-import com.startandroid.data.Constants;
 import com.startandroid.data.Preferences;
 import com.startandroid.view.BookmarksFragment;
 import com.startandroid.view.MainView;
@@ -46,25 +45,19 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
         final int number = getLessonNumberByTitle(text);
 
         holder.itemText.setText(text);
-        holder.item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View p1) {
-                bookmarksFragment.dismiss();
-                mainView.openLesson(getResPath() + Constants.LESSON_PATH + number + ".html#googtrans(ru|" + Preferences.getLang() + ")", holder.getAdapterPosition());
-            }
+        holder.item.setOnClickListener(p1 -> {
+            bookmarksFragment.dismiss();
+            mainView.openLesson(getResPath() + "/lesson_" + number + ".html#googtrans(ru|" + Preferences.getLang() + ")", holder.getAdapterPosition());
         });
 
         // ставим галочку если урок прочитанный
         holder.checkMark.setVisibility(isRead(number) ? View.VISIBLE : View.GONE);
 
-        holder.removeBookmarkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bookmarks.remove(number);
-                items.remove(holder.getAdapterPosition());
-                notifyItemRemoved(holder.getAdapterPosition());
-                if (getItemCount() == 0) bookmarksFragment.dismiss();
-            }
+        holder.removeBookmarkButton.setOnClickListener(v -> {
+            Bookmarks.remove(number);
+            items.remove(holder.getAdapterPosition());
+            notifyItemRemoved(holder.getAdapterPosition());
+            if (getItemCount() == 0) bookmarksFragment.dismiss();
         });
     }
 

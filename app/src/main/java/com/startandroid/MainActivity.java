@@ -21,7 +21,6 @@ import com.anjlab.android.iab.v3.BillingProcessor.IBillingHandler;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.startandroid.adapters.ListAdapter;
-import com.startandroid.data.Constants;
 import com.startandroid.data.ListMode;
 import com.startandroid.data.NightMode;
 import com.startandroid.data.Preferences;
@@ -43,11 +42,8 @@ import ru.svolf.melissa.MainMenuItems;
 import ru.svolf.melissa.sheet.SweetContentDialog;
 
 import static com.anjlab.android.iab.v3.Constants.BILLING_RESPONSE_RESULT_USER_CANCELED;
-import static com.startandroid.data.Constants.IS_PREMIUM;
 import static com.startandroid.data.Constants.LK;
-import static com.startandroid.data.Constants.POSITION;
 import static com.startandroid.data.Constants.PREMIUM;
-import static com.startandroid.data.Constants.URL;
 import static com.startandroid.data.Preferences.isOffline;
 
 public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, IBillingHandler {
@@ -79,8 +75,8 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
             return;
         }
         startActivityForResult(new Intent(this, LessonActivity.class)
-                .putExtra(URL, url)
-                .putExtra(POSITION, position), REQUEST_CODE_IS_READ);
+                .putExtra("url", url)
+                .putExtra("position", position), REQUEST_CODE_IS_READ);
     }
 
     @Override
@@ -113,12 +109,12 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
         new AppUpdater(this).execute();
 
-        isPremium = getIntent().getBooleanExtra(IS_PREMIUM, false);
+        isPremium = getIntent().getBooleanExtra("isPremium", false);
     }
 
     @Override
     public void onBackPressed() {
-        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+        if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else {
             if (time + 2000 > System.currentTimeMillis()) super.onBackPressed();
@@ -136,7 +132,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         if (requestCode == REQUEST_CODE_IS_READ) {
 
             if (resultCode == RESULT_OK) {
-                int position = data.getIntExtra(POSITION, 0);
+                int position = data.getIntExtra("position", 0);
 
                 listAdapter.notifyItemChanged(position);
             }
@@ -150,7 +146,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
     private void resumeLesson() {
         startActivityForResult(new Intent(this, LessonActivity.class).
-                putExtra(URL, Preferences.getBookmark()), REQUEST_CODE_IS_READ);
+                putExtra("url", Preferences.getBookmark()), REQUEST_CODE_IS_READ);
     }
 
     @Override
@@ -196,10 +192,10 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                 .create().show();
     }
 
-    private void setupBottomSheet(){
+    private void setupBottomSheet() {
         TextView caption = findViewById(R.id.caption);
         RecyclerView recycler = findViewById(R.id.list);
-        if (recycler.getAdapter() != null){
+        if (recycler.getAdapter() != null) {
             recycler.setAdapter(null);
         }
 
@@ -209,10 +205,10 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         if (Preferences.getBookmark() != null) {
             menuItems.add(new MainMenuItem(R.drawable.bookmark, "#fad805", getString(R.string.continue_lesson), MainMenuItems.CONTINUE));
         }
-        menuItems.add(new MainMenuItem(R.drawable.star, "#fdd835", getString(R.string.bookmarks), MainMenuItems.BOOKMARKS));
+        menuItems.add(new MainMenuItem(R.drawable.star_bookmark, "#fdd835", getString(R.string.bookmarks), MainMenuItems.BOOKMARKS));
         menuItems.add(new MainMenuItem(R.drawable.settings, "#546e7a", getString(R.string.settings), MainMenuItems.SETTINGS));
 
-        if (isPremium != false) {
+        if (isPremium) {
             menuItems.add(new MainMenuItem(R.drawable.cash_multiple, "#43a047", getString(R.string.p), MainMenuItems.PREMIUM));
         }
         menuItems.add(new MainMenuItem(R.drawable.information, "#3949ab", getString(R.string.about), MainMenuItems.ABOUT));
@@ -230,7 +226,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                     break;
                 }
                 case MainMenuItems.SETTINGS: {
-                    startActivityForResult(new Intent(MainActivity.this, com.startandroid.SettingsActivity.class).putExtra(IS_PREMIUM, billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
+                    startActivityForResult(new Intent(MainActivity.this, com.startandroid.SettingsActivity.class).putExtra("isPremium", billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
                     break;
                 }
                 case MainMenuItems.EXIT: {
@@ -268,7 +264,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         });
     }
 
-    private void showAboutSheet(){
+    private void showAboutSheet() {
         /*SweetContentDialog dialog = new SweetContentDialog(this);
         dialog.setTitle(getString(R.string.app_name) + " v." + BuildConfig.VERSION_NAME);
         dialog.setMessage(R.string.copyright);
@@ -292,7 +288,8 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         dialog.setTitle(getString(R.string.app_name) + " v." + BuildConfig.VERSION_NAME);
         dialog.setView(v);
         dialog.setPositive(R.drawable.star, getString(R.string.rate), view -> Dialogs.rate(MainActivity.this));
-        dialog.setNegative(R.drawable.google_play, getString(R.string.more_apps), view -> MainActivity.this.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MORE_APPS))));
+        dialog.setNegative(R.drawable.google_play, getString(R.string.more_apps), view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:Иван Тимашков"))));
+        dialog.setNeutral(R.drawable.web, "Источник материалов - startandroid.ru", view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://startandroid.ru/"))));
         dialog.show();
 
     }

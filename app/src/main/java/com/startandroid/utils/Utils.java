@@ -24,20 +24,15 @@ public class Utils {
     }
 
     @Keep
-    public static String xor(String a, boolean b)
-    {
+    public static String xor(String a, boolean b) {
         char[] ax = new char[]{'\u3005', '\u3006'};//々
-        try
-        {
+        try {
             StringBuilder output = new StringBuilder();
-            for (int i = 0; i < a.length(); i++)
-        {
-            output.append((char) (a.charAt(i) ^ ax[i % ax.length]));
-        }
+            for (int i = 0; i < a.length(); i++) {
+                output.append((char) (a.charAt(i) ^ ax[i % ax.length]));
+            }
             return output.toString();
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             return "";
         }
     }

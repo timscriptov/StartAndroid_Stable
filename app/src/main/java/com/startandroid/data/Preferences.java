@@ -1,5 +1,6 @@
 package com.startandroid.data;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
@@ -9,70 +10,70 @@ public final class Preferences {
     private static SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.getContext());
 
     public static boolean isInGridMode() {
-        return preferences.getBoolean(Constants.GRID_MODE, false);
+        return preferences.getBoolean("grid_mode", false);
     }
 
     public static boolean isInNightMode() {
-        return preferences.getBoolean(Constants.NIGHT_MODE, false);
+        return preferences.getBoolean("night_mode", false);
     }
 
     public static void setNightMode(boolean value) {
-        preferences.edit().putBoolean(Constants.NIGHT_MODE, value).apply();
+        preferences.edit().putBoolean("night_mode", value).apply();
     }
 
     public static boolean isInFullscreenMode() {
-        return preferences.getBoolean(Constants.FULLSCREEN_MODE, false);
+        return preferences.getBoolean("fullscreen_mode", false);
     }
 
     public static void setFullscreenMode(boolean value) {
-        preferences.edit().putBoolean(Constants.FULLSCREEN_MODE, value).apply();
+        preferences.edit().putBoolean("fullscreen_mode", value).apply();
     }
 
     public static void setRated() {
-        preferences.edit().putBoolean(Constants.IS_RATED, true).apply();
+        preferences.edit().putBoolean("isRated", true).apply();
     }
 
     public static boolean isRated() {
-        return preferences.getBoolean(Constants.IS_RATED, false);
+        return preferences.getBoolean("isRated", false);
     }
 
     public static String getBookmark() {
-        return preferences.getString(Constants.BOOKMARK, null);
+        return preferences.getString("bookmark", null);
     }
 
     public static void setBookmark(String url) {
-        preferences.edit().putString(Constants.BOOKMARK, url).apply();
+        preferences.edit().putString("bookmark", url).apply();
     }
 
     public static String getLang() {
-        return preferences.getString(Constants.LANG, "ru");
+        return preferences.getString("lang", "ru");
     }
 
     public static void setLang(String lang) {
-        preferences.edit().putString(Constants.LANG, lang).apply();
+        preferences.edit().putString("lang", lang).apply();
     }
 
     public static String getFontType() {
-        return preferences.getString(Constants.FONT, "fonts/DroidSans.ttf");
+        return preferences.getString("font", "fonts/DroidSans.ttf");
     }
 
     public static String getFontSize() {
-        return preferences.getString(Constants.FONT_SIZE, "100%");
+        return preferences.getString("font_size", "100%");
     }
 
     public static boolean isFirstLaunch() {
-        return preferences.getBoolean(Constants.FIRSTLAUNCH, true);
+        return preferences.getBoolean("firstLaunch", true);
     }
 
     public static void setFirstLaunch(boolean value) {
-        preferences.edit().putBoolean(Constants.FIRSTLAUNCH, value).apply();
+        preferences.edit().putBoolean("firstLaunch", value).apply();
     }
 
     public static boolean isOffline() {
-        return preferences.getBoolean(Constants.OFFLINE, false);
+        return preferences.getBoolean("offline", false);
     }
 
     public static void setOffline(boolean value) {
-        preferences.edit().putBoolean(Constants.OFFLINE, value).apply();
+        preferences.edit().putBoolean("offline", value).apply();
     }
 }

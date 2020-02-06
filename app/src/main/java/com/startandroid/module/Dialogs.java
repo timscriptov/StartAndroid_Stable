@@ -11,12 +11,9 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.startandroid.App;
 import com.startandroid.R;
-import com.startandroid.data.Constants;
 import com.startandroid.data.Preferences;
 
 import ru.svolf.melissa.sheet.SweetViewDialog;
-
-import static com.startandroid.data.Constants.RATE;
 
 public class Dialogs {
     public static void noConnectionError(final Context context) {
@@ -41,18 +38,19 @@ public class Dialogs {
         final RatingBar ratingBar = v.findViewById(R.id.rating_bar);
 
         SweetViewDialog dialog = new SweetViewDialog(context);
-                dialog.setTitle(R.string.rate);
-                dialog.setView(v);
-                dialog.setPositive(R.string.rate, v1 -> {
-                    if (ratingBar.getRating() > 3) {
-                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(RATE)));
-                        Preferences.setRated();
-                    } else {
-                        App.toast(R.string.thanks);
-                        App.preferences.edit().putBoolean(Constants.IS_RATED, true).apply();
-                    }
-                });
-                dialog.show();
+        dialog.setTitle(R.string.rate);
+        dialog.setView(v);
+        dialog.setPositive(R.string.rate, v1 -> {
+            if (ratingBar.getRating() > 3) {
+                context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.startandroid")));
+                Preferences.setRated();
+            } else {
+                App.toast(R.string.thanks);
+                App.preferences.edit().putBoolean("isRated", true).apply();
+            }
+        });
+        dialog.setNegative(android.R.string.cancel, null);
+        dialog.show();
     }
 
     public static void error(Context c, String text) {
