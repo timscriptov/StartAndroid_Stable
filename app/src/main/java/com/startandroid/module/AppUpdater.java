@@ -55,7 +55,7 @@ public class AppUpdater extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
         try {
-            if (version_code > 1171) {
+            if (version_code > 1172) {
                 updateApp();
             }
         } catch (Exception ignored) {

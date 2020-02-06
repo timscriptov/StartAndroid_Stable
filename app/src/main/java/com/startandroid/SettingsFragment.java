@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
 
 import com.startandroid.data.NightMode;
+import com.startandroid.module.Dialogs;
 import com.startandroid.module.Offline;
 import com.startandroid.utils.SignatureUtils;
+import com.startandroid.utils.Utils;
 
 import org.zeroturnaround.zip.commons.FileUtils;
 
@@ -52,14 +55,15 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
         switch (key) {
             case "offline":
-                if (preferences.getBoolean(key, true) && isPremium && SignatureUtils.verifySignatureSHA(App.getContext()) || BuildConfig.DEBUG) {
-                    //if (Utils.isNetworkAvailable()) {
-                    final ProgressDialog progressDialog = new ProgressDialog(getContext());
-                    progressDialog.setTitle(getString(R.string.downloading));
-                    new Offline(getActivity()).execute();
-                    //} else {
-                    //    Dialogs.noConnectionError(getContext());
-                    //}
+                if (preferences.getBoolean(key, false) && isPremium && SignatureUtils.verifySignatureSHA(App.getContext()) || BuildConfig.DEBUG) {
+                    if (Utils.isNetworkAvailable()) {
+                        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+                        progressDialog.setTitle(getString(R.string.downloading));
+                        new Offline(getActivity()).execute();
+                    } else {
+                        offline.setChecked(false);
+                        Dialogs.noConnectionError(getActivity());
+                    }
                 } else if (isPremium) {
                     AsyncTask.execute(() -> {
                         try {
@@ -69,13 +73,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                         }
                     });
                 } else if (preferences.getBoolean(key, false)) {
-                    offline.performClick();
-                    View v = LayoutInflater.from(getContext()).inflate(R.layout.no_connection_error, null);
-                    final SweetViewDialog dialog = new SweetViewDialog(getContext());
-                    dialog.setTitle(R.string.error);
-                    dialog.setView(v);
-                    dialog.setPositive(android.R.string.ok, null);
-                    dialog.show();
+                    offline.setChecked(false);
+                    Dialogs.show(getActivity(), getString(R.string.only_prem));
                 }
                 break;
             case "fullscreen_mode":
