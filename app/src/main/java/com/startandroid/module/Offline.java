@@ -14,12 +14,10 @@ import org.zeroturnaround.zip.commons.FileUtilsV2_2;
 
 import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -39,7 +37,7 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
         try {
             File resourcesDir = new File(settingsActivity.getPackageName(), "resources");
             FileUtilsV2_2.deleteDirectory(resourcesDir);
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
     }
 
@@ -87,10 +85,6 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
                 offline.delete();
                 progressDialog.dismiss();
                 return true;
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }

@@ -268,31 +268,23 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
     }
 
     private void showAboutSheet() {
-        /*SweetContentDialog dialog = new SweetContentDialog(this);
-        dialog.setTitle(getString(R.string.app_name) + " v." + BuildConfig.VERSION_NAME);
-        dialog.setMessage(R.string.copyright);
-        dialog.setPositive(R.drawable.star, getString(R.string.rate), new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dialogs.rate(MainActivity.this);
-            }
-        });
-        dialog.setNegative(R.drawable.google_play, getString(R.string.more_apps), new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity.this.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.MORE_APPS)));
-            }
-        });
-        dialog.show();*/
-
         View v = LayoutInflater.from(this).inflate(R.layout.about, null);
 
         final SweetContentDialog dialog = new SweetContentDialog(this);
         dialog.setTitle(getString(R.string.app_name) + " v." + BuildConfig.VERSION_NAME);
         dialog.setView(v);
-        dialog.setPositive(R.drawable.star, getString(R.string.rate), view -> Dialogs.rate(MainActivity.this));
-        dialog.setNegative(R.drawable.google_play, getString(R.string.more_apps), view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:Иван Тимашков"))));
-        dialog.setNeutral(R.drawable.web, "Источник материалов - startandroid.ru", view -> startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://startandroid.ru/"))));
+        dialog.setPositive(R.drawable.star, getString(R.string.rate), view -> {
+            Dialogs.rate(this);
+            dialog.cancel();
+        });
+        dialog.setNegative(R.drawable.google_play, getString(R.string.more_apps), view -> {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:Иван Тимашков")));
+            dialog.cancel();
+        });
+        dialog.setNeutral(R.drawable.web, "Источник материалов - startandroid.ru", view -> {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://startandroid.ru/")));
+            dialog.cancel();
+        });
         dialog.show();
 
     }

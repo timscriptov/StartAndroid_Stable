@@ -1,6 +1,5 @@
 package com.startandroid.data;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 

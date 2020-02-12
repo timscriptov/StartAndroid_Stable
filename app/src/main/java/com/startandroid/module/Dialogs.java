@@ -22,7 +22,9 @@ public class Dialogs {
         final SweetViewDialog dialog = new SweetViewDialog(context);
         dialog.setTitle(R.string.error);
         dialog.setView(v);
-        dialog.setPositive(android.R.string.ok, null);
+        dialog.setPositive(android.R.string.ok, v1 -> {
+            dialog.cancel();
+        });
         dialog.show();
     }
 
@@ -44,12 +46,16 @@ public class Dialogs {
             if (ratingBar.getRating() > 3) {
                 context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.startandroid")));
                 Preferences.setRated();
+                dialog.cancel();
             } else {
                 App.toast(R.string.thanks);
                 App.preferences.edit().putBoolean("isRated", true).apply();
+                dialog.cancel();
             }
         });
-        dialog.setNegative(android.R.string.cancel, null);
+        dialog.setNegative(android.R.string.cancel, v1 -> {
+            dialog.cancel();
+        });
         dialog.show();
     }
 
