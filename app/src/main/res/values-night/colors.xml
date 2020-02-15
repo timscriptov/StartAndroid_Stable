@@ -3,6 +3,6 @@
     <color name="colorPrimary">#FF202124</color>
     <color name="colorPrimaryDark">#FF202124</color>
     <color name="colorAccent">#448aff</color>
-    <color name="app_background">#FF202124</color>
-    <color name="dialog_style">#27292D</color>
+    <color name="app_background">#212121</color>
+    <color name="dialog_style">#FF202125</color>
 </resources>

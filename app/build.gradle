@@ -8,8 +8,8 @@ android {
         applicationId "com.startandroid"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1174
-        versionName "11.7.4"
+        versionCode 1175
+        versionName "11.7.5"
         vectorDrawables.useSupportLibrary true
         multiDexEnabled = true
     }

@@ -53,7 +53,7 @@
                     android:id="@+id/lesson_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?android:attr/selectableItemBackground"
+                    android:background="@color/colorAccent"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center_vertical"
@@ -67,6 +67,7 @@
                         android:layout_marginBottom="4dip"
                         android:layout_weight="1.0"
                         android:text="Medium Text"
+                        android:textColor="@color/colorPrimary"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <androidx.appcompat.widget.AppCompatImageView
