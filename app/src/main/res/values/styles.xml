@@ -12,18 +12,7 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
-    <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/AppModalStyle</item>
-    </style>
-
-    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@drawable/dialog_background</item>
-        <item name="behavior_hideable">true</item>
-        <item name="behavior_peekHeight">350dp</item>
-        <item name="behavior_skipCollapsed">false</item>
-    </style>
-
-    <style name="toolbar" parent="ThemeOverlay.AppCompat.DayNight.ActionBar"></style>
+    <style name="toolbar" parent="ThemeOverlay.AppCompat.DayNight.ActionBar"/>
 
     <style name="toolbar.menu" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">?android:colorForeground</item>

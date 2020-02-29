@@ -52,7 +52,7 @@ public class MainMenuAdapter extends RecyclerView.Adapter<MainMenuAdapter.ViewHo
         holder.text.setText(item.getTitle());
         holder.icon.setImageResource(item.getIcon());
 
-        // Тинт круга иконки парсим из параметра айтема
+        //Тинт круга иконки парсим из параметра айтема
         ViewCompat.setBackgroundTintList(holder.icon, ColorStateList.valueOf(item.getTintColor()));
         // Тинт иконки делаем в цвет бэкграунда
         ImageViewCompat.setImageTintList(holder.icon,

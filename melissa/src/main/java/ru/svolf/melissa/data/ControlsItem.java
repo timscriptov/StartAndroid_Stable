@@ -3,10 +3,10 @@ package ru.svolf.melissa.data;
 import android.view.View;
 
 import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
 
 public class ControlsItem {
-    private @DrawableRes
-    int icon;
+    private @DrawableRes int icon;
     private CharSequence title;
     private View.OnClickListener action;
 
@@ -21,8 +21,7 @@ public class ControlsItem {
         return title;
     }
 
-    public @DrawableRes
-    int getIcon() {
+    public @DrawableRes int getIcon() {
         return icon;
     }
 

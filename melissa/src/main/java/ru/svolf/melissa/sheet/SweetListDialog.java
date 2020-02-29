@@ -10,8 +10,12 @@ import android.widget.TextView;
 
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import ru.svolf.melissa.R;
 
@@ -44,11 +48,23 @@ public class SweetListDialog extends BottomSheetDialog {
         mTitle.setText(title);
     }
 
+    public void setTitle(@StringRes int title) {
+        mTitle.setText(title);
+    }
+
     public void setItems(@ArrayRes int resId) {
         mItems = mContext.getResources().getStringArray(resId);
     }
 
-    public void setOnItemClickListener(AdapterView.OnItemClickListener listener) {
+    public void setItems(String[] items) {
+        mItems = items;
+    }
+
+    public void setItems(ArrayList<String> items){
+        mItems = items.toArray(new String[0]);
+    }
+
+    public void setOnItemsClickListener(AdapterView.OnItemClickListener listener) {
         mList.setOnItemClickListener(listener);
     }
 
@@ -56,7 +72,7 @@ public class SweetListDialog extends BottomSheetDialog {
         return mList;
     }
 
-    public void setAdapter() {
+    private void setAdapter() {
         mAdapter = new ArrayAdapter<>(mContext, R.layout.menu_row, R.id.list_item_content, mItems);
         mList.setAdapter(mAdapter);
     }
@@ -73,5 +89,45 @@ public class SweetListDialog extends BottomSheetDialog {
             setAdapter();
         }
         super.show();
+    }
+
+    public class Builder {
+
+        public Builder(){
+        }
+
+        public Builder setTitle(CharSequence title){
+            SweetListDialog.this.setTitle(title);
+            return this;
+        }
+
+        public Builder setTitle(@StringRes int title){
+            SweetListDialog.this.setTitle(title);
+            return this;
+        }
+
+        public Builder setItems(@ArrayRes int resId){
+            SweetListDialog.this.setItems(resId);
+            return this;
+        }
+
+        public Builder setItems(String[] items){
+            SweetListDialog.this.setItems(items);
+            return this;
+        }
+
+        public Builder setItems(ArrayList<String> items){
+            SweetListDialog.this.setItems(items);
+            return this;
+        }
+
+        public Builder setOnItemsClickListener(AdapterView.OnItemClickListener listener) {
+            SweetListDialog.this.setOnItemsClickListener(listener);
+            return this;
+        }
+
+        public void show(){
+            SweetListDialog.this.show();
+        }
     }
 }

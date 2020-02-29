@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -199,6 +200,32 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         if (recycler.getAdapter() != null) {
             recycler.setAdapter(null);
         }
+        /*View v = LayoutInflater.from(this).inflate(R.layout.about, null);
+
+        final SweetContentDialog dialog = new SweetContentDialog(this);
+        dialog.setTitle(getString(R.string.app_name) + " v." + BuildConfig.VERSION_NAME);
+        dialog.setView(v);
+        dialog.addAction(R.drawable.bookmark, getString(R.string.continue_lesson), view -> {
+            if (isOffline() || Utils.isNetworkAvailable())
+                resumeLesson();
+            else Dialogs.noConnectionError(this);
+        });
+        dialog.addAction(R.drawable.star_bookmark, getString(R.string.bookmarks), view -> {
+            new BookmarksFragment().show(getSupportFragmentManager(), null);
+        });
+        dialog.addAction(R.drawable.settings, getString(R.string.settings), view -> {
+            startActivityForResult(new Intent(MainActivity.this, com.startandroid.SettingsActivity.class).putExtra("isPremium", billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
+        });
+        dialog.addAction(R.drawable.cash_multiple, getString(R.string.p), view -> {
+            billing.purchase(MainActivity.this, PREMIUM);
+        });
+        dialog.addAction(R.drawable.information, getString(R.string.about), view -> {
+            showAboutSheet();
+        });
+        dialog.addAction(R.drawable.exit, getString(R.string.exit), view -> {
+            finish();
+        });
+        dialog.show();*/
 
         ArrayList<MainMenuItem> menuItems = new ArrayList<>();
 
@@ -286,6 +313,5 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
             dialog.cancel();
         });
         dialog.show();
-
     }
 }

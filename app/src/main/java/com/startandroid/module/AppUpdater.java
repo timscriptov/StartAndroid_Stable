@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import androidx.appcompat.app.AlertDialog;
 
 import com.startandroid.App;
+import com.startandroid.BuildConfig;
 import com.startandroid.R;
 
 import org.w3c.dom.Document;
@@ -55,7 +56,7 @@ public class AppUpdater extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
         try {
-            if (version_code > 1175) {
+            if (version_code > BuildConfig.VERSION_CODE) {
                 updateApp();
             }
         } catch (Exception ignored) {
