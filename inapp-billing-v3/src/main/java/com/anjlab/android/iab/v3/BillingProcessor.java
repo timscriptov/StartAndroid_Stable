@@ -15,6 +15,7 @@
  */
 package com.anjlab.android.iab.v3;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -94,6 +95,7 @@ public class BillingProcessor extends BillingBase
 	private boolean isSubscriptionExtraParamsSupported;
 	private boolean isOneTimePurchaseExtraParamsSupported;
 
+	@SuppressLint("StaticFieldLeak")
 	private class HistoryInitializationTask extends AsyncTask<Void, Void, Boolean>
 	{
 		@Override

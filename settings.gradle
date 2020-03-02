@@ -1,1 +1,1 @@
-include ':app', ':melissa'//, ':billing'
+include ':app', ':melissa', ':inapp-billing-v3'

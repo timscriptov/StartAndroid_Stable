@@ -18,25 +18,6 @@ public class Utils {
         else return info.isConnected();
     }
 
-    public static String fromBase64(String message) {
-        byte[] data = Base64.decode(message, Base64.DEFAULT);
-        return new String(data);
-    }
-
-    @Keep
-    public static String xor(String a, boolean b) {
-        char[] ax = new char[]{'\u3005', '\u3006'};//々
-        try {
-            StringBuilder output = new StringBuilder();
-            for (int i = 0; i < a.length(); i++) {
-                output.append((char) (a.charAt(i) ^ ax[i % ax.length]));
-            }
-            return output.toString();
-        } catch (Exception ex) {
-            return "";
-        }
-    }
-
     static String reverseString(String string) {
         try {
             return new StringBuilder(string).reverse().toString();

@@ -1,10 +1,12 @@
 package com.startandroid.view;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,9 +34,10 @@ public class BookmarksFragment extends BottomSheetDialogFragment {
         }
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        View view = getActivity().getLayoutInflater().inflate(R.layout.bookmarks_fragment, null);
+        @SuppressLint("InflateParams") View view = getActivity().getLayoutInflater().inflate(R.layout.bookmarks_fragment, null);
 
         if (items.size() > 0) {
             RecyclerView rcview = view.findViewById(R.id.bookmarksList);

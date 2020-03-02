@@ -19,6 +19,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,29 +30,17 @@ public class SkuDetails implements Parcelable
 {
 
     public final String productId;
-
     public final String title;
-
     public final String description;
-
     public final boolean isSubscription;
-
     public final String currency;
-
     public final Double priceValue;
-
     public final String subscriptionPeriod;
-
     public final String subscriptionFreeTrialPeriod;
-
     public final boolean haveTrialPeriod;
-
     public final double introductoryPriceValue;
-
     public final String introductoryPricePeriod;
-
     public final boolean haveIntroductoryPeriod;
-
     public final int introductoryPriceCycles;
 
     /**
@@ -61,11 +51,8 @@ public class SkuDetails implements Parcelable
      * This is in micros from the Play Store.
      */
     public final long priceLong;
-
     public final String priceText;
-
     public final long introductoryPriceLong;
-
     public final String introductoryPriceText;
 
     public SkuDetails(JSONObject source) throws JSONException
@@ -94,6 +81,7 @@ public class SkuDetails implements Parcelable
         introductoryPriceCycles = source.optInt(Constants.RESPONSE_INTRODUCTORY_PRICE_CYCLES);
     }
 
+    @NonNull
     @Override
     public String toString()
     {

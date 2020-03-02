@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.startandroid.R;
@@ -52,6 +53,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
                     getClass().forName("apkeditor.patch.signature.Fix") != null ||
                     getClass().forName("com.anymy.reflection") != null ||
                     getClass().forName("bin.mt.apksignaturekillerplus.HookApplication") != null ||
+                    getClass().forName("np.App") != null ||
                     getClass().forName("cc.binmt.signature.Hook") != null) return;
         } catch (ClassNotFoundException e) {
             holder.itemText.setText(text);
@@ -62,6 +64,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         holder.checkMark.setVisibility(isRead(number) ? View.VISIBLE : View.GONE);
     }
 
+    @NonNull
     @Override
     public ListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int p2) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);

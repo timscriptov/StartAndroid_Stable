@@ -18,6 +18,8 @@ package com.anjlab.android.iab.v3;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 import java.util.Locale;
 
@@ -59,6 +61,7 @@ public class TransactionDetails implements Parcelable
 		purchaseTime = purchaseInfo.purchaseData.purchaseTime;
 	}
 
+	@NonNull
 	@Override
 	public String toString()
 	{

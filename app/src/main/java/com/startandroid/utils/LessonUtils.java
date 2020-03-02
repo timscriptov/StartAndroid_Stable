@@ -24,7 +24,7 @@ public class LessonUtils {
     public static int getLessonNumberByTitle(String title) {
         Pattern p = Pattern.compile("\\w+ (\\d+).*");
         Matcher m = p.matcher(title);
-        if (m.matches()) return Integer.valueOf(m.group(1));
+        if (m.matches()) return Integer.parseInt(m.group(1));
         else return 1;
     }
 
@@ -34,5 +34,4 @@ public class LessonUtils {
         if (m.matches()) return Integer.parseInt(m.group(1));
         return 1;
     }
-
 }

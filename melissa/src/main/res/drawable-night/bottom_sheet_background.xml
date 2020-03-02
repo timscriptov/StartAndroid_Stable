@@ -8,4 +8,7 @@
         android:topRightRadius="12dp"
         android:bottomLeftRadius="12dp"
         android:bottomRightRadius="12dp"/>
+    <stroke
+        android:width="2dp"
+        android:color="#3E3E3E" />
 </shape>

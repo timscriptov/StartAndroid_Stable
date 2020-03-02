@@ -28,7 +28,7 @@ public class SignatureUtils {
         try {
             ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), 0);
             ZipFile zipFile = new ZipFile(applicationInfo.publicSourceDir);
-            Enumeration entries = zipFile.entries();
+            Enumeration<? extends ZipEntry> entries = zipFile.entries();
 
             ZipEntry entry;
             String name;

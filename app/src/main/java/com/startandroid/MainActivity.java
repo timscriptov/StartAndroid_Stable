@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,6 +24,7 @@ import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.BillingProcessor.IBillingHandler;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.textfield.TextInputLayout;
 import com.startandroid.adapters.ListAdapter;
 import com.startandroid.data.ListMode;
 import com.startandroid.data.NightMode;
@@ -50,12 +53,9 @@ import static com.startandroid.data.Preferences.isOffline;
 
 public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, IBillingHandler {
 
-    //private LinearLayout adLayout;
     private BillingProcessor billing;
     private ListAdapter listAdapter;
-    private Ads ads;
     private BottomSheetBehavior sheetBehavior;
-    private boolean isAdsBlocked = false;
     private boolean isPremium;
     private SearchView sv;
 
@@ -87,7 +87,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         setContentView(R.layout.activity_main);
 
         sheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottomView));
-        //adLayout = findViewById(R.id.adLayout);
         sv = findViewById(R.id.search_bar);
 
         RecyclerView lessons = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
@@ -105,7 +104,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         setupSearchView();
         setupBottomSheet();
 
-        ads = new Ads();
         billing = new BillingProcessor(this, LK, this);
         if (savedInstanceState == null)
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
@@ -141,7 +139,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
             if (!Preferences.isRated()) Dialogs.rate(this);
             else if (!billing.isPurchased(PREMIUM)) {
-                //ads.showInsAd();
             }
         }
     }
@@ -167,31 +164,15 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
     public void onBillingError(int errorCode, @Nullable Throwable error) {
         if (errorCode == BILLING_RESPONSE_RESULT_USER_CANCELED) {
             Toasty.error(this, getString(R.string.purchase_canceled)).show();
-            if (isAdsBlocked) System.exit(0);
         }
     }
 
     @Override
     public void onBillingInitialized() {
         if (!billing.isPurchased(PREMIUM)) {
-            //adLayout.addView(ads.getBanner(this));
-            ads.loadInterstitial(this);
             // FIXME: Рефрешнуть адаптер
             setupBottomSheet();
-            if (!billing.isPurchased(PREMIUM) & !ads.isAdsLoading()) {
-                isAdsBlocked = true;
-                adsBlocked();
-            }
         }
-    }
-
-    public void adsBlocked() {
-        new AlertDialog.Builder(this)
-                .setMessage(R.string.ads_blocked)
-                .setPositiveButton(R.string.buy, (dialog, which) -> billing.purchase(MainActivity.this, PREMIUM))
-                .setNegativeButton(R.string.close, (dialog, which) -> System.exit(0))
-                .setCancelable(false)
-                .create().show();
     }
 
     private void setupBottomSheet() {
@@ -200,32 +181,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         if (recycler.getAdapter() != null) {
             recycler.setAdapter(null);
         }
-        /*View v = LayoutInflater.from(this).inflate(R.layout.about, null);
-
-        final SweetContentDialog dialog = new SweetContentDialog(this);
-        dialog.setTitle(getString(R.string.app_name) + " v." + BuildConfig.VERSION_NAME);
-        dialog.setView(v);
-        dialog.addAction(R.drawable.bookmark, getString(R.string.continue_lesson), view -> {
-            if (isOffline() || Utils.isNetworkAvailable())
-                resumeLesson();
-            else Dialogs.noConnectionError(this);
-        });
-        dialog.addAction(R.drawable.star_bookmark, getString(R.string.bookmarks), view -> {
-            new BookmarksFragment().show(getSupportFragmentManager(), null);
-        });
-        dialog.addAction(R.drawable.settings, getString(R.string.settings), view -> {
-            startActivityForResult(new Intent(MainActivity.this, com.startandroid.SettingsActivity.class).putExtra("isPremium", billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
-        });
-        dialog.addAction(R.drawable.cash_multiple, getString(R.string.p), view -> {
-            billing.purchase(MainActivity.this, PREMIUM);
-        });
-        dialog.addAction(R.drawable.information, getString(R.string.about), view -> {
-            showAboutSheet();
-        });
-        dialog.addAction(R.drawable.exit, getString(R.string.exit), view -> {
-            finish();
-        });
-        dialog.show();*/
 
         ArrayList<MainMenuItem> menuItems = new ArrayList<>();
 
@@ -236,7 +191,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         menuItems.add(new MainMenuItem(R.drawable.star_bookmark, "#fdd835", getString(R.string.bookmarks), MainMenuItems.BOOKMARKS));
         menuItems.add(new MainMenuItem(R.drawable.settings, "#546e7a", getString(R.string.settings), MainMenuItems.SETTINGS));
 
-        if (isPremium = true) {
+        if (!isPremium) {
             menuItems.add(new MainMenuItem(R.drawable.cash_multiple, "#43a047", getString(R.string.p), MainMenuItems.PREMIUM));
         } else {
             Log.e("", "");
@@ -294,21 +249,31 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         });
     }
 
-    private void showAboutSheet() {
-        View v = LayoutInflater.from(this).inflate(R.layout.about, null);
+    public void showAboutSheet() {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        LinearLayout ll = new LinearLayout(this);
+        ll.setOrientation(LinearLayout.VERTICAL);
+        ll.setPadding(40, 0, 40, 0);
+        ll.setLayoutParams(layoutParams);
+        final TextInputLayout til0 = new TextInputLayout(this);
+        final AppCompatTextView message = new AppCompatTextView(this);
+        message.setGravity(1);
+        message.setText(R.string.copyright);
+        til0.addView(message);
+        ll.addView(til0);
 
         final SweetContentDialog dialog = new SweetContentDialog(this);
-        dialog.setTitle(getString(R.string.app_name) + " v." + BuildConfig.VERSION_NAME);
-        dialog.setView(v);
-        dialog.setPositive(R.drawable.star, getString(R.string.rate), view -> {
+        dialog.setTitle(this.getString(R.string.app_name) + " v." + BuildConfig.VERSION_NAME);
+        dialog.setView(ll);
+        dialog.addAction(R.drawable.star, this.getString(R.string.rate), view -> {
             Dialogs.rate(this);
             dialog.cancel();
         });
-        dialog.setNegative(R.drawable.google_play, getString(R.string.more_apps), view -> {
+        dialog.addAction(R.drawable.google_play, this.getString(R.string.more_apps), view -> {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:Иван Тимашков")));
             dialog.cancel();
         });
-        dialog.setNeutral(R.drawable.web, "Источник материалов - startandroid.ru", view -> {
+        dialog.addAction(R.drawable.web, "Источник материалов - startandroid.ru", view -> {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://startandroid.ru/")));
             dialog.cancel();
         });

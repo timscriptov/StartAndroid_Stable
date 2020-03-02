@@ -34,7 +34,6 @@ public class App extends Application {
         super.onCreate();
         context = this;
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Ads.initialize(this);
         new Database();
     }
 }
