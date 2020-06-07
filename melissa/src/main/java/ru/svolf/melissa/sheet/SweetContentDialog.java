@@ -81,11 +81,11 @@ public class SweetContentDialog extends BottomSheetDialog {
         mContentView.setText(text);
     }
 
-    public void setMessage(Spanned text){
+    public void setMessage(Spanned text) {
         mContentView.setText(text);
     }
 
-    public void setView(@LayoutRes int resId){
+    public void setView(@LayoutRes int resId) {
         setView(LayoutInflater.from(getContext()).inflate(resId, null));
     }
 
@@ -103,12 +103,12 @@ public class SweetContentDialog extends BottomSheetDialog {
 
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public void setIcon(@DrawableRes int resId){
-       setIcon(AppCompatResources.getDrawable(mContext, resId));
+    public void setIcon(@DrawableRes int resId) {
+        setIcon(AppCompatResources.getDrawable(mContext, resId));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public void setIcon(Drawable icon){
+    public void setIcon(Drawable icon) {
         mCaption.setCompoundDrawablesRelative(icon, null, null, null);
     }
 
@@ -117,11 +117,11 @@ public class SweetContentDialog extends BottomSheetDialog {
         mContentFrame.addView(view);
     }
 
-    public void makeBlur(){
-        if (mContext instanceof Activity){
+    public void makeBlur() {
+        if (mContext instanceof Activity) {
             Bitmap screen = Render.takeScreenShot((Activity) mContext);
             Bitmap fast = Render.fastblur(screen, 70, 50);
-            final Drawable draw=new BitmapDrawable(mContext.getResources(), fast);
+            final Drawable draw = new BitmapDrawable(mContext.getResources(), fast);
             getWindow().setBackgroundDrawable(draw);
         }
     }
@@ -158,79 +158,79 @@ public class SweetContentDialog extends BottomSheetDialog {
 
     public class Builder {
 
-        public Builder(){
+        public Builder() {
         }
 
-        public Builder setTitle(CharSequence title){
+        public Builder setTitle(CharSequence title) {
             SweetContentDialog.this.setTitle(title);
             return this;
         }
 
-        public Builder setTitle(@StringRes int resId){
+        public Builder setTitle(@StringRes int resId) {
             SweetContentDialog.this.setTitle(resId);
             return this;
         }
 
-        public Builder setMessage(CharSequence message){
+        public Builder setMessage(CharSequence message) {
             SweetContentDialog.this.setMessage(message);
             return this;
         }
 
-        public Builder setMessage(@StringRes int resId){
+        public Builder setMessage(@StringRes int resId) {
             SweetContentDialog.this.setMessage(resId);
             return this;
         }
 
-        public Builder setMessage(Spanned text){
+        public Builder setMessage(Spanned text) {
             SweetContentDialog.this.setMessage(text);
             return this;
         }
 
-        public Builder setMessage(StringBuilder text){
+        public Builder setMessage(StringBuilder text) {
             SweetContentDialog.this.setMessage(text);
             return this;
         }
 
-        public Builder makeBlur(){
+        public Builder makeBlur() {
             SweetContentDialog.this.makeBlur();
             return this;
         }
 
-        public Builder addAction(@DrawableRes int resId, CharSequence text, View.OnClickListener listener){
+        public Builder addAction(@DrawableRes int resId, CharSequence text, View.OnClickListener listener) {
             SweetContentDialog.this.addAction(resId, text, listener);
             return this;
         }
 
-        public Builder setView(@LayoutRes int resId){
+        public Builder setView(@LayoutRes int resId) {
             SweetContentDialog.this.setView(resId);
             return this;
         }
 
-        public Builder setView(View view){
+        public Builder setView(View view) {
             SweetContentDialog.this.setView(view);
             return this;
         }
 
-        public Builder setIcon(@DrawableRes int resId){
+        public Builder setIcon(@DrawableRes int resId) {
             SweetContentDialog.this.setIcon(resId);
             return this;
         }
 
-        public Builder setIcon(Drawable icon){
+        public Builder setIcon(Drawable icon) {
             SweetContentDialog.this.setIcon(icon);
             return this;
         }
 
-        public Builder setDismissible(boolean dismissible){
+        public Builder setDismissible(boolean dismissible) {
             SweetContentDialog.this.setDismissOnTouch(dismissible);
             return this;
         }
 
-        public SweetContentDialog create(){
+        public SweetContentDialog create() {
             return SweetContentDialog.this;
         }
 
-        public void show(){
+        public void show() {
             create().show();
         }
     }

@@ -1,4 +1,4 @@
-package com.startandroid;
+package com.startandroid.activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,6 +13,8 @@ import android.webkit.WebViewClient;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.startandroid.BuildConfig;
+import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Preferences;
 import com.startandroid.model.BaseActivity;
@@ -187,7 +189,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
             progressBar.setVisibility(View.VISIBLE);
 
             if (isOffline()) {
-                if (isPremium != true || BuildConfig.DEBUG) {
+                if (!isPremium || BuildConfig.DEBUG) {
                     if (SignatureUtils.verifySignatureSHA(getApplicationContext()) || BuildConfig.DEBUG) {
                         link = "file:///" + link;
                         webView.loadDataWithBaseURL(link, HtmlRenderer.renderHtml(FileReader.fromStorage(link.replace("file:///", ""))), "text/html", "UTF-8", link);

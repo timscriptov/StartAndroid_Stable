@@ -5,7 +5,8 @@ import android.graphics.Color;
 import androidx.annotation.DrawableRes;
 
 public class MainMenuItem {
-    private @DrawableRes int icon;
+    private @DrawableRes
+    int icon;
     private String title;
     private int action;
     private String tintColor;
@@ -26,7 +27,8 @@ public class MainMenuItem {
         return action;
     }
 
-    public @DrawableRes int getIcon() {
+    public @DrawableRes
+    int getIcon() {
         return icon;
     }
 

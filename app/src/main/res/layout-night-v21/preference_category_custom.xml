@@ -21,12 +21,12 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
         android:paddingStart="72dp"
+        android:paddingLeft="72dp"
         android:paddingTop="16dp"
         android:paddingEnd="16dp"
+        android:paddingRight="16dp"
         android:textColor="?colorAccent"
         android:textSize="14sp"
-        android:textStyle="bold"
-        android:paddingLeft="72dp"
-        android:paddingRight="16dp" />
+        android:textStyle="bold" />
 
 </LinearLayout>

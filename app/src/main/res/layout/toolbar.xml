@@ -10,9 +10,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         app:layout_scrollFlags="scroll|enterAlways"
-        android:layout_marginEnd="15dp"
         tools:ignore="RtlHardcoded">
 
         <RelativeLayout
@@ -26,9 +26,9 @@
                 android:layout_height="48dp"
                 android:layout_toStartOf="@id/button_night"
                 android:layout_toLeftOf="@id/button_night"
-                android:inputType="textNoSuggestions"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
+                android:inputType="textNoSuggestions"
                 app:defaultQueryHint="@string/search"
                 app:iconifiedByDefault="false"
                 app:queryBackground="@null"

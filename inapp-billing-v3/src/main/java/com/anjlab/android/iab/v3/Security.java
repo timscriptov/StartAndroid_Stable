@@ -37,8 +37,7 @@ import java.security.spec.X509EncodedKeySpec;
  * make it harder for an attacker to replace the code with stubs that treat all
  * purchases as verified.
  */
-class Security
-{
+class Security {
     private static final String TAG = "IABUtil/Security";
 
     private static final String KEY_FACTORY_ALGORITHM = "RSA";
@@ -56,19 +55,16 @@ class Security
      * @param signature       the signature for the data, signed with the private key
      */
     public static boolean verifyPurchase(String productId, String base64PublicKey,
-                                         String signedData, String signature)
-    {
+                                         String signedData, String signature) {
         if (TextUtils.isEmpty(signedData) || TextUtils.isEmpty(base64PublicKey) ||
-            TextUtils.isEmpty(signature))
-        {
+                TextUtils.isEmpty(signature)) {
 
             if (
                     productId.equals("android.test.purchased") ||
-                    productId.equals("android.test.canceled") ||
-                    productId.equals("android.test.refunded") ||
-                    productId.equals("android.test.item_unavailable")
-                    )
-            {
+                            productId.equals("android.test.canceled") ||
+                            productId.equals("android.test.refunded") ||
+                            productId.equals("android.test.item_unavailable")
+            ) {
                 return true;
             }
 
@@ -87,25 +83,17 @@ class Security
      * @param encodedPublicKey Base64-encoded public key
      * @throws IllegalArgumentException if encodedPublicKey is invalid
      */
-    public static PublicKey generatePublicKey(String encodedPublicKey)
-    {
-        try
-        {
+    public static PublicKey generatePublicKey(String encodedPublicKey) {
+        try {
             byte[] decodedKey = Base64.decode(encodedPublicKey, Base64.DEFAULT);
             KeyFactory keyFactory = KeyFactory.getInstance(KEY_FACTORY_ALGORITHM);
             return keyFactory.generatePublic(new X509EncodedKeySpec(decodedKey));
-        }
-        catch (NoSuchAlgorithmException e)
-        {
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
-        }
-        catch (InvalidKeySpecException e)
-        {
+        } catch (InvalidKeySpecException e) {
             Log.e(TAG, "Invalid key specification.");
             throw new IllegalArgumentException(e);
-        }
-        catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             Log.e(TAG, "Base64 decoding failed.");
             throw e;
         }
@@ -120,35 +108,24 @@ class Security
      * @param signature  server signature
      * @return true if the data and signature match
      */
-    public static boolean verify(PublicKey publicKey, String signedData, String signature)
-    {
+    public static boolean verify(PublicKey publicKey, String signedData, String signature) {
         Signature sig;
-        try
-        {
+        try {
             sig = Signature.getInstance(SIGNATURE_ALGORITHM);
             sig.initVerify(publicKey);
             sig.update(signedData.getBytes());
-            if (!sig.verify(Base64.decode(signature, Base64.DEFAULT)))
-            {
+            if (!sig.verify(Base64.decode(signature, Base64.DEFAULT))) {
                 Log.e(TAG, "Signature verification failed.");
                 return false;
             }
             return true;
-        }
-        catch (NoSuchAlgorithmException e)
-        {
+        } catch (NoSuchAlgorithmException e) {
             Log.e(TAG, "NoSuchAlgorithmException.");
-        }
-        catch (InvalidKeyException e)
-        {
+        } catch (InvalidKeyException e) {
             Log.e(TAG, "Invalid key specification.");
-        }
-        catch (SignatureException e)
-        {
+        } catch (SignatureException e) {
             Log.e(TAG, "Signature exception.");
-        }
-        catch (IllegalArgumentException e)
-        {
+        } catch (IllegalArgumentException e) {
             Log.e(TAG, "Base64 decoding failed.");
         }
         return false;

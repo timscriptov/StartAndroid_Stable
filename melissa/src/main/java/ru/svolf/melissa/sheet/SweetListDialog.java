@@ -15,7 +15,6 @@ import androidx.annotation.StringRes;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import ru.svolf.melissa.R;
 
@@ -60,7 +59,7 @@ public class SweetListDialog extends BottomSheetDialog {
         mItems = items;
     }
 
-    public void setItems(ArrayList<String> items){
+    public void setItems(ArrayList<String> items) {
         mItems = items.toArray(new String[0]);
     }
 
@@ -93,30 +92,30 @@ public class SweetListDialog extends BottomSheetDialog {
 
     public class Builder {
 
-        public Builder(){
+        public Builder() {
         }
 
-        public Builder setTitle(CharSequence title){
+        public Builder setTitle(CharSequence title) {
             SweetListDialog.this.setTitle(title);
             return this;
         }
 
-        public Builder setTitle(@StringRes int title){
+        public Builder setTitle(@StringRes int title) {
             SweetListDialog.this.setTitle(title);
             return this;
         }
 
-        public Builder setItems(@ArrayRes int resId){
+        public Builder setItems(@ArrayRes int resId) {
             SweetListDialog.this.setItems(resId);
             return this;
         }
 
-        public Builder setItems(String[] items){
+        public Builder setItems(String[] items) {
             SweetListDialog.this.setItems(items);
             return this;
         }
 
-        public Builder setItems(ArrayList<String> items){
+        public Builder setItems(ArrayList<String> items) {
             SweetListDialog.this.setItems(items);
             return this;
         }
@@ -126,7 +125,7 @@ public class SweetListDialog extends BottomSheetDialog {
             return this;
         }
 
-        public void show(){
+        public void show() {
             SweetListDialog.this.show();
         }
     }

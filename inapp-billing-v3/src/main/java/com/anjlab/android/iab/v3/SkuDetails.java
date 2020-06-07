@@ -26,9 +26,18 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
-public class SkuDetails implements Parcelable
-{
+public class SkuDetails implements Parcelable {
 
+    public static final Parcelable.Creator<SkuDetails> CREATOR =
+            new Parcelable.Creator<SkuDetails>() {
+                public SkuDetails createFromParcel(Parcel source) {
+                    return new SkuDetails(source);
+                }
+
+                public SkuDetails[] newArray(int size) {
+                    return new SkuDetails[size];
+                }
+            };
     public final String productId;
     public final String title;
     public final String description;
@@ -42,7 +51,6 @@ public class SkuDetails implements Parcelable
     public final String introductoryPricePeriod;
     public final boolean haveIntroductoryPeriod;
     public final int introductoryPriceCycles;
-
     /**
      * Use this value to return the raw price from the product.
      * This allows math to be performed without needing to worry about errors
@@ -55,11 +63,9 @@ public class SkuDetails implements Parcelable
     public final long introductoryPriceLong;
     public final String introductoryPriceText;
 
-    public SkuDetails(JSONObject source) throws JSONException
-    {
+    public SkuDetails(JSONObject source) throws JSONException {
         String responseType = source.optString(Constants.RESPONSE_TYPE);
-        if (responseType == null)
-        {
+        if (responseType == null) {
             responseType = Constants.PRODUCT_TYPE_MANAGED;
         }
         productId = source.optString(Constants.RESPONSE_PRODUCT_ID);
@@ -81,78 +87,7 @@ public class SkuDetails implements Parcelable
         introductoryPriceCycles = source.optInt(Constants.RESPONSE_INTRODUCTORY_PRICE_CYCLES);
     }
 
-    @NonNull
-    @Override
-    public String toString()
-    {
-        return String.format(Locale.US, "%s: %s(%s) %f in %s (%s)",
-                productId,
-                title,
-                description,
-                priceValue,
-                currency,
-                priceText);
-    }
-
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o)
-        {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass())
-        {
-            return false;
-        }
-
-        SkuDetails that = (SkuDetails) o;
-
-        if (isSubscription != that.isSubscription)
-        {
-            return false;
-        }
-        return !(productId != null ? !productId.equals(that.productId) : that.productId != null);
-    }
-
-    @Override
-    public int hashCode()
-    {
-        int result = productId != null ? productId.hashCode() : 0;
-        result = 31 * result + (isSubscription ? 1 : 0);
-        return result;
-    }
-
-    @Override
-    public int describeContents()
-    {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags)
-    {
-        dest.writeString(this.productId);
-        dest.writeString(this.title);
-        dest.writeString(this.description);
-        dest.writeByte(isSubscription ? (byte) 1 : (byte) 0);
-        dest.writeString(this.currency);
-        dest.writeDouble(this.priceValue);
-        dest.writeLong(this.priceLong);
-        dest.writeString(this.priceText);
-        dest.writeString(this.subscriptionPeriod);
-        dest.writeString(this.subscriptionFreeTrialPeriod);
-        dest.writeByte(this.haveTrialPeriod ? (byte) 1 : (byte) 0);
-        dest.writeDouble(this.introductoryPriceValue);
-        dest.writeLong(this.introductoryPriceLong);
-        dest.writeString(this.introductoryPriceText);
-        dest.writeString(this.introductoryPricePeriod);
-        dest.writeByte(this.haveIntroductoryPeriod ? (byte) 1 : (byte) 0);
-        dest.writeInt(this.introductoryPriceCycles);
-    }
-
-    protected SkuDetails(Parcel in)
-    {
+    protected SkuDetails(Parcel in) {
         this.productId = in.readString();
         this.title = in.readString();
         this.description = in.readString();
@@ -172,17 +107,65 @@ public class SkuDetails implements Parcelable
         this.introductoryPriceCycles = in.readInt();
     }
 
-    public static final Parcelable.Creator<SkuDetails> CREATOR =
-            new Parcelable.Creator<SkuDetails>()
-            {
-                public SkuDetails createFromParcel(Parcel source)
-                {
-                    return new SkuDetails(source);
-                }
+    @NonNull
+    @Override
+    public String toString() {
+        return String.format(Locale.US, "%s: %s(%s) %f in %s (%s)",
+                productId,
+                title,
+                description,
+                priceValue,
+                currency,
+                priceText);
+    }
 
-                public SkuDetails[] newArray(int size)
-                {
-                    return new SkuDetails[size];
-                }
-            };
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        SkuDetails that = (SkuDetails) o;
+
+        if (isSubscription != that.isSubscription) {
+            return false;
+        }
+        return !(productId != null ? !productId.equals(that.productId) : that.productId != null);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = productId != null ? productId.hashCode() : 0;
+        result = 31 * result + (isSubscription ? 1 : 0);
+        return result;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.productId);
+        dest.writeString(this.title);
+        dest.writeString(this.description);
+        dest.writeByte(isSubscription ? (byte) 1 : (byte) 0);
+        dest.writeString(this.currency);
+        dest.writeDouble(this.priceValue);
+        dest.writeLong(this.priceLong);
+        dest.writeString(this.priceText);
+        dest.writeString(this.subscriptionPeriod);
+        dest.writeString(this.subscriptionFreeTrialPeriod);
+        dest.writeByte(this.haveTrialPeriod ? (byte) 1 : (byte) 0);
+        dest.writeDouble(this.introductoryPriceValue);
+        dest.writeLong(this.introductoryPriceLong);
+        dest.writeString(this.introductoryPriceText);
+        dest.writeString(this.introductoryPricePeriod);
+        dest.writeByte(this.haveIntroductoryPeriod ? (byte) 1 : (byte) 0);
+        dest.writeInt(this.introductoryPriceCycles);
+    }
 }

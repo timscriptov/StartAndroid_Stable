@@ -1,19 +1,15 @@
-package com.startandroid;
+package com.startandroid.activities;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,12 +21,13 @@ import com.anjlab.android.iab.v3.BillingProcessor.IBillingHandler;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.textfield.TextInputLayout;
+import com.startandroid.BuildConfig;
+import com.startandroid.R;
 import com.startandroid.adapters.ListAdapter;
 import com.startandroid.data.ListMode;
 import com.startandroid.data.NightMode;
 import com.startandroid.data.Preferences;
 import com.startandroid.model.BaseActivity;
-import com.startandroid.module.Ads;
 import com.startandroid.module.AppUpdater;
 import com.startandroid.module.Dialogs;
 import com.startandroid.module.ListParser;
@@ -211,7 +208,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                     break;
                 }
                 case MainMenuItems.SETTINGS: {
-                    startActivityForResult(new Intent(MainActivity.this, com.startandroid.SettingsActivity.class).putExtra("isPremium", billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
+                    startActivityForResult(new Intent(MainActivity.this, SettingsActivity.class).putExtra("isPremium", billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
                     break;
                 }
                 case MainMenuItems.EXIT: {
@@ -273,7 +270,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:Иван Тимашков")));
             dialog.cancel();
         });
-        dialog.addAction(R.drawable.web, "Источник материалов - startandroid.ru", view -> {
+        dialog.addAction(R.drawable.web, getString(R.string.source_materials), view -> {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://startandroid.ru/")));
             dialog.cancel();
         });

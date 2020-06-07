@@ -31,7 +31,8 @@ public class ListParser {
                 for (int x = 0; x < lessons.getLength(); x++) {
                     items.add(lessons.item(x).getTextContent());
                 }
-            } catch (Exception ignored) {
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

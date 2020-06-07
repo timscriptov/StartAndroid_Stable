@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.startandroid.data.Database;
-import com.startandroid.module.Ads;
 
 import es.dmoral.toasty.Toasty;
 

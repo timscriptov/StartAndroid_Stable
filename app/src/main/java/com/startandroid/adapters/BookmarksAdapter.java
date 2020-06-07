@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,6 +62,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
         });
     }
 
+    @NonNull
     @Override
     public BookmarksAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int p2) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookmarks_item, parent, false);

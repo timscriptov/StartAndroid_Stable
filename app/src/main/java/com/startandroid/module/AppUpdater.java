@@ -47,7 +47,8 @@ public class AppUpdater extends AsyncTask<Void, Void, Void> {
             version_code = Integer.parseInt(doc.getElementsByTagName("version_code").item(0).getTextContent());
             release_notes = doc.getElementsByTagName("release_notes").item(0).getTextContent();
             download_link = doc.getElementsByTagName("download_link").item(0).getTextContent();
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -59,7 +60,8 @@ public class AppUpdater extends AsyncTask<Void, Void, Void> {
             if (version_code > BuildConfig.VERSION_CODE) {
                 updateApp();
             }
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

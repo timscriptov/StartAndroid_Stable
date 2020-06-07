@@ -3,9 +3,6 @@ package com.startandroid.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Base64;
-
-import androidx.annotation.Keep;
 
 import com.startandroid.App;
 
@@ -22,6 +19,7 @@ public class Utils {
         try {
             return new StringBuilder(string).reverse().toString();
         } catch (Exception e) {
+            e.printStackTrace();
             return "";
         }
     }

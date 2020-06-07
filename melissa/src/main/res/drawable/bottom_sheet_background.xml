@@ -4,10 +4,10 @@
     <!-- solid android:color="?dialog_style" / -->
     <solid android:color="?dialog_style" />
     <corners
-        android:topLeftRadius="12dp"
-        android:topRightRadius="12dp"
         android:bottomLeftRadius="12dp"
-        android:bottomRightRadius="12dp"/>
+        android:bottomRightRadius="12dp"
+        android:topLeftRadius="12dp"
+        android:topRightRadius="12dp" />
     <stroke
         android:width="2dp"
         android:color="#DFDFDF" />

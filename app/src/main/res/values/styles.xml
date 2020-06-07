@@ -12,7 +12,7 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
-    <style name="toolbar" parent="ThemeOverlay.AppCompat.DayNight.ActionBar"/>
+    <style name="toolbar" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />
 
     <style name="toolbar.menu" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">?android:colorForeground</item>

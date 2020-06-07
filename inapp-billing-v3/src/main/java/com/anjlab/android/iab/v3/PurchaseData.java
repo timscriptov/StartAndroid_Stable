@@ -1,12 +1,12 @@
 /**
  * Copyright 2014 AnjLab
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,8 +20,17 @@ import android.os.Parcelable;
 
 import java.util.Date;
 
-public class PurchaseData implements Parcelable
-{
+public class PurchaseData implements Parcelable {
+    public static final Parcelable.Creator<PurchaseData> CREATOR =
+            new Parcelable.Creator<PurchaseData>() {
+                public PurchaseData createFromParcel(Parcel source) {
+                    return new PurchaseData(source);
+                }
+
+                public PurchaseData[] newArray(int size) {
+                    return new PurchaseData[size];
+                }
+            };
     public String orderId;
     public String packageName;
     public String productId;
@@ -31,31 +40,10 @@ public class PurchaseData implements Parcelable
     public String purchaseToken;
     public boolean autoRenewing;
 
-    @Override
-    public int describeContents()
-    {
-        return 0;
+    public PurchaseData() {
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags)
-    {
-        dest.writeString(this.orderId);
-        dest.writeString(this.packageName);
-        dest.writeString(this.productId);
-        dest.writeLong(purchaseTime != null ? purchaseTime.getTime() : -1);
-        dest.writeInt(this.purchaseState == null ? -1 : this.purchaseState.ordinal());
-        dest.writeString(this.developerPayload);
-        dest.writeString(this.purchaseToken);
-        dest.writeByte(autoRenewing ? (byte) 1 : (byte) 0);
-    }
-
-    public PurchaseData()
-    {
-    }
-
-    protected PurchaseData(Parcel in)
-    {
+    protected PurchaseData(Parcel in) {
         this.orderId = in.readString();
         this.packageName = in.readString();
         this.productId = in.readString();
@@ -69,17 +57,20 @@ public class PurchaseData implements Parcelable
         this.autoRenewing = in.readByte() != 0;
     }
 
-    public static final Parcelable.Creator<PurchaseData> CREATOR =
-            new Parcelable.Creator<PurchaseData>()
-            {
-                public PurchaseData createFromParcel(Parcel source)
-                {
-                    return new PurchaseData(source);
-                }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-                public PurchaseData[] newArray(int size)
-                {
-                    return new PurchaseData[size];
-                }
-            };
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.orderId);
+        dest.writeString(this.packageName);
+        dest.writeString(this.productId);
+        dest.writeLong(purchaseTime != null ? purchaseTime.getTime() : -1);
+        dest.writeInt(this.purchaseState == null ? -1 : this.purchaseState.ordinal());
+        dest.writeString(this.developerPayload);
+        dest.writeString(this.purchaseToken);
+        dest.writeByte(autoRenewing ? (byte) 1 : (byte) 0);
+    }
 }

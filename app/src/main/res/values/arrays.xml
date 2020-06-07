@@ -4,6 +4,7 @@
     <string-array name="languages" formatted="false">
         <item>Русский</item>
         <item>English(Google translate)</item>
+        <item>Polskie(Google translate)</item>
         <item>Spanish(Google translate)</item>
         <item>Arabic(Google translate)</item>
         <item>Deutsch(Google translate)</item>
@@ -16,6 +17,7 @@
     <string-array name="language_values" formatted="false">
         <item>ru</item>
         <item>en</item>
+        <item>pl</item>
         <item>es</item>
         <item>ar</item>
         <item>de</item>

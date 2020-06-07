@@ -37,7 +37,8 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
         try {
             File resourcesDir = new File(settingsActivity.getPackageName(), "resources");
             FileUtilsV2_2.deleteDirectory(resourcesDir);
-        } catch (IOException ignored) {
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

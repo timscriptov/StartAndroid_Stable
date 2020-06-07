@@ -2,6 +2,7 @@ package com.startandroid.data;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.startandroid.App;
 
@@ -9,7 +10,7 @@ public final class Database extends SQLiteOpenHelper {
     private static SQLiteDatabase database;
 
     public Database() {
-        super(App.getContext(), "kotlin", null, 1);
+        super(App.getContext(), "startandroid", null, 1);
         database = getWritableDatabase();
     }
 
@@ -25,6 +26,6 @@ public final class Database extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        Log.e("onUpgrade", ": " + db + ": " + oldVersion + ": " + newVersion);
     }
 }

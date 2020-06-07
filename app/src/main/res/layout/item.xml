@@ -11,14 +11,14 @@
         android:id="@+id/lesson_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2.5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/item_bg"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"
         android:padding="8dip"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="2.5dp"
-        android:background="@drawable/item_bg"
         tools:ignore="UselessParent">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -29,8 +29,8 @@
             android:layout_marginBottom="4dip"
             android:layout_weight="1.0"
             android:text="Medium Text"
-            android:textColor="@color/colorPrimary"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/colorPrimary" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/checkMark"

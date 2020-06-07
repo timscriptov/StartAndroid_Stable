@@ -55,5 +55,6 @@
     <string name="caption_lessons">Lessons</string>
     <string name="pref_sys_lang">App language</string>
     <string name="lang_changed">App language has been changed. Please restart the application</string>
+    <string name="source_materials">Source materials - startandroid.ru</string>
 
 </resources>

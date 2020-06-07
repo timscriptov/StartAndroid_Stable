@@ -56,7 +56,8 @@ public class DirectReadSignatureSHA {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA"); // "SHA"
             messageDigest.update(content);
             return Base64.encodeToString(messageDigest.digest(), Base64.DEFAULT).trim();
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

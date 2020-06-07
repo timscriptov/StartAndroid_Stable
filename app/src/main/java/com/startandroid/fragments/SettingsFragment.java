@@ -1,4 +1,4 @@
-package com.startandroid;
+package com.startandroid.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,6 +9,9 @@ import android.os.Bundle;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
 
+import com.startandroid.App;
+import com.startandroid.BuildConfig;
+import com.startandroid.R;
 import com.startandroid.data.NightMode;
 import com.startandroid.module.Dialogs;
 import com.startandroid.module.Offline;

@@ -10,17 +10,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.startandroid.App;
-import com.startandroid.BuildConfig;
 import com.startandroid.R;
 import com.startandroid.data.Preferences;
 import com.startandroid.model.BaseActivity;
 
-import ru.svolf.melissa.sheet.SweetContentDialog;
 import ru.svolf.melissa.sheet.SweetViewDialog;
 
 public class Dialogs extends BaseActivity {

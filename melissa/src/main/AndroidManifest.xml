@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.svolf.melissa" />
+<manifest package="ru.svolf.melissa" />

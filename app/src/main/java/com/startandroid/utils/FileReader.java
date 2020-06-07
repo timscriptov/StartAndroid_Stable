@@ -43,8 +43,8 @@ public class FileReader {
                     return fromUrl(url);
                 } catch (GooglePlayServicesRepairableException e1) {
                     return "<font color=\"color:red;\">" + App.getContext().getString(R.string.error) + ": </font>" + Log.getStackTraceString(e1);
-                } catch (GooglePlayServicesNotAvailableException e1) {
-                    return "<font color=\"color:red;\">" + App.getContext().getString(R.string.google_play_services_not_available) + ": </font>";
+                } catch (GooglePlayServicesNotAvailableException e2) {
+                    return "<font color=\"color:red;\">" + App.getContext().getString(R.string.google_play_services_not_available) + ": </font>" + Log.getStackTraceString(e2);
                 }
             }
             return "<font color=\"color:red;\">" + App.getContext().getString(R.string.error) + ": </font>" + Log.getStackTraceString(e);
@@ -58,8 +58,8 @@ public class FileReader {
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
-        } catch (Exception exception) {
-            return "<font color=\"color:red;\">" + App.getContext().getString(R.string.error) + ": </font>" + Log.getStackTraceString(exception);
+        } catch (Exception e) {
+            return "<font color=\"color:red;\">" + App.getContext().getString(R.string.error) + ": </font>" + Log.getStackTraceString(e);
         }
     }
 }

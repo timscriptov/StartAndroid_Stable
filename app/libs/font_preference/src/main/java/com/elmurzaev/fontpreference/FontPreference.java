@@ -15,7 +15,7 @@ public class FontPreference extends ListPreference {
     public FontPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        try{
+        try {
             String[] assetFonts = context.getAssets().list("fonts");
             for (String font : assetFonts) {
                 fonts.add(new Font(font));
@@ -23,7 +23,7 @@ public class FontPreference extends ListPreference {
             if (fonts.isEmpty()) {
                 throw new IllegalStateException("FontPreference could not find any fonts in the assets/fonts folder.");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace()
         }
     }

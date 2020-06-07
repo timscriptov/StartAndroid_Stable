@@ -28,9 +28,12 @@
     <lesson>Урок 26. Intent Filter - практика</lesson>
     <lesson>Урок 27. Читаємо action з Intent</lesson>
     <lesson>Урок 28. Extras - передаємо дані за допомогою Intent</lesson>
-    <lesson>Урок 29. Викликаємо Activity і отримуємо результат. Метод startActivityForResult</lesson>
-    <lesson>Урок 30. Детальніше про onActivityResult. Навіщо потрібні requestCode і resultCode</lesson>
-    <lesson>Урок 31. Навіщо у Intent є атрибут data. Що таке Uri. Викликаємо системні програми</lesson>
+    <lesson>Урок 29. Викликаємо Activity і отримуємо результат. Метод startActivityForResult
+    </lesson>
+    <lesson>Урок 30. Детальніше про onActivityResult. Навіщо потрібні requestCode і resultCode
+    </lesson>
+    <lesson>Урок 31. Навіщо у Intent є атрибут data. Що таке Uri. Викликаємо системні програми
+    </lesson>
     <lesson>Урок 32. Пишемо простий браузер</lesson>
     <lesson>Урок 33. Зберігання даних. Preferences.</lesson>
     <lesson>Урок 34. Зберігання даних. SQLite</lesson>
@@ -113,7 +116,9 @@
     <lesson>Урок 111. Android 3. Fragments. PreferenceFragment - настройки. Headers</lesson>
     <lesson>Урок 112. Android 3. ActionBar. Динамічне розміщення елементів</lesson>
     <lesson>Урок 113. Android 3. ActionMode, як альтернатива контекстного меню</lesson>
-    <lesson>Урок 114. Android 3. Бібліотека Support Library. Навіщо потрібна і як її використовувати на прикладі фрагментів</lesson>
+    <lesson>Урок 114. Android 3. Бібліотека Support Library. Навіщо потрібна і як її використовувати
+        на прикладі фрагментів
+    </lesson>
     <lesson>Урок 115. Один додаток на різних екранах</lesson>
     <lesson>Урок 116. Поведінка Activity в Task. Intent-прапори, launchMode, affinity</lesson>
     <lesson>Урок 117. Віджети. Створення. Lifecycle</lesson>
@@ -131,7 +136,9 @@
     <lesson>Урок 129. Медіа. Запис звуку за допомогою MediaRecorder</lesson>
     <lesson>Урок 130. Медіа. Запис звуку за допомогою AudioRecorder</lesson>
     <lesson>Урок 131. Камера. Використовуємо системне додаток</lesson>
-    <lesson>Урок 132. Камера. Висновок зображення на екран. Розмір preview. Обробка повороту пристрою</lesson>
+    <lesson>Урок 132. Камера. Висновок зображення на екран. Розмір preview. Обробка повороту
+        пристрою
+    </lesson>
     <lesson>Урок 133. Камера. Робимо знімок і пишемо відео</lesson>
     <lesson>Урок 134. Камера. Налаштування</lesson>
     <lesson>Урок 135. Loader. LoaderManager. AsyncTaskLoader</lesson>
@@ -156,8 +163,11 @@
     <lesson>Урок 154. Малювання. PorterDuff.Mode, PorterDuffXfermode</lesson>
     <lesson>Урок 155. Малювання. PorterDuffColorFilter</lesson>
     <lesson>Урок 156. Малювання. AvoidXfermode</lesson>
-    <lesson>Урок 157. Малювання. Bitmap. BitmapFactory. Читання, вивід на канву, основна інформація</lesson>
-    <lesson>Урок 158. Малювання. Bitmap. Методи createBitmap, робота з пікселями, density, mutable</lesson>
+    <lesson>Урок 157. Малювання. Bitmap. BitmapFactory. Читання, вивід на канву, основна
+        інформація
+    </lesson>
+    <lesson>Урок 158. Малювання. Bitmap. Методи createBitmap, робота з пікселями, density, mutable
+    </lesson>
     <lesson>Урок 159. Малювання. Bitmap. BitmapFactory.Options, збереження в файл</lesson>
     <lesson>Урок 160. Малювання. Bitmap. Читання зображень великого розміру</lesson>
     <lesson>Урок 161. Малювання. Bitmap. Memory-кеш. Picasso</lesson>
@@ -177,7 +187,9 @@
     <lesson>Урок 175. OpenGL. Текстури.</lesson>
     <lesson>Урок 176. OpenGL. Індекси, текстури для куба.</lesson>
     <lesson>Урок 177. ConstraintLayout. Основи</lesson>
-    <lesson>Урок 178. ConstraintLayout: match_constraints, інструменти в toolbar, guidelines, aspect ratio</lesson>
+    <lesson>Урок 178. ConstraintLayout: match_constraints, інструменти в toolbar, guidelines, aspect
+        ratio
+    </lesson>
     <lesson>Урок 179. ConstraintLayout: chain, weight, barrier, group, circular</lesson>
     <lesson>Урок 180. ConstraintSet. Програмна настройка ConstraintLayout</lesson>
     <lesson>Урок 181. Android Notifications. Повідомлення. Основи</lesson>

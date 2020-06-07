@@ -3,43 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.startandroid">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="com.android.vending.BILLING"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:name="com.startandroid.App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme"
         android:resizeableActivity="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute">
 
         <activity
-            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden"
+            android:name="com.startandroid.activities.MainActivity"
             android:configChanges="screenSize|orientation"
-            android:name="com.startandroid.MainActivity">
+            android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity
-            android:configChanges="screenSize|orientation"
-            android:name="com.startandroid.LessonActivity"/>
+            android:name="com.startandroid.activities.LessonActivity"
+            android:configChanges="screenSize|orientation" />
 
         <activity
-            android:name="com.startandroid.SettingsActivity"
-            android:label="@string/settings"/>
+            android:name="com.startandroid.activities.SettingsActivity"
+            android:label="@string/settings" />
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-1411495427741055~3216954118" />
-            
+
     </application>
 
 </manifest>
