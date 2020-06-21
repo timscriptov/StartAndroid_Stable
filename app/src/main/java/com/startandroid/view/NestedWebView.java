@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewConfiguration;
 import android.webkit.WebView;
 
 import androidx.core.view.MotionEventCompat;
@@ -15,10 +17,20 @@ import com.startandroid.BuildConfig;
 import com.startandroid.utils.DirectReadSignatureSHA;
 
 public class NestedWebView extends WebView implements NestedScrollingChild {
+    //private static final String LOG_TAG = NestedWebView.class.getSimpleName();
+
+    public static final int SCROLL_STATE_IDLE = 0;
+    public static final int SCROLL_STATE_NESTED_SCROLL = 1;
+    public static final int SCROLL_STATE_SCROLL = 2;
+    private int mScrollState = SCROLL_STATE_IDLE;
+
+    private int mLastTouchX;
+    private int mLastTouchY;
+
     private final int[] mScrollOffset = new int[2];
     private final int[] mScrollConsumed = new int[2];
-    private int mLastY;
-    private int mNestedOffsetY;
+    private final int[] mNestedOffsets = new int[2];
+
     private NestedScrollingChildHelper mChildHelper;
 
     public NestedWebView(Context context) {
@@ -29,70 +41,151 @@ public class NestedWebView extends WebView implements NestedScrollingChild {
         this(context, attrs, android.R.attr.webViewStyle);
     }
 
+    private int mTouchSlop;
+
     public NestedWebView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mChildHelper = new NestedScrollingChildHelper(this);
         setNestedScrollingEnabled(true);
+        final ViewConfiguration vc = ViewConfiguration.get(context);
+        mTouchSlop = vc.getScaledTouchSlop();
+    }
+
+    private OnLongClickListener longClickListener = v -> true;
+
+    private void changeLongClickable(boolean enable) {
+        //Log.d("StartAndroid", "CHANGE LONG " + enable);
+        setOnLongClickListener(enable ? null : longClickListener);
+        setLongClickable(enable);
+        setHapticFeedbackEnabled(enable);
     }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        boolean returnValue = false;
+    public boolean onTouchEvent(MotionEvent e) {
+        final MotionEvent vtev = MotionEvent.obtain(e);
+        final int action = MotionEventCompat.getActionMasked(e);
 
-        MotionEvent event = MotionEvent.obtain(ev);
-        final int action = MotionEventCompat.getActionMasked(event);
         if (DirectReadSignatureSHA.verifySignatureSHA(getContext()) || BuildConfig.DEBUG) {
             if (action == MotionEvent.ACTION_DOWN) {
-                mNestedOffsetY = 0;
+                mNestedOffsets[0] = mNestedOffsets[1] = 0;
             }
-            int eventY = (int) event.getY();
-            event.offsetLocation(0, mNestedOffsetY);
+            vtev.offsetLocation(mNestedOffsets[0], mNestedOffsets[1]);
             switch (action) {
-                case MotionEvent.ACTION_MOVE:
-                    int deltaY = mLastY - eventY;
-                    // NestedPreScroll
-                    if (dispatchNestedPreScroll(0, deltaY, mScrollConsumed, mScrollOffset)) {
-                        deltaY -= mScrollConsumed[1];
-                        mLastY = eventY - mScrollOffset[1];
-                        event.offsetLocation(0, -mScrollOffset[1]);
-                        mNestedOffsetY += mScrollOffset[1];
-                    }
-                    returnValue = super.onTouchEvent(event);
+                case MotionEvent.ACTION_DOWN: {
+                    //Log.e("StartAndroid", "ACT DWN " + mScrollState);
+                    mLastTouchX = (int) (e.getX() + 0.5f);
+                    mLastTouchY = (int) (e.getY() + 0.5f);
 
-                    // NestedScroll
-                    if (dispatchNestedScroll(0, mScrollOffset[1], 0, deltaY, mScrollOffset)) {
-                        event.offsetLocation(0, mScrollOffset[1]);
-                        mNestedOffsetY += mScrollOffset[1];
-                        mLastY -= mScrollOffset[1];
+                    int nestedScrollAxis = ViewCompat.SCROLL_AXIS_NONE;
+                    nestedScrollAxis |= ViewCompat.SCROLL_AXIS_HORIZONTAL;
+                    nestedScrollAxis |= ViewCompat.SCROLL_AXIS_VERTICAL;
+                    startNestedScroll(nestedScrollAxis);
+                    super.onTouchEvent(e);
+                }
+                break;
+
+                case MotionEvent.ACTION_MOVE: {
+                    final int x = (int) (e.getX() + 0.5f);
+                    final int y = (int) (e.getY() + 0.5f);
+                    int dx = mLastTouchX - x;
+                    int dy = mLastTouchY - y;
+
+                    if (mScrollState == SCROLL_STATE_IDLE) {
+                        if (Math.abs(dx) < mTouchSlop && Math.abs(dy) < mTouchSlop) {
+                            break;
+                        }
                     }
-                    break;
-                case MotionEvent.ACTION_DOWN:
-                    returnValue = super.onTouchEvent(event);
-                    mLastY = eventY;
-                    // start NestedScroll
-                    startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL);
-                    break;
-                case MotionEvent.ACTION_UP:
-                case MotionEvent.ACTION_CANCEL:
-                    returnValue = super.onTouchEvent(event);
-                    // end NestedScroll
-                    stopNestedScroll();
-                    break;
+                    //Log.d("StartAndroid", "PREMOVE " + dy + " : " + mScrollState);
+                    final boolean preScrollConsumed = dispatchNestedPreScroll(dx, dy, mScrollConsumed, mScrollOffset);
+
+                    if (preScrollConsumed) {
+                        dx -= mScrollConsumed[0];
+                        dy -= mScrollConsumed[1];
+                        vtev.offsetLocation(mScrollOffset[0], mScrollOffset[1]);
+                        mNestedOffsets[0] += mScrollOffset[0];
+                        mNestedOffsets[1] += mScrollOffset[1];
+                    }
+
+                    if (preScrollConsumed) {
+                        setScrollState(SCROLL_STATE_NESTED_SCROLL);
+                    } else {
+                        mLastTouchX = x - mScrollOffset[0];
+                        mLastTouchY = y - mScrollOffset[1];
+
+                        if (dy < 0 && getScrollY() == 0) {
+                            final boolean scrollConsumed = dispatchNestedScroll(0, 0, dx, dy, mScrollOffset);
+                            if (scrollConsumed) {
+                                mLastTouchX -= mScrollOffset[0];
+                                mLastTouchY -= mScrollOffset[1];
+                                vtev.offsetLocation(mScrollOffset[0], mScrollOffset[1]);
+                                mNestedOffsets[0] += mScrollOffset[0];
+                                mNestedOffsets[1] += mScrollOffset[1];
+                                setScrollState(SCROLL_STATE_NESTED_SCROLL);
+                            }
+                        } else {
+                            if (dy != 0) {
+                                setScrollState(SCROLL_STATE_SCROLL);
+                            }
+                            super.onTouchEvent(e);
+                        }
+                    }
+                    if (mScrollState != SCROLL_STATE_IDLE) {
+                        if (isLongClickable()) {
+                            changeLongClickable(false);
+                        }
+                    }
+                    //Log.d("StartAndroid", "Move " + dy + " : " + mScrollState + " : ");
+                }
+                break;
+
+
+                case MotionEvent.ACTION_UP: {
+                    //long dt = System.currentTimeMillis() - lastTouchTime;
+                    //Log.e("StartAndroid", "ACT UP " + mScrollState + " : dt=" + dt);
+                    if (mScrollState == SCROLL_STATE_NESTED_SCROLL) {
+                        e.setAction(MotionEvent.ACTION_CANCEL);
+                    }
+                    super.onTouchEvent(e);
+                    resetTouch();
+                    changeLongClickable(true);
+                }
+                break;
+
+                case MotionEvent.ACTION_CANCEL: {
+                    //Log.e("StartAndroid", "ACT CANCEL " + mScrollState);
+                    super.onTouchEvent(e);
+                    resetTouch();
+                    changeLongClickable(true);
+                }
+                break;
             }
+            vtev.recycle();
         }
-        return returnValue;
+        return true;
+    }
+
+
+    private void resetTouch() {
+        stopNestedScroll();
+        setScrollState(SCROLL_STATE_IDLE);
+    }
+
+    void setScrollState(int state) {
+        if (state == mScrollState) {
+            return;
+        }
+        mScrollState = state;
+    }
+
+    @Override
+    public void setNestedScrollingEnabled(boolean enabled) {
+        mChildHelper.setNestedScrollingEnabled(enabled);
     }
 
     @Override
     public boolean isNestedScrollingEnabled() {
         return mChildHelper.isNestedScrollingEnabled();
-    }
-
-    // Nested Scroll implements
-    @Override
-    public void setNestedScrollingEnabled(boolean enabled) {
-        mChildHelper.setNestedScrollingEnabled(enabled);
     }
 
     @Override
@@ -111,8 +204,7 @@ public class NestedWebView extends WebView implements NestedScrollingChild {
     }
 
     @Override
-    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed,
-                                        int[] offsetInWindow) {
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int[] offsetInWindow) {
         return mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow);
     }
 
