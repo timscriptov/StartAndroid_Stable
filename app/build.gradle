@@ -1,15 +1,16 @@
 apply plugin: 'com.android.application'
+apply plugin: 'stringfog'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 30
+    buildToolsVersion '30.0.0'
 
     defaultConfig {
         applicationId "com.startandroid"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1179
-        versionName "11.7.9"
+        minSdkVersion 23
+        targetSdkVersion 30
+        versionCode 1181
+        versionName "11.8.1"
         vectorDrawables.useSupportLibrary true
         multiDexEnabled = true
     }
@@ -49,6 +50,13 @@ android {
     }
 }
 
+stringfog {
+    key 'dgoiodigoxcinoOIDNF0512JVODINFoindfovinoinOINFSONIDOXI'
+    enable true
+    implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
+    fogPackages = ['com.startandroid']
+}
+
 dependencies {
     implementation project(path: ':melissa')
     implementation project(path: ':inapp-billing-v3')
@@ -72,4 +80,5 @@ dependencies {
 
     implementation 'org.zeroturnaround:zt-zip:1.13'
     implementation 'net.opacapp:multiline-collapsingtoolbar:27.1.1'
+    implementation 'com.github.megatronking.stringfog:xor:1.1.0'
 }

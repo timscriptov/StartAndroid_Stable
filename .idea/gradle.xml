@@ -11,6 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/inapp-billing-v3" />
             <option value="$PROJECT_DIR$/melissa" />
           </set>
         </option>

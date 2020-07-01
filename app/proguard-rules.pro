@@ -1,6 +1,5 @@
 -keepattributes SourceFile, LineNumberTable
-
--renamesourcefileattribute SourceFile
+-renamesourcefileattribute
 
 -keep class org.slf4j.LoggerFactory
 
