@@ -1,4 +1,4 @@
-package com.startandroid.model;
+package com.startandroid.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.startandroid.data.NightMode;
 import com.startandroid.data.ScreenMode;
+
+import org.jetbrains.annotations.NotNull;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -57,7 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(@NotNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();

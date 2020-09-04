@@ -1,33 +1,57 @@
 package com.startandroid.fragments;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
 
-import com.startandroid.App;
 import com.startandroid.BuildConfig;
 import com.startandroid.R;
+import com.startandroid.async.Offline;
+import com.startandroid.data.Dialogs;
 import com.startandroid.data.NightMode;
-import com.startandroid.module.Dialogs;
-import com.startandroid.module.Offline;
-import com.startandroid.utils.SignatureUtils;
+import com.startandroid.interfaces.OfflineListener;
+import com.startandroid.utils.FileUtils;
 import com.startandroid.utils.Utils;
 
-import org.zeroturnaround.zip.commons.FileUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.io.IOException;
+
+import es.dmoral.toasty.Toasty;
 
 import static android.app.Activity.RESULT_OK;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+    OfflineListener mListener = new OfflineListener() {
+        @Override
+        public void onProcess() {
+
+        }
+
+        @Override
+        public void onCompleted() {
+            Toasty.success(getContext(), R.string.offline_activated).show();
+        }
+
+        @Override
+        public void onFailed() {
+            com.startandroid.utils.FileUtils.deleteOffline(getContext());
+        }
+
+        @Override
+        public void onCanceled() {
+            com.startandroid.utils.FileUtils.deleteOffline(getContext());
+        }
+    };
     private boolean isPremium;
     private SwitchPreference offline;
+    private Preference downloadResources;
+    private Preference clearCache;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -35,6 +59,33 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
         isPremium = requireActivity().getIntent().getBooleanExtra("isPremium", false);
         offline = findPreference("offline");
+
+        downloadResources = findPreference("download_offline");
+        downloadResources.setOnPreferenceClickListener(p1 -> {
+            try {
+                if (Utils.isNetworkAvailable()) {
+                    if (isPremium || BuildConfig.DEBUG) {
+                        new Offline(mListener, getActivity()).execute();
+                    } else {
+                        FileUtils.deleteOffline(getContext());
+                        Dialogs.show(getActivity(), getString(R.string.only_prem));
+                    }
+                } else {
+                    Dialogs.noConnectionError(getActivity());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return true;
+        });
+
+        clearCache = findPreference("clear_cache");
+        clearCache.setOnPreferenceClickListener(p1 -> {
+            AsyncTask.execute(() -> {
+                com.startandroid.utils.FileUtils.deleteOffline(getContext());
+            });
+            return true;
+        });
     }
 
     @Override
@@ -50,29 +101,17 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences preferences, String key) {
+    public void onSharedPreferenceChanged(SharedPreferences preferences, @NotNull String key) {
         switch (key) {
             case "offline":
-                if (preferences.getBoolean(key, false) && isPremium && SignatureUtils.verifySignatureSHA(App.getContext()) || BuildConfig.DEBUG) {
-                    if (Utils.isNetworkAvailable()) {
-                        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-                        progressDialog.setTitle(getString(R.string.downloading));
-                        new Offline(getActivity()).execute();
+                if (offline.isChecked()) {
+                    File resourcesDir = new File(getContext().getFilesDir(), "resources");
+                    if (resourcesDir.exists()) {
+                        restartPerfect(requireActivity().getIntent());
                     } else {
                         offline.setChecked(false);
-                        Dialogs.noConnectionError(getActivity());
+                        Toasty.success(getContext(), R.string.not_installed_offline).show();
                     }
-                } else if (isPremium) {
-                    AsyncTask.execute(() -> {
-                        try {
-                            File resourcesDir = new File(requireActivity().getFilesDir(), "resources");
-                            FileUtils.deleteDirectory(resourcesDir);
-                        } catch (IOException ignored) {
-                        }
-                    });
-                } else if (preferences.getBoolean(key, false)) {
-                    offline.setChecked(false);
-                    Dialogs.show(getActivity(), getString(R.string.only_prem));
                 }
                 break;
             case "fullscreen_mode":

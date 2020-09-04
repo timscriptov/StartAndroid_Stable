@@ -3,7 +3,7 @@ package com.startandroid.module;
 import com.startandroid.App;
 import com.startandroid.R;
 import com.startandroid.adapters.ListAdapter;
-import com.startandroid.view.MainView;
+import com.startandroid.interfaces.MainView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;

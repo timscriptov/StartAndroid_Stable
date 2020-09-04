@@ -8,6 +8,8 @@ import com.google.android.gms.security.ProviderInstaller;
 import com.startandroid.App;
 import com.startandroid.R;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
@@ -17,49 +19,52 @@ import java.nio.charset.StandardCharsets;
 import javax.net.ssl.SSLException;
 
 public class FileReader {
+    @NotNull
     public static String fromAssets(String path) {
         try {
             StringBuilder sb = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader(App.getContext().getAssets().open(path), StandardCharsets.UTF_8));
+            BufferedReader br = new BufferedReader(new InputStreamReader(App.getContext().getAssets().open(path), "UTF-8"));
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
         } catch (Exception e) {
-            return "<font color=\"color:red;\">" + App.getContext().getString(R.string.error) + ": </font>" + Log.getStackTraceString(e);
+            return "<p style='color:red;'>Произошла ошибка:</p>" + Log.getStackTraceString(e);
         }
     }
 
+    @NotNull
     public static String fromUrl(String url) {
         try {
             StringBuilder sb = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader((new URL(url).openStream()), StandardCharsets.UTF_8));
+            BufferedReader br = new BufferedReader(new InputStreamReader((new URL(url).openStream()), "UTF-8"));
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
         } catch (Exception e) {
-            if (e instanceof SSLException) {
+            if(e instanceof SSLException){
                 try {
                     ProviderInstaller.installIfNeeded(App.getContext());
                     return fromUrl(url);
                 } catch (GooglePlayServicesRepairableException e1) {
-                    return "<font color=\"color:red;\">" + App.getContext().getString(R.string.error) + ": </font>" + Log.getStackTraceString(e1);
-                } catch (GooglePlayServicesNotAvailableException e2) {
-                    return "<font color=\"color:red;\">" + App.getContext().getString(R.string.google_play_services_not_available) + ": </font>" + Log.getStackTraceString(e2);
+                    return "<p style='color:red;'>Произошла ошибка:</p>" + Log.getStackTraceString(e1);
+                } catch (GooglePlayServicesNotAvailableException e1) {
+                    return "<p style='color:red;'>Сервисы Google Play недоступны!</p>";
                 }
             }
-            return "<font color=\"color:red;\">" + App.getContext().getString(R.string.error) + ": </font>" + Log.getStackTraceString(e);
+            return "<p style='color:red;'>Произошла ошибка:</p>" + Log.getStackTraceString(e);
         }
     }
 
+    @NotNull
     public static String fromStorage(String path) {
         try {
             StringBuilder sb = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
-        } catch (Exception e) {
-            return "<font color=\"color:red;\">" + App.getContext().getString(R.string.error) + ": </font>" + Log.getStackTraceString(e);
+        } catch (Exception exception) {
+            return "<p style='color:red;'>Произошла ошибка:</p>" + Log.getStackTraceString(exception);
         }
     }
 }

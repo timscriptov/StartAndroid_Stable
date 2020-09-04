@@ -35,12 +35,6 @@
 
         <androidx.preference.SwitchPreference
             android:defaultValue="false"
-            android:icon="@drawable/ic_offline"
-            android:key="offline"
-            android:title="@string/offline" />
-
-        <androidx.preference.SwitchPreference
-            android:defaultValue="false"
             android:icon="@drawable/ic_fullscreen"
             android:key="fullscreen_mode"
             android:title="@string/fullscreen_mode" />
@@ -50,6 +44,28 @@
             android:icon="@drawable/ic_daynight"
             android:key="night_mode"
             android:title="@string/night_mode" />
+
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="Offline">
+
+        <androidx.preference.SwitchPreference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_offline"
+            android:key="offline"
+            android:title="@string/offline" />
+
+        <androidx.preference.Preference
+            android:icon="@drawable/ic_download"
+            android:key="download_offline"
+            android:title="@string/pref_download_lessons_tiltle" />
+
+        <androidx.preference.Preference
+            android:icon="@drawable/ic_delete"
+            android:key="clear_cache"
+            android:title="@string/pref_clear_cache_title" />
 
     </androidx.preference.PreferenceCategory>
 

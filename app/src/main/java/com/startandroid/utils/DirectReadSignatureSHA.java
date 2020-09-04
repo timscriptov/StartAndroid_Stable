@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.util.Base64;
 
+import org.jetbrains.annotations.Nullable;
 import org.spongycastle.cert.X509CertificateHolder;
 import org.spongycastle.cms.CMSSignedData;
 import org.spongycastle.util.CollectionStore;
@@ -24,6 +25,7 @@ public class DirectReadSignatureSHA {
     }
 
     // получает SHA1withRSA подпись приложения
+    @Nullable
     private static String directReadSignature(Context context) {
         try {
             ApplicationInfo applicationInfo = context.getPackageManager().getApplicationInfo(context.getPackageName(), 0);

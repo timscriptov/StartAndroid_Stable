@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.startandroid.App;
 
+import org.jetbrains.annotations.NotNull;
+
 public final class Database extends SQLiteOpenHelper {
     private static SQLiteDatabase database;
 
@@ -19,7 +21,7 @@ public final class Database extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(@NotNull SQLiteDatabase db) {
         db.execSQL("CREATE TABLE ReadLessons (Number INTEGER PRIMARY KEY)");
         db.execSQL("CREATE TABLE Bookmarks (Number INTEGER PRIMARY KEY, Title TEXT)");
     }

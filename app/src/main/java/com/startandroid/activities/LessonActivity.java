@@ -13,21 +13,20 @@ import android.webkit.WebViewClient;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.startandroid.BuildConfig;
 import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
+import com.startandroid.data.Dialogs;
 import com.startandroid.data.Preferences;
-import com.startandroid.model.BaseActivity;
-import com.startandroid.module.Dialogs;
 import com.startandroid.module.HtmlRenderer;
 import com.startandroid.utils.FileReader;
 import com.startandroid.utils.LessonUtils;
-import com.startandroid.utils.SignatureUtils;
 import com.startandroid.utils.Utils;
 import com.startandroid.view.MCProgressBar;
 import com.startandroid.view.NestedWebView;
 
 import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
@@ -46,7 +45,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
     private boolean isPremium;
 
     @Override
-    public void onClick(View p1) {
+    public void onClick(@NotNull View p1) {
         switch (p1.getId()) {
             case R.id.bookmark_lesson:
                 int num = getLessonNumberByUrl(webView.getUrl());
@@ -135,7 +134,8 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                 try {
                     TimeUnit.SECONDS.sleep(2);
                     finish();
-                } catch (InterruptedException ignored) {
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             });
         }
@@ -176,11 +176,11 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
     @SuppressLint("StaticFieldLeak")
     private class PageLoader extends AsyncTask<Void, Void, Void> {
 
-        private String link;
+        private String mLink;
         private String html;
 
         private PageLoader(String link) {
-            this.link = link;
+            this.mLink = link;
         }
 
         @Override
@@ -189,34 +189,23 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
             progressBar.setVisibility(View.VISIBLE);
 
             if (isOffline()) {
-                if (!isPremium || BuildConfig.DEBUG) {
-                    if (SignatureUtils.verifySignatureSHA(getApplicationContext()) || BuildConfig.DEBUG) {
-                        link = "file:///" + link;
-                        webView.loadDataWithBaseURL(link, HtmlRenderer.renderHtml(FileReader.fromStorage(link.replace("file:///", ""))), "text/html", "UTF-8", link);
-                        cancel(true);
-                    } else {
-                        webView.loadData(html, "text/html", "UTF-8");
-                    }
-                }
+                webView.loadDataWithBaseURL("file://" + mLink, HtmlRenderer.renderHtml(FileReader.fromStorage(mLink)), "text/html", "UTF-8", mLink);
+                cancel(true);
             }
         }
 
         @Override
         protected Void doInBackground(Void... strings) {
-            html = HtmlRenderer.renderHtml(FileReader.fromUrl(link));
+            html = HtmlRenderer.renderHtml(FileReader.fromUrl(mLink));
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            mLink += "#googtrans(ru|" + Preferences.getLang() + ")";
 
-            if (SignatureUtils.verifySignatureSHA(getApplicationContext()) || BuildConfig.DEBUG) {
-                link += "#googtrans(ru|" + Preferences.getLang() + ")";
-                webView.loadDataWithBaseURL(link, html, "text/html", "UTF-8", link);
-            } else {
-                webView.loadData(html, "text/html", "UTF-8");
-            }
+            webView.loadDataWithBaseURL(mLink, html, "text/html", "UTF-8", mLink);
         }
     }
 }

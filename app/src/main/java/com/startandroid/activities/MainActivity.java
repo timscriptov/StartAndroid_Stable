@@ -24,16 +24,15 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.startandroid.BuildConfig;
 import com.startandroid.R;
 import com.startandroid.adapters.ListAdapter;
+import com.startandroid.async.AppUpdater;
+import com.startandroid.data.Dialogs;
 import com.startandroid.data.ListMode;
 import com.startandroid.data.NightMode;
 import com.startandroid.data.Preferences;
-import com.startandroid.model.BaseActivity;
-import com.startandroid.module.AppUpdater;
-import com.startandroid.module.Dialogs;
+import com.startandroid.interfaces.MainView;
 import com.startandroid.module.ListParser;
 import com.startandroid.utils.Utils;
 import com.startandroid.view.BookmarksFragment;
-import com.startandroid.view.MainView;
 
 import java.util.ArrayList;
 
@@ -134,9 +133,10 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                 listAdapter.notifyItemChanged(position);
             }
 
-            if (!Preferences.isRated()) Dialogs.rate(this);
-            else if (!billing.isPurchased(PREMIUM)) {
-            }
+            //if (!Preferences.isRated()) {
+            //    Dialogs.rate(this);
+            //} else if (!billing.isPurchased(PREMIUM)) {
+            //}
         }
     }
 
@@ -220,9 +220,11 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                     break;
                 }
                 case MainMenuItems.CONTINUE: {
-                    if (isOffline() || Utils.isNetworkAvailable())
+                    if (!isOffline() && Utils.isNetworkAvailable()) {
                         resumeLesson();
-                    else Dialogs.noConnectionError(this);
+                    } else {
+                        Dialogs.noConnectionError(this);
+                    }
                     break;
                 }
             }

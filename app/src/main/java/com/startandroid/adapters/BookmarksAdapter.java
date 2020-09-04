@@ -15,8 +15,10 @@ import com.daimajia.swipe.SwipeLayout;
 import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Preferences;
+import com.startandroid.interfaces.MainView;
 import com.startandroid.view.BookmarksFragment;
-import com.startandroid.view.MainView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -41,7 +43,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(final BookmarksAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NotNull final BookmarksAdapter.ViewHolder holder, final int position) {
         final String text = items.get(position);
         final int number = getLessonNumberByTitle(text);
 
@@ -64,7 +66,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
 
     @NonNull
     @Override
-    public BookmarksAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int p2) {
+    public BookmarksAdapter.ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int p2) {
         View item = LayoutInflater.from(parent.getContext()).inflate(R.layout.bookmarks_item, parent, false);
         return new BookmarksAdapter.ViewHolder(item);
     }

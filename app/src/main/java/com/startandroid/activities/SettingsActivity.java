@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.startandroid.R;
 import com.startandroid.fragments.SettingsFragment;
-import com.startandroid.model.BaseActivity;
 
 public class SettingsActivity extends BaseActivity {
 

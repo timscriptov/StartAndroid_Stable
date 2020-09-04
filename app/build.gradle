@@ -1,16 +1,16 @@
 apply plugin: 'com.android.application'
-apply plugin: 'stringfog'
+//apply plugin: 'stringfog'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion '30.0.0'
+    buildToolsVersion '30.0.1'
 
     defaultConfig {
         applicationId "com.startandroid"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 1181
-        versionName "11.8.1"
+        versionCode 1183
+        versionName "11.8.3"
         vectorDrawables.useSupportLibrary true
         multiDexEnabled = true
     }
@@ -49,36 +49,36 @@ android {
         targetCompatibility = 1.8
     }
 }
-
+/*
 stringfog {
     key 'dgoiodigoxcinoOIDNF0512JVODINFoindfovinoinOINFSONIDOXI'
     enable true
     implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
     fogPackages = ['com.startandroid']
-}
+}*/
 
 dependencies {
     implementation project(path: ':melissa')
     implementation project(path: ':inapp-billing-v3')
 
     // Android libs
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.preference:preference:1.1.1'
 
     // Google libs
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.2.0'
     //noinspection UseOfBundledGooglePlayServices
     implementation 'com.google.android.gms:play-services:12.0.1'
-
 
     implementation 'com.github.GrenderG:Toasty:1.4.2'
     implementation 'com.daimajia.swipelayout:library:1.2.0'
     //implementation 'com.anjlab.android.iab.v3:library:1.1.0'
     implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
 
-    implementation 'org.zeroturnaround:zt-zip:1.13'
+    implementation 'org.zeroturnaround:zt-zip:1.14'
     implementation 'net.opacapp:multiline-collapsingtoolbar:27.1.1'
     implementation 'com.github.megatronking.stringfog:xor:1.1.0'
+    implementation 'org.jetbrains:annotations:19.0.0'
 }

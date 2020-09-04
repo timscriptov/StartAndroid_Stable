@@ -6,6 +6,8 @@ import android.net.NetworkInfo;
 
 import com.startandroid.App;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Utils {
 
     public static boolean isNetworkAvailable() {
@@ -15,6 +17,7 @@ public class Utils {
         else return info.isConnected();
     }
 
+    @NotNull
     static String reverseString(String string) {
         try {
             return new StringBuilder(string).reverse().toString();

@@ -1,4 +1,4 @@
-package com.startandroid.module;
+package com.startandroid.data;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,8 +15,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.startandroid.App;
 import com.startandroid.R;
-import com.startandroid.data.Preferences;
-import com.startandroid.model.BaseActivity;
+import com.startandroid.activities.BaseActivity;
 
 import ru.svolf.melissa.sheet.SweetViewDialog;
 

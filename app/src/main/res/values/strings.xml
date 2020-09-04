@@ -56,5 +56,8 @@
     <string name="pref_sys_lang">App language</string>
     <string name="lang_changed">App language has been changed. Please restart the application</string>
     <string name="source_materials">Source materials - startandroid.ru</string>
+    <string name="pref_download_lessons_tiltle">Download lessons</string>
+    <string name="pref_clear_cache_title">Clear cache</string>
+    <string name="not_installed_offline">You do not have an offline resource pack installed!</string>
 
 </resources>

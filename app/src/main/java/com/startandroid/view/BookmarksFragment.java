@@ -14,6 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.startandroid.R;
 import com.startandroid.adapters.BookmarksAdapter;
 import com.startandroid.data.Bookmarks;
+import com.startandroid.interfaces.MainView;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,7 @@ public class BookmarksFragment extends BottomSheetDialogFragment {
         if (items.size() > 0) {
             RecyclerView rcview = view.findViewById(R.id.bookmarksList);
             rcview.setLayoutManager(new LinearLayoutManager(getActivity()));
-            rcview.setAdapter(new BookmarksAdapter(items, this, (com.startandroid.view.MainView) getActivity()));
+            rcview.setAdapter(new BookmarksAdapter(items, this, (MainView) getActivity()));
             rcview.setVisibility(View.VISIBLE);
         } else view.findViewById(R.id.no_bookmarks).setVisibility(View.VISIBLE);
 
