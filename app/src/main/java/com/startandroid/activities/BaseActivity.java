@@ -8,29 +8,22 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.startandroid.data.NightMode;
 import com.startandroid.data.ScreenMode;
 
 import org.jetbrains.annotations.NotNull;
 
-
 public abstract class BaseActivity extends AppCompatActivity {
-    static {
-        NightMode.setMode(NightMode.getCurrentMode());
-    }
 
     protected final int REQUEST_CODE_SETTINGS = 0;
     protected final int REQUEST_CODE_IS_READ = 1;
     protected long time = System.currentTimeMillis();
     private ScreenMode.Mode screenMode;
-    private NightMode.Mode nightMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         screenMode = ScreenMode.getCurrentMode();
-        nightMode = NightMode.getCurrentMode();
 
         if (screenMode.equals(ScreenMode.Mode.FULLSCREEN)) {
             getWindow().getDecorView().setSystemUiVisibility(
@@ -51,7 +44,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (!screenMode.equals(ScreenMode.getCurrentMode())) recreate();
-        if (!nightMode.equals(NightMode.getCurrentMode())) recreate();
 
         if (requestCode == REQUEST_CODE_SETTINGS & resultCode == RESULT_OK) {
             recreate();

@@ -114,15 +114,17 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void onBackPressed() {
-        if (time + 15000 < System.currentTimeMillis()) {
-            final int num = getLessonNumberByUrl(webView.getUrl());
+        if (webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            if (time + 15000 < System.currentTimeMillis()) {
+                final int num = getLessonNumberByUrl(webView.getUrl());
 
-            if (!isRead(num)) {
-                Snackbar.make(webView, R.string.mark_as_read, Snackbar.LENGTH_INDEFINITE).setAction(R.string.yes, p1 -> markAsRead(num)).show();
+                if (!isRead(num)) {
+                    Snackbar.make(webView, R.string.mark_as_read, Snackbar.LENGTH_INDEFINITE).setAction(R.string.yes, p1 -> markAsRead(num)).show();
+                } else super.onBackPressed();
             } else super.onBackPressed();
-
-        } else super.onBackPressed();
-
+        }
         time = System.currentTimeMillis();
     }
 

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,15 +25,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.startandroid.BuildConfig;
 import com.startandroid.R;
 import com.startandroid.adapters.ListAdapter;
-import com.startandroid.async.AppUpdater;
 import com.startandroid.data.Dialogs;
-import com.startandroid.data.ListMode;
-import com.startandroid.data.NightMode;
 import com.startandroid.data.Preferences;
+import com.startandroid.entity.AppUpdaterCoroutine;
+import com.startandroid.fragments.BookmarksFragment;
 import com.startandroid.interfaces.MainView;
 import com.startandroid.module.ListParser;
 import com.startandroid.utils.Utils;
-import com.startandroid.view.BookmarksFragment;
 
 import java.util.ArrayList;
 
@@ -82,12 +81,14 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        update();
+
         sheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottomView));
         sv = findViewById(R.id.search_bar);
 
         RecyclerView lessons = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
 
-        if (ListMode.getCurrentMode().equals(ListMode.Mode.GRID)) {
+        if (Preferences.isInGridMode()) {
             lessons.setLayoutManager(new GridLayoutManager(this, 3));
             lessons.setAdapter(listAdapter = new ListParser(this).getListAdapter());
             ((LinearLayout) findViewById(R.id.listContainer)).addView(lessons);
@@ -103,9 +104,14 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         billing = new BillingProcessor(this, LK, this);
         if (savedInstanceState == null)
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        new AppUpdater(this).execute();
 
         isPremium = getIntent().getBooleanExtra("isPremium", false);
+    }
+
+    private void update() {
+        AppUpdaterCoroutine updater = new AppUpdaterCoroutine();
+        updater.with(this);
+        updater.execute();
     }
 
     @Override
@@ -220,11 +226,11 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                     break;
                 }
                 case MainMenuItems.CONTINUE: {
-                    if (!isOffline() && Utils.isNetworkAvailable()) {
-                        resumeLesson();
-                    } else {
-                        Dialogs.noConnectionError(this);
-                    }
+                    //if (isOffline() && Utils.isNetworkAvailable()) {
+                    resumeLesson();
+                    //} else {
+                    //    Dialogs.noConnectionError(this);
+                    //}
                     break;
                 }
             }
@@ -237,12 +243,14 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         sv.setOnQueryTextListener(this);
 
         findViewById(R.id.button_night).setOnClickListener(view -> {
-            if (NightMode.getCurrentMode() == NightMode.Mode.DAY) {
-                NightMode.setMode(NightMode.Mode.NIGHT);
-                Preferences.setNightMode(true);
-            } else {
-                NightMode.setMode(NightMode.Mode.DAY);
+            if (Preferences.isInNightMode()) {
                 Preferences.setNightMode(false);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                getDelegate().applyDayNight();
+            } else {
+                Preferences.setNightMode(true);
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                getDelegate().applyDayNight();
             }
             getDelegate().applyDayNight();
         });

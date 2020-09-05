@@ -15,8 +15,8 @@ import com.daimajia.swipe.SwipeLayout;
 import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Preferences;
+import com.startandroid.fragments.BookmarksFragment;
 import com.startandroid.interfaces.MainView;
-import com.startandroid.view.BookmarksFragment;
 
 import org.jetbrains.annotations.NotNull;
 

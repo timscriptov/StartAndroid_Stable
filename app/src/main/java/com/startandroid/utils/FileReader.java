@@ -6,7 +6,6 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.security.ProviderInstaller;
 import com.startandroid.App;
-import com.startandroid.R;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -14,7 +13,6 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 
 import javax.net.ssl.SSLException;
 
@@ -41,7 +39,7 @@ public class FileReader {
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
         } catch (Exception e) {
-            if(e instanceof SSLException){
+            if (e instanceof SSLException) {
                 try {
                     ProviderInstaller.installIfNeeded(App.getContext());
                     return fromUrl(url);

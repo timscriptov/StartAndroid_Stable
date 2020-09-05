@@ -39,17 +39,11 @@
             android:key="fullscreen_mode"
             android:title="@string/fullscreen_mode" />
 
-        <androidx.preference.SwitchPreference
-            android:defaultValue="false"
-            android:icon="@drawable/ic_daynight"
-            android:key="night_mode"
-            android:title="@string/night_mode" />
-
     </androidx.preference.PreferenceCategory>
 
     <androidx.preference.PreferenceCategory
         android:layout="@layout/preference_category_custom"
-        android:title="Offline">
+        android:title="Offline(beta)">
 
         <androidx.preference.SwitchPreference
             android:defaultValue="false"
