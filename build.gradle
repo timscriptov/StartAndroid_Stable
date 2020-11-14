@@ -1,15 +1,14 @@
 buildscript {
-    ext.kotlin_version = '1.4.0'
     repositories {
 		mavenCentral()
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
+        classpath 'com.android.tools.build:gradle:4.1.0'
         classpath 'com.github.megatronking.stringfog:gradle-plugin:2.2.1'
         classpath 'com.github.megatronking.stringfog:xor:1.1.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10"
     }
 }
 

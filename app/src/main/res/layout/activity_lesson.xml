@@ -46,6 +46,7 @@
         android:id="@+id/bookmark_lesson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/back"
         app:fabSize="mini"
         app:layout_anchor="@id/lesson_toolbar_abl"
         app:layout_anchorGravity="bottom|center"
@@ -57,22 +58,37 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:contentDescription="@string/next"
         app:fabSize="mini"
         app:layout_anchor="@id/lesson_toolbar_abl"
         app:layout_anchorGravity="bottom|right|end"
         app:srcCompat="@drawable/arrow_right_bold"
         tools:ignore="RtlHardcoded" />
 
-    <com.startandroid.view.NestedWebView
-        android:id="@+id/webView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:focusable="true"
         android:isScrollContainer="false"
         android:visibility="visible"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed" />
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+        <com.startandroid.view.NestedWebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/ad_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="5dp"
+            tools:ignore="Orientation" />
+
+    </LinearLayout>
 
     <com.startandroid.view.MCProgressBar
         android:id="@+id/progress_bar"

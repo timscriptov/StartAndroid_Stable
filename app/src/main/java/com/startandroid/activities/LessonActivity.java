@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -18,6 +19,7 @@ import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Dialogs;
 import com.startandroid.data.Preferences;
 import com.startandroid.module.HtmlRenderer;
+import com.startandroid.utils.Ads;
 import com.startandroid.utils.FileReader;
 import com.startandroid.utils.LessonUtils;
 import com.startandroid.utils.Utils;
@@ -36,14 +38,15 @@ import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
 import static com.startandroid.utils.LessonUtils.isRead;
 
 public class LessonActivity extends BaseActivity implements OnClickListener {
+    public static LinearLayout adLayout;
     private MCProgressBar progressBar;
     private NestedWebView webView;
     private FloatingActionButton prev_lesson, next_lesson, bookmark;
     private CollapsingToolbarLayout ctl;
     private int itemPosition;
-
     private boolean isPremium;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(@NotNull View p1) {
         switch (p1.getId()) {
@@ -85,8 +88,14 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
 
+        isPremium = getIntent().getBooleanExtra("isPremium", false);
+
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        adLayout = findViewById(R.id.ad_view);
+        if (isPremium) {
+            adLayout.addView(Ads.getBanner());
+        }
         ctl = findViewById(R.id.collapsing_toolbar);
         webView = findViewById(R.id.webView);
         webView.setWebViewClient(new WebClient());
@@ -102,8 +111,6 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         itemPosition = getIntent().getIntExtra("position", 0);
 
         new PageLoader(getIntent().getStringExtra("url")).execute();
-
-        isPremium = getIntent().getBooleanExtra("isPremium", false);
     }
 
     @Override
