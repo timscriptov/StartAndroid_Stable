@@ -8,6 +8,14 @@ import com.startandroid.App;
 public final class Preferences {
     private static SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(App.getContext());
 
+    public static int getLanguageType() {
+        return preferences.getInt("first_loaded", 0);
+    }
+
+    public static void setLanguageType(int i) {
+        preferences.edit().putInt("first_loaded", i).apply();
+    }
+
     public static boolean isInGridMode() {
         return preferences.getBoolean("grid_mode", false);
     }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="app_languages" formatted="false">
+        <item>Default</item>
+        <item>English</item>
+        <item>Русский</item>
+        <item>Українська</item>
+        <item>ภาษาไทย</item>
+        <item>Chinese</item>
+    </string-array>
+
+</resources>

@@ -27,6 +27,15 @@
         android:layout="@layout/preference_category_custom"
         android:title="@string/appearance">
 
+        <androidx.preference.ListPreference
+            android:icon="@drawable/ic_language"
+            android:defaultValue="0"
+            android:dialogTitle="@string/pref_sys_lang"
+            android:entries="@array/app_languages"
+            android:entryValues="@array/app_language_values"
+            android:key="language"
+            android:title="@string/pref_sys_lang" />
+
         <androidx.preference.SwitchPreference
             android:defaultValue="false"
             android:icon="@drawable/ic_grid"

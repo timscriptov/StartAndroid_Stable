@@ -5,19 +5,24 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Bundle
+import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.startandroid.BuildConfig
 import com.startandroid.R
+import com.startandroid.activities.MainActivity
 import com.startandroid.data.Dialogs.noConnectionError
 import com.startandroid.data.Dialogs.show
+import com.startandroid.data.Preferences
 import com.startandroid.entity.OfflineCoroutine
 import com.startandroid.interfaces.OfflineListener
 import com.startandroid.utils.FileUtils
+import com.startandroid.utils.I18n
 import com.startandroid.utils.Utils
 import es.dmoral.toasty.Toasty
 import java.io.File
+import java.lang.Integer.parseInt
 
 class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
     private var isPremium = false
@@ -67,6 +72,17 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             Thread {
                 FileUtils.deleteOffline(requireContext())
             }.start()
+            true
+        }
+
+        val mLanguagePreference: ListPreference? = findPreference("language")
+        mLanguagePreference!!.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { p1: Preference?, p2: Any ->
+            val type: Int = parseInt(p2 as String)
+            Preferences.setLanguageType(type)
+            activity?.let { I18n.setLanguage(it) }
+            val intent = Intent(activity, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
             true
         }
     }
