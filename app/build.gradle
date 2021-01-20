@@ -4,7 +4,7 @@ apply plugin: 'stringfog'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion '30.0.3'
+    buildToolsVersion '30.0.2'
 
     defaultConfig {
         applicationId "com.startandroid"
@@ -67,7 +67,6 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
-    implementation "androidx.webkit:webkit:1.4.0"
 
     // Google libs
     implementation 'com.google.android.material:material:1.2.1'

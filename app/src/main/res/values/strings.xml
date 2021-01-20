@@ -61,7 +61,5 @@
     <string name="not_installed_offline">You do not have an offline resource pack installed!</string>
     <string name="next">next</string>
     <string name="back">back</string>
-    <string name="webview_core">WebView Core</string>
-    <string name="not_supported_on_your_device">Not supported on your device</string>
 
 </resources>

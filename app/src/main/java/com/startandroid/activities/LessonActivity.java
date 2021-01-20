@@ -33,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.TimeUnit;
 
 import static com.startandroid.data.Constants.getResPath;
+import static com.startandroid.data.Preferences.isOffline;
 import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
 import static com.startandroid.utils.LessonUtils.isRead;
 
@@ -64,7 +65,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                 bookmark.show();
                 break;
             case R.id.prev_lesson:
-                if (!Preferences.getOffline() & !Utils.isNetworkAvailable()) {
+                if (!isOffline() & !Utils.isNetworkAvailable()) {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
@@ -72,7 +73,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                 itemPosition--;
                 break;
             case R.id.next_lesson:
-                if (!Preferences.getOffline() & !Utils.isNetworkAvailable()) {
+                if (!isOffline() & !Utils.isNetworkAvailable()) {
                     Dialogs.noConnectionError(LessonActivity.this);
                     return;
                 }
@@ -100,9 +101,6 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         webView.setWebViewClient(new WebClient());
         webView.setWebChromeClient(new ChromeClient());
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.getSettings().setAllowFileAccessFromFileURLs(true);
-        webView.getSettings().setAllowUniversalAccessFromFileURLs(true);
         progressBar = findViewById(R.id.progress_bar);
         prev_lesson = findViewById(R.id.prev_lesson);
         next_lesson = findViewById(R.id.next_lesson);
@@ -199,7 +197,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
             super.onPreExecute();
             progressBar.setVisibility(View.VISIBLE);
 
-            if (Preferences.getOffline()) {
+            if (isOffline()) {
                 webView.loadDataWithBaseURL("file://" + mLink, HtmlRenderer.renderHtml(FileReader.fromStorage(mLink)), "text/html", "UTF-8", mLink);
                 cancel(true);
             }

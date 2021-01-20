@@ -48,12 +48,6 @@
             android:key="fullscreen_mode"
             android:title="@string/fullscreen_mode" />
 
-        <androidx.preference.Preference
-            android:defaultValue="false"
-            android:icon="@drawable/ic_search_web"
-            android:key="webview_core"
-            android:title="@string/webview_core" />
-
     </androidx.preference.PreferenceCategory>
 
     <androidx.preference.PreferenceCategory

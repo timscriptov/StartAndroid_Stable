@@ -43,6 +43,7 @@ import ru.svolf.melissa.sheet.SweetContentDialog;
 import static com.anjlab.android.iab.v3.Constants.BILLING_RESPONSE_RESULT_USER_CANCELED;
 import static com.startandroid.data.Constants.LK;
 import static com.startandroid.data.Constants.PREMIUM;
+import static com.startandroid.data.Preferences.isOffline;
 
 public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, IBillingHandler {
 
@@ -65,7 +66,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
     @Override
     public void openLesson(String url, int position) {
-        if (!Preferences.getOffline() & !Utils.isNetworkAvailable()) {
+        if (!isOffline() & !Utils.isNetworkAvailable()) {
             Dialogs.noConnectionError(this);
             return;
         }

@@ -54,12 +54,10 @@
     <string name="google_play_services_not_available">Сервисы Google Play недоступны!</string>
     <string name="caption_lessons">Lessons</string>
     <string name="pref_sys_lang">Язык приложения</string>
-    <string name="lang_changed">Язык приложения был изменён. Пожалуйста перезапустите приложение!</string>
+    <string name="lang_changed">App language has been changed. Please restart the application</string>
     <string name="source_materials">Источник материалов - startandroid.ru</string>
     <string name="pref_download_lessons_tiltle">Скачать уроки</string>
     <string name="pref_clear_cache_title">Очистить кеш</string>
     <string name="not_installed_offline">У вас не установлен оффлайн ресурс пак!</string>
-    <string name="webview_core">Ядро WebView</string>
-    <string name="not_supported_on_your_device">Не поддерживается на вашем устройстве</string>
 
 </resources>
