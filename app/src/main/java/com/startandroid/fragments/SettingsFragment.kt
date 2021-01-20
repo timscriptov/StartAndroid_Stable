@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -29,6 +31,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     private var offline: SwitchPreference? = null
     private var downloadResources: Preference? = null
     private var clearCache: Preference? = null
+    private var webViewCore: Preference? = null
 
     private var mListener: OfflineListener = object : OfflineListener {
         override fun onProcess() {}
@@ -75,10 +78,23 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             true
         }
 
+        webViewCore = findPreference("webview_core")
+        webViewCore!!.onPreferenceClickListener = Preference.OnPreferenceClickListener { p1: Preference? ->
+            if(Build.VERSION.SDK_INT >= 24) {
+                val intent = Intent(Settings.ACTION_WEBVIEW_SETTINGS)
+                if (context?.let { intent.resolveActivity(it.getPackageManager()) } != null) {
+                    startActivity(intent)
+                }
+            } else {
+                Toasty.success(requireContext(), getString(R.string.not_supported_on_your_device)).show()
+            }
+            true
+        }
+
         val mLanguagePreference: ListPreference? = findPreference("language")
         mLanguagePreference!!.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { p1: Preference?, p2: Any ->
             val type: Int = parseInt(p2 as String)
-            Preferences.setLanguageType(type)
+            Preferences.languageType = type
             activity?.let { I18n.setLanguage(it) }
             val intent = Intent(activity, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
