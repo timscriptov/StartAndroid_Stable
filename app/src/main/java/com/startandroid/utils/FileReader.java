@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 import javax.net.ssl.SSLException;
 
@@ -21,7 +22,7 @@ public class FileReader {
     public static String fromAssets(String path) {
         try {
             StringBuilder sb = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader(App.getContext().getAssets().open(path), "UTF-8"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(App.getContext().getAssets().open(path), StandardCharsets.UTF_8));
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
@@ -34,7 +35,7 @@ public class FileReader {
     public static String fromUrl(String url) {
         try {
             StringBuilder sb = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader((new URL(url).openStream()), "UTF-8"));
+            BufferedReader br = new BufferedReader(new InputStreamReader((new URL(url).openStream()), StandardCharsets.UTF_8));
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();
@@ -57,7 +58,7 @@ public class FileReader {
     public static String fromStorage(String path) {
         try {
             StringBuilder sb = new StringBuilder();
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), "UTF-8"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8));
             String line;
             while ((line = br.readLine()) != null) sb.append(line).append("\n");
             return sb.toString();

@@ -24,9 +24,9 @@ import static com.startandroid.utils.LessonUtils.getLessonNumberByTitle;
 import static com.startandroid.utils.LessonUtils.isRead;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Filterable {
-    private SearchFilter filter;
+    private final SearchFilter filter;
     private ArrayList<String> items;
-    private MainView mainView;
+    private final MainView mainView;
 
     public ListAdapter(ArrayList<String> items, MainView mainView) {
         this.items = items;
@@ -87,8 +87,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     }
 
     private class SearchFilter extends Filter {
-        private ArrayList<String> items_backup = items;
-        private ArrayList<String> filteredItems = new ArrayList<>();
+        private final ArrayList<String> items_backup = items;
+        private final ArrayList<String> filteredItems = new ArrayList<>();
 
         @Override
         protected Filter.FilterResults performFiltering(CharSequence p1) {

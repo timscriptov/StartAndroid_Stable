@@ -59,5 +59,7 @@
     <string name="pref_download_lessons_tiltle">Download lessons</string>
     <string name="pref_clear_cache_title">Clear cache</string>
     <string name="not_installed_offline">You do not have an offline resource pack installed!</string>
+    <string name="webview_core">WebView Core</string>
+    <string name="not_supported_on_your_device">Not supported on your device</string>
 
 </resources>
