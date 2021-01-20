@@ -200,7 +200,8 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
             progressBar.setVisibility(View.VISIBLE);
 
             if (Preferences.getOffline()) {
-                webView.loadDataWithBaseURL("file://" + mLink, HtmlRenderer.renderHtml(FileReader.fromStorage(mLink)), "text/html", "UTF-8", mLink);
+                mLink = "file:///" + mLink;
+                webView.loadDataWithBaseURL(mLink, HtmlRenderer.renderHtml(FileReader.fromStorage(mLink)), "text/html", "UTF-8", mLink);
                 cancel(true);
             }
         }
