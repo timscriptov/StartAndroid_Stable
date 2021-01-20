@@ -21,20 +21,26 @@
             android:key="lang"
             android:title="@string/content_language" />
 
-    </androidx.preference.PreferenceCategory>
-
-    <androidx.preference.PreferenceCategory
-        android:layout="@layout/preference_category_custom"
-        android:title="@string/appearance">
-
         <androidx.preference.ListPreference
-            android:icon="@drawable/ic_language"
+            android:icon="@drawable/ic_app_lang"
             android:defaultValue="0"
             android:dialogTitle="@string/pref_sys_lang"
             android:entries="@array/app_languages"
             android:entryValues="@array/app_language_values"
             android:key="language"
             android:title="@string/pref_sys_lang" />
+
+        <androidx.preference.Preference
+            android:defaultValue="false"
+            android:icon="@drawable/ic_webview"
+            android:key="webview_core"
+            android:title="@string/webview_core" />
+
+    </androidx.preference.PreferenceCategory>
+
+    <androidx.preference.PreferenceCategory
+        android:layout="@layout/preference_category_custom"
+        android:title="@string/appearance">
 
         <androidx.preference.SwitchPreference
             android:defaultValue="false"
@@ -48,17 +54,11 @@
             android:key="fullscreen_mode"
             android:title="@string/fullscreen_mode" />
 
-        <androidx.preference.Preference
-            android:defaultValue="false"
-            android:icon="@drawable/ic_search_web"
-            android:key="webview_core"
-            android:title="@string/webview_core" />
-
     </androidx.preference.PreferenceCategory>
 
     <androidx.preference.PreferenceCategory
         android:layout="@layout/preference_category_custom"
-        android:title="Offline(beta)">
+        android:title="@string/offline">
 
         <androidx.preference.SwitchPreference
             android:defaultValue="false"

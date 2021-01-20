@@ -20,7 +20,7 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.system.exitProcess
 
 class AppUpdaterCoroutine : CoroutineScope {
-    private val TAG = "AppUpdater"
+    //private val TAG = "AppUpdater"
     private lateinit var version_name: String
     private var version_code = 0
     private lateinit var release_notes: String
@@ -35,13 +35,13 @@ class AppUpdaterCoroutine : CoroutineScope {
     }
 
     fun execute() = launch {
-        Log.d(TAG, "execute() called")
+        //Log.d(TAG, "execute() called")
         val checkUpdate = doInBackground()
         onPostExecute(checkUpdate)
     }
 
     private suspend fun doInBackground(): Boolean = withContext(Dispatchers.IO) {
-        Log.d(TAG, "doInBackground() called")
+        //Log.d(TAG, "doInBackground() called")
         try {
             val url = URL("https://mcal-llc.github.io/sa/config/update.xml")
             val con = url.openConnection() as HttpsURLConnection
@@ -60,12 +60,12 @@ class AppUpdaterCoroutine : CoroutineScope {
     }
 
     private suspend fun onPostExecute(needUpdate: Boolean) = withContext(coroutineContext) {
-        Log.d(TAG, "onPostExecute() called")
+        //Log.d(TAG, "onPostExecute() called")
         try {
             if (needUpdate) {
                 updateApp()
             }
-            Log.d(TAG, "checkResult: $needUpdate")
+            //Log.d(TAG, "checkResult: $needUpdate")
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -1,6 +1,5 @@
 package com.startandroid.view
 
-import android.R
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
@@ -11,7 +10,7 @@ import androidx.core.view.NestedScrollingChild
 import androidx.core.view.NestedScrollingChildHelper
 import androidx.core.view.ViewCompat
 
-class NestedWebView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.webViewStyle) : WebView(context!!, attrs, defStyleAttr), NestedScrollingChild {
+class NestedWebView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.webViewStyle) : WebView(context!!, attrs, defStyleAttr), NestedScrollingChild {
     private val mScrollOffset = IntArray(2)
     private val mScrollConsumed = IntArray(2)
     private var mLastY = 0

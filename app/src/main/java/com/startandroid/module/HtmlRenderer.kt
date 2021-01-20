@@ -9,9 +9,9 @@ object HtmlRenderer {
     fun renderHtml(html: String): String {
         return html
                 .replace("<head>", "<head>$style")
-                .replace("androidstudio.css", if (Preferences.isInNightMode) "darkcode.css" else "androidstudio.css")
+                .replace("androidstudio.css", if (Preferences.nightMode) "darkcode.css" else "androidstudio.css")
                 .replace("<body>", "<body>$translatePlugin")
-                .replace("<body>", if (Preferences.isInNightMode) "<body style='$darkMode'>" else "<body>")
+                .replace("<body>", if (Preferences.nightMode) "<body style='$darkMode'>" else "<body>")
     }
 
     private val style: String
@@ -19,7 +19,7 @@ object HtmlRenderer {
                 + "p, h1, h2, h3, table, ul, ol {font-size:" + Preferences.fontSize + "; font-family:CustomFont;}"
                 + "pre,code {font-size:" + Preferences.fontSize + "; font-family:CustomFont;}"
                 + ".goog-te-banner-frame{display:none;}"
-                + if (Preferences.isInNightMode) "$darkMode</style>" else "</style>")
+                + if (Preferences.nightMode) "$darkMode</style>" else "</style>")
 
     @get:Contract(pure = true)
     private val darkMode: String

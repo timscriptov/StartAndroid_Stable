@@ -75,7 +75,7 @@ object Dialogs : BaseActivity() {
         dialog.setPositive(R.string.rate) { v1: View? ->
             if (ratingBar.rating > 3) {
                 context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.startandroid")))
-                Preferences.setRated()
+                Preferences.rated
                 dialog.cancel()
             } else {
                 toast(R.string.thanks)

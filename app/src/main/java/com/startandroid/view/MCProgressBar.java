@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 
 public class MCProgressBar extends ProgressBar {
     private static final float mDefaultSpeed = 0.075F;
-    private Paint mPaint;
+    private final Paint mPaint;
     private int mWidth = 0;
     private int mHeight = 0;
     private float mBlockDrawingProgress = 0;

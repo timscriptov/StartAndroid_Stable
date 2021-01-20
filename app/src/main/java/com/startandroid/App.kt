@@ -17,7 +17,7 @@ class App : Application() {
         context = this
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
         Database()
-        if (Preferences.isInNightMode) {
+        if (Preferences.nightMode) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)

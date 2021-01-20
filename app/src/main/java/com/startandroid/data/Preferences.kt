@@ -7,9 +7,9 @@ import com.startandroid.App.Companion.getContext
 object Preferences {
     @JvmStatic
     var webViewCore: Int
-        get() = App.getPreferences().getInt("first_loaded", 0)
+        get() = App.getPreferences().getInt("webview_core", 0)
         set(i) {
-            App.getPreferences().edit().putInt("first_loaded", i).apply()
+            App.getPreferences().edit().putInt("webview_core", i).apply()
         }
 
     @JvmStatic
@@ -20,35 +20,32 @@ object Preferences {
         }
 
     @JvmStatic
-    val isInGridMode: Boolean
+    var gridMode: Boolean
         get() = App.getPreferences().getBoolean("grid_mode", false)
+        set(i) {
+            App.getPreferences().edit().putBoolean("grid_mode", i).apply()
+        }
 
     @JvmStatic
-    val isInNightMode: Boolean
+    var nightMode: Boolean
         get() = App.getPreferences().getBoolean("night_mode", false)
+        set(i) {
+            App.getPreferences().edit().putBoolean("night_mode", i).apply()
+        }
 
     @JvmStatic
-    fun setNightMode(value: Boolean) {
-        App.getPreferences().edit().putBoolean("night_mode", value).apply()
-    }
-
-    @JvmStatic
-    val isInFullscreenMode: Boolean
+    var fullscreenMode: Boolean
         get() = App.getPreferences().getBoolean("fullscreen_mode", false)
+        set(i) {
+            App.getPreferences().edit().putBoolean("fullscreen_mode", i).apply()
+        }
 
     @JvmStatic
-    fun setFullscreenMode(value: Boolean) {
-        App.getPreferences().edit().putBoolean("fullscreen_mode", value).apply()
-    }
-
-    @JvmStatic
-    fun setRated() {
-        App.getPreferences().edit().putBoolean("isRated", true).apply()
-    }
-
-    @JvmStatic
-    val isRated: Boolean
+    var rated: Boolean
         get() = App.getPreferences().getBoolean("isRated", false)
+        set(i) {
+            App.getPreferences().edit().putBoolean("isRated", i).apply()
+        }
 
     @JvmStatic
     var bookmark: String?
@@ -71,13 +68,6 @@ object Preferences {
     @JvmStatic
     val fontSize: String?
         get() = App.getPreferences().getString("font_size", "100%")
-
-    @JvmStatic
-    var isFirstLaunch: Boolean
-        get() = App.getPreferences().getBoolean("firstLaunch", true)
-        set(value) {
-            App.getPreferences().edit().putBoolean("firstLaunch", value).apply()
-        }
 
     @JvmStatic
     var offline: Boolean

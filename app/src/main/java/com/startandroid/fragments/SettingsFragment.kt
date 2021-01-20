@@ -29,6 +29,7 @@ import java.lang.Integer.parseInt
 class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
     private var isPremium = false
     private var offline: SwitchPreference? = null
+    private var languagePreference: ListPreference? = null
     private var downloadResources: Preference? = null
     private var clearCache: Preference? = null
     private var webViewCore: Preference? = null
@@ -51,7 +52,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     override fun onCreatePreferences(bundle: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
         isPremium = requireActivity().intent.getBooleanExtra("isPremium", false)
-        offline = findPreference("offline")
+
         downloadResources = findPreference("download_offline")
         downloadResources!!.onPreferenceClickListener = Preference.OnPreferenceClickListener { p1: Preference? ->
             try {
@@ -70,6 +71,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             }
             true
         }
+
         clearCache = findPreference("clear_cache")
         clearCache!!.onPreferenceClickListener = Preference.OnPreferenceClickListener { p1: Preference? ->
             Thread {
@@ -82,7 +84,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         webViewCore!!.onPreferenceClickListener = Preference.OnPreferenceClickListener { p1: Preference? ->
             if(Build.VERSION.SDK_INT >= 24) {
                 val intent = Intent(Settings.ACTION_WEBVIEW_SETTINGS)
-                if (context?.let { intent.resolveActivity(it.getPackageManager()) } != null) {
+                if (context?.let { intent.resolveActivity(it.packageManager) } != null) {
                     startActivity(intent)
                 }
             } else {
@@ -91,8 +93,8 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             true
         }
 
-        val mLanguagePreference: ListPreference? = findPreference("language")
-        mLanguagePreference!!.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { p1: Preference?, p2: Any ->
+        languagePreference = findPreference("language")
+        languagePreference!!.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { p1: Preference?, p2: Any ->
             val type: Int = parseInt(p2 as String)
             Preferences.languageType = type
             activity?.let { I18n.setLanguage(it) }

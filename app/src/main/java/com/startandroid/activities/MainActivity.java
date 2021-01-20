@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
         RecyclerView lessons = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
 
-        if (Preferences.isInGridMode()) {
+        if (Preferences.getGridMode()) {
             lessons.setLayoutManager(new GridLayoutManager(this, 3));
             lessons.setAdapter(listAdapter = new ListParser(this).getListAdapter());
             ((LinearLayout) findViewById(R.id.listContainer)).addView(lessons);
@@ -191,7 +191,9 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         }
         menuItems.add(new MainMenuItem(R.drawable.star_bookmark, "#fdd835", getString(R.string.bookmarks), MainMenuItems.BOOKMARKS));
         menuItems.add(new MainMenuItem(R.drawable.settings, "#546e7a", getString(R.string.settings), MainMenuItems.SETTINGS));
-        menuItems.add(new MainMenuItem(R.drawable.cash_multiple, "#43a047", getString(R.string.p), MainMenuItems.PREMIUM));
+        if (isPremium) {
+            menuItems.add(new MainMenuItem(R.drawable.cash_multiple, "#43a047", getString(R.string.p), MainMenuItems.PREMIUM));
+        }
         menuItems.add(new MainMenuItem(R.drawable.information, "#3949ab", getString(R.string.about), MainMenuItems.ABOUT));
         menuItems.add(new MainMenuItem(R.drawable.exit, "#e53935", getString(R.string.exit), MainMenuItems.EXIT));
 
@@ -236,7 +238,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         sv.setOnQueryTextListener(this);
 
         findViewById(R.id.button_night).setOnClickListener(view -> {
-            if (Preferences.isInNightMode()) {
+            if (Preferences.getNightMode()) {
                 Preferences.setNightMode(false);
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 getDelegate().applyDayNight();
@@ -255,12 +257,10 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         ll.setOrientation(LinearLayout.VERTICAL);
         ll.setPadding(40, 0, 40, 0);
         ll.setLayoutParams(layoutParams);
-        final TextInputLayout til0 = new TextInputLayout(this);
-        final AppCompatTextView message = new AppCompatTextView(this);
+        AppCompatTextView message = new AppCompatTextView(this);
         message.setGravity(1);
         message.setText(R.string.copyright);
-        til0.addView(message);
-        ll.addView(til0);
+        ll.addView(message);
 
         final SweetContentDialog dialog = new SweetContentDialog(this);
         dialog.setTitle(this.getString(R.string.app_name) + " v." + BuildConfig.VERSION_NAME);
