@@ -15,7 +15,6 @@
         <!-- макет показываемый после свайпа -->
 
         <LinearLayout
-            android:id="@+id/bottom_wrapper"
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:gravity="center"

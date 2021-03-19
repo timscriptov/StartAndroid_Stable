@@ -14,11 +14,6 @@
 
     <style name="toolbar" parent="ThemeOverlay.AppCompat.DayNight.ActionBar" />
 
-    <style name="toolbar.menu" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
-        <item name="android:textColor">?android:colorForeground</item>
-        <item name="android:textSize">16sp</item>
-    </style>
-
     <style name="TransitionStyle">
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
