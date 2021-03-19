@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
+import com.startandroid.App
 import com.startandroid.R
+import com.startandroid.data.Preferences
 import com.startandroid.interfaces.OfflineListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -66,8 +68,10 @@ class OfflineCoroutine(@field:SuppressLint("StaticFieldLeak") private val mListe
     private fun onPostExecute(bool: Boolean) {
         if (bool) {
             mListener.onCompleted()
+            App.getPreferences().edit().putBoolean("offline", true).apply()
         } else {
             mListener.onFailed()
+            App.getPreferences().edit().putBoolean("offline", false).apply()
         }
         progressDialog!!.dismiss()
     }
@@ -75,5 +79,6 @@ class OfflineCoroutine(@field:SuppressLint("StaticFieldLeak") private val mListe
     private fun onCancelled() {
         mListener.onCanceled()
         progressDialog!!.dismiss()
+        App.getPreferences().edit().putBoolean("offline", false).apply()
     }
 }

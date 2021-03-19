@@ -5,12 +5,6 @@ import com.startandroid.App
 import com.startandroid.App.Companion.getContext
 
 object Preferences {
-    @JvmStatic
-    var webViewCore: Int
-        get() = App.getPreferences().getInt("webview_core", 0)
-        set(i) {
-            App.getPreferences().edit().putInt("webview_core", i).apply()
-        }
 
     @JvmStatic
     var languageType: Int

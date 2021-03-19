@@ -12,18 +12,6 @@ android {
         targetSdkVersion 30
         consumerProguardFiles 'progress-proguard.txt'
     }
-
-    testOptions.unitTests {
-        // Don't throw runtime exceptions for android calls that are not mocked
-        returnDefaultValues = true
-
-        // Always show the result of every unit test, even if it passes.
-        all {
-            testLogging {
-                events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
-            }
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

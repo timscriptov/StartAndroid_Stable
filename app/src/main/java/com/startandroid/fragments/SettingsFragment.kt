@@ -30,8 +30,6 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     private var isPremium = false
     private var offline: SwitchPreference? = null
     private var languagePreference: ListPreference? = null
-    private var downloadResources: Preference? = null
-    private var clearCache: Preference? = null
     private var webViewCore: Preference? = null
 
     private var mListener: OfflineListener = object : OfflineListener {
@@ -52,33 +50,6 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     override fun onCreatePreferences(bundle: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
         isPremium = requireActivity().intent.getBooleanExtra("isPremium", false)
-
-        downloadResources = findPreference("download_offline")
-        downloadResources!!.onPreferenceClickListener = Preference.OnPreferenceClickListener { p1: Preference? ->
-            try {
-                if (Utils.isNetworkAvailable()) {
-                    if (isPremium || BuildConfig.DEBUG) {
-                        OfflineCoroutine(mListener, requireActivity()).execute()
-                    } else {
-                        FileUtils.deleteOffline(requireContext())
-                        show(activity, getString(R.string.only_prem))
-                    }
-                } else {
-                    noConnectionError(activity)
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-            true
-        }
-
-        clearCache = findPreference("clear_cache")
-        clearCache!!.onPreferenceClickListener = Preference.OnPreferenceClickListener { p1: Preference? ->
-            Thread {
-                FileUtils.deleteOffline(requireContext())
-            }.start()
-            true
-        }
 
         webViewCore = findPreference("webview_core")
         webViewCore!!.onPreferenceClickListener = Preference.OnPreferenceClickListener { p1: Preference? ->
@@ -117,13 +88,33 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         when (key) {
-            "offline" -> if (offline!!.isChecked) {
+            "offline" ->  {
                 val resourcesDir = File(requireContext().filesDir, "resources")
-                if (resourcesDir.exists()) {
-                    restartPerfect(requireActivity().intent)
-                } else {
+                try {
+                    if (Utils.isNetworkAvailable()) {
+                        if (isPremium || BuildConfig.DEBUG) {
+                            try {
+                                OfflineCoroutine(mListener, requireActivity()).execute()
+                            } finally {
+                                if (resourcesDir.exists()) {
+                                    restartPerfect(requireActivity().intent)
+                                } else {
+                                    offline!!.isChecked = false
+                                    Toasty.success(requireContext(), R.string.not_installed_offline).show()
+                                }
+                            }
+                        } else {
+                            offline!!.isChecked = false
+                            FileUtils.deleteOffline(requireContext())
+                            show(activity, getString(R.string.only_prem))
+                        }
+                    } else {
+                        offline!!.isChecked = false
+                        noConnectionError(activity)
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
                     offline!!.isChecked = false
-                    Toasty.success(requireContext(), R.string.not_installed_offline).show()
                 }
             }
             "fullscreen_mode" -> restartPerfect(requireActivity().intent)
