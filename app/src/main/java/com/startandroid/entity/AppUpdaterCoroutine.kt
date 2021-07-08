@@ -72,7 +72,12 @@ class AppUpdaterCoroutine : CoroutineScope {
             setCancelable(false)
         }
         updateDialog.setPositive(R.drawable.ic_update, context.get()!!.getString(R.string.update)) {
-            getContext()!!.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(download_link)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+            getContext()!!.startActivity(
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(download_link)
+                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            )
             exitProcess(0)
         }
         updateDialog.show()

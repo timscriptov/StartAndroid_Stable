@@ -21,7 +21,10 @@ object Dialogs : BaseActivity() {
     @JvmStatic
     @SuppressLint("WrongConstant")
     fun noConnectionError(context: Context?) {
-        val layoutParamz = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val layoutParamz = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         val message = AppCompatTextView(context!!).apply {
             setText(R.string.no_connection)
         }
@@ -44,7 +47,10 @@ object Dialogs : BaseActivity() {
     @JvmStatic
     @SuppressLint("WrongConstant")
     fun show(context: Context?, textz: String?) {
-        val layoutParamz = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val layoutParamz = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         val message = AppCompatTextView(context!!).apply {
             text = textz
         }
@@ -74,7 +80,12 @@ object Dialogs : BaseActivity() {
         dialog.setView(v)
         dialog.setPositive(R.string.rate) { v1: View? ->
             if (ratingBar.rating > 3) {
-                context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.startandroid")))
+                context.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=com.startandroid")
+                    )
+                )
                 Preferences.rated
                 dialog.cancel()
             } else {
@@ -89,7 +100,10 @@ object Dialogs : BaseActivity() {
 
     @SuppressLint("WrongConstant")
     fun error(context: Context?, textz: String?) {
-        val layoutParamz = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        val layoutParamz = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
         val message = AppCompatTextView(context!!).apply {
             text = textz
         }

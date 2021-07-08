@@ -27,7 +27,8 @@ class BookmarksFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        @SuppressLint("InflateParams") val view = requireActivity().layoutInflater.inflate(R.layout.bookmarks_fragment, null)
+        @SuppressLint("InflateParams") val view =
+            requireActivity().layoutInflater.inflate(R.layout.bookmarks_fragment, null)
         if (items.size > 0) {
             val rcview: RecyclerView = view.findViewById(R.id.bookmarksList)
             rcview.layoutManager = LinearLayoutManager(activity)

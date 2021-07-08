@@ -15,8 +15,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class ListParser {
-    private ArrayList<String> items = new ArrayList<>();
-    private MainView mainView;
+    private final ArrayList<String> items = new ArrayList<>();
+    private final MainView mainView;
 
     public ListParser(MainView mainView) {
         this.mainView = mainView;

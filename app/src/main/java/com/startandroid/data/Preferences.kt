@@ -1,8 +1,6 @@
 package com.startandroid.data
 
-import android.preference.PreferenceManager
 import com.startandroid.App
-import com.startandroid.App.Companion.getContext
 
 object Preferences {
 
@@ -68,5 +66,12 @@ object Preferences {
         get() = App.getPreferences().getBoolean("offline", false)
         set(value) {
             App.getPreferences().edit().putBoolean("offline", value).apply()
+        }
+
+    @JvmStatic
+    var offlineInstalled: Boolean
+        get() = App.getPreferences().getBoolean("offline_installed", false)
+        set(i) {
+            App.getPreferences().edit().putBoolean("offline_installed", i).apply()
         }
 }

@@ -15,8 +15,8 @@ import android.widget.LinearLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mcal.mcpelauncher.utils.AdsAdmob;
-import com.startandroid.data.BillingRepository;
 import com.startandroid.R;
+import com.startandroid.data.BillingRepository;
 import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Dialogs;
 import com.startandroid.data.Preferences;
@@ -114,7 +114,6 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         bookmark.setOnClickListener(this);
         itemPosition = getIntent().getIntExtra("position", 0);
 
-
         new PageLoader(getIntent().getStringExtra("url")).execute();
     }
 
@@ -201,7 +200,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         protected void onPreExecute() {
             super.onPreExecute();
             progressBar.setVisibility(View.VISIBLE);
-            if(!isPremium) {
+            if (!isPremium) {
                 AdsAdmob.showInterestialAd(LessonActivity.this, null);
             }
             if (Preferences.getOffline()) {

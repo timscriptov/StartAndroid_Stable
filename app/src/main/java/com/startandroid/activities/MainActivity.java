@@ -24,10 +24,10 @@ import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.SkuDetailsParams;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.mcal.mcpelauncher.utils.AdsAdmob;
-import com.startandroid.data.BillingRepository;
 import com.startandroid.BuildConfig;
 import com.startandroid.R;
 import com.startandroid.adapters.ListAdapter;
+import com.startandroid.data.BillingRepository;
 import com.startandroid.data.Dialogs;
 import com.startandroid.data.Preferences;
 import com.startandroid.entity.AppUpdaterCoroutine;
@@ -51,8 +51,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
     private ListAdapter listAdapter;
     private BottomSheetBehavior sheetBehavior;
     private SearchView sv;
-    //    private IapConnector iapConnector;
-    //    private BillingProcessor billing;
     private BillingClient billingClient;
 
     @Override
@@ -83,7 +81,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         setContentView(R.layout.activity_main);
 
         AdsAdmob.loadInterestialAd(this);
-//        isPremium = this.getIntent().getBooleanExtra("isPremium", false);
         billingClient = BillingClient.newBuilder(this)
                 .enablePendingPurchases()
                 .setListener((billingResult, list) -> {
@@ -93,7 +90,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                                         .setPurchaseToken(list.get(0).getPurchaseToken()).build(),
                                 billingResult1 -> {
                                     Toasty.success(this, "Premium activated!").show();
-                                    // Do other stuff: e.g. disable ads!
                                 });
                     }
                 })
@@ -110,9 +106,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     billingClient.queryPurchasesAsync(BillingClient.SkuType.INAPP, (billingResult1, list) -> {
                         if (billingResult1.getResponseCode() == BillingClient.BillingResponseCode.OK) {
-                            if (list.isEmpty()) {
-                                // премиума нет! show ads!
-                            } else {
+                            if (!list.isEmpty()) {
                                 // Premium
                                 BillingRepository.INSTANCE.setPremium(true);
                             }
@@ -121,51 +115,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                 }
             }
         });
-
-
-        /*List<String> nonConsumablesList = Collections.singletonList("premium");
-        List<String> consumablesList = Arrays.asList("base", "moderate", "quite", "plenty", "yearly");
-        List<String> subsList = Collections.singletonList("subscription");
-
-        iapConnector = new IapConnector(
-                this,
-                nonConsumablesList,
-                consumablesList,
-                subsList,
-                Constants.LK,
-                BuildConfig.DEBUG
-        );
-
-        iapConnector.addPurchaseListener(new PurchaseServiceListener() {
-            public void onPricesUpdated(@NotNull Map<String, String> iapKeyPrices) {
-
-            }
-
-            public void onProductPurchased(DataWrappers.@NotNull PurchaseInfo purchaseInfo) {
-                if (purchaseInfo.getSku().equals("premium")) {
-
-                }
-            }
-
-            public void onProductRestored(DataWrappers.@NotNull PurchaseInfo purchaseInfo) {
-
-            }
-        });
-        iapConnector.addSubscriptionListener(new SubscriptionServiceListener() {
-            public void onSubscriptionRestored(DataWrappers.@NotNull PurchaseInfo purchaseInfo) {
-            }
-
-            public void onSubscriptionPurchased(DataWrappers.@NotNull PurchaseInfo purchaseInfo) {
-                if (purchaseInfo.getSku().equals("subscription")) {
-
-                }
-            }
-
-            public void onPricesUpdated(@NotNull Map<String, String> iapKeyPrices) {
-
-            }
-        });*/
-
 
         // Подключение метода проверки обновлений
         update();
@@ -255,7 +204,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         }
         menuItems.add(new MainMenuItem(R.drawable.star_bookmark, "#fdd835", getString(R.string.bookmarks), MainMenuItems.BOOKMARKS));
         menuItems.add(new MainMenuItem(R.drawable.settings, "#546e7a", getString(R.string.settings), MainMenuItems.SETTINGS));
-        //if (isPremium) {
+        //if (!BillingRepository.INSTANCE.isPremium()) {
         menuItems.add(new MainMenuItem(R.drawable.cash_multiple, "#43a047", getString(R.string.p), MainMenuItems.PREMIUM));
         //}
         menuItems.add(new MainMenuItem(R.drawable.information, "#3949ab", getString(R.string.about), MainMenuItems.ABOUT));

@@ -1,6 +1,7 @@
 package com.startandroid.fragments
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
@@ -15,14 +16,14 @@ import com.startandroid.R
 import com.startandroid.activities.MainActivity
 import com.startandroid.data.Dialogs.noConnectionError
 import com.startandroid.data.Preferences
-import com.startandroid.entity.OfflineCoroutine
+import com.startandroid.entity.Offline
 import com.startandroid.interfaces.OfflineListener
 import com.startandroid.utils.FileUtils
 import com.startandroid.utils.I18n
 import com.startandroid.utils.Utils
 import es.dmoral.toasty.Toasty
-import java.io.File
 import java.lang.Integer.parseInt
+
 
 class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
     private var offline: SwitchPreference? = null
@@ -91,37 +92,26 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         when (key) {
-            // Установка оффлайн чтения
+            // Полноэкранный режим
+            "fullscreen_mode" -> restartPerfect(requireActivity().intent)
+            // Тип списка уроков
+            "grid_mode" -> requireActivity().setResult(Activity.RESULT_OK)
             "offline" -> {
-                val resourcesDir = File(requireContext().filesDir, "resources")
-                try {
-                    // Проверка наличия Интернет
+                if(!Preferences.offlineInstalled) {
                     if (Utils.isNetworkAvailable()) {
                         try {
-                            // Загрузка архива с уроками
-                            OfflineCoroutine(mListener, requireActivity()).execute()
+                            val progressDialog = ProgressDialog(context)
+                            progressDialog.setTitle("Downloading")
+                            Offline(activity, mListener).execute()
                         } finally {
-                            if (resourcesDir.exists()) {
-                                restartPerfect(requireActivity().intent)
-                            } else {
-                                offline!!.isChecked = false
-                                Toasty.success(requireContext(), R.string.not_installed_offline)
-                                    .show()
-                            }
+                            restartPerfect(requireActivity().intent)
                         }
                     } else {
                         offline!!.isChecked = false
                         noConnectionError(activity)
                     }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                    offline!!.isChecked = false
                 }
             }
-            // Полноэкранный режим
-            "fullscreen_mode" -> restartPerfect(requireActivity().intent)
-            // Тип списка уроков
-            "grid_mode" -> requireActivity().setResult(Activity.RESULT_OK)
         }
     }
 

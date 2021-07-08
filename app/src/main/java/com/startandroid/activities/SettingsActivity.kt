@@ -11,8 +11,8 @@ class SettingsActivity : BaseActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportFragmentManager
-                .beginTransaction()
-                .add(R.id.frame_container, SettingsFragment())
-                .commit()
+            .beginTransaction()
+            .add(R.id.frame_container, SettingsFragment())
+            .commit()
     }
 }

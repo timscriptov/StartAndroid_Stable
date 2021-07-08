@@ -8,10 +8,13 @@ object HtmlRenderer {
     @JvmStatic
     fun renderHtml(html: String): String {
         return html
-                .replace("<head>", "<head>$style")
-                .replace("androidstudio.css", if (Preferences.nightMode) "darkcode.css" else "androidstudio.css")
-                .replace("<body>", "<body>$translatePlugin")
-                .replace("<body>", if (Preferences.nightMode) "<body style='$darkMode'>" else "<body>")
+            .replace("<head>", "<head>$style")
+            .replace(
+                "androidstudio.css",
+                if (Preferences.nightMode) "darkcode.css" else "androidstudio.css"
+            )
+            .replace("<body>", "<body>$translatePlugin")
+            .replace("<body>", if (Preferences.nightMode) "<body style='$darkMode'>" else "<body>")
     }
 
     private val style: String

@@ -10,7 +10,11 @@ import androidx.core.view.NestedScrollingChild
 import androidx.core.view.NestedScrollingChildHelper
 import androidx.core.view.ViewCompat
 
-class NestedWebView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null, defStyleAttr: Int = android.R.attr.webViewStyle) : WebView(context!!, attrs, defStyleAttr), NestedScrollingChild {
+class NestedWebView @JvmOverloads constructor(
+    context: Context?,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = android.R.attr.webViewStyle
+) : WebView(context!!, attrs, defStyleAttr), NestedScrollingChild {
     private val mScrollOffset = IntArray(2)
     private val mScrollConsumed = IntArray(2)
     private var mLastY = 0
@@ -82,16 +86,33 @@ class NestedWebView @JvmOverloads constructor(context: Context?, attrs: Attribut
         return mChildHelper.hasNestedScrollingParent()
     }
 
-    override fun dispatchNestedScroll(dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int,
-                                      offsetInWindow: IntArray?): Boolean {
-        return mChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed, offsetInWindow)
+    override fun dispatchNestedScroll(
+        dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int,
+        offsetInWindow: IntArray?
+    ): Boolean {
+        return mChildHelper.dispatchNestedScroll(
+            dxConsumed,
+            dyConsumed,
+            dxUnconsumed,
+            dyUnconsumed,
+            offsetInWindow
+        )
     }
 
-    override fun dispatchNestedPreScroll(dx: Int, dy: Int, consumed: IntArray?, offsetInWindow: IntArray?): Boolean {
+    override fun dispatchNestedPreScroll(
+        dx: Int,
+        dy: Int,
+        consumed: IntArray?,
+        offsetInWindow: IntArray?
+    ): Boolean {
         return mChildHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow)
     }
 
-    override fun dispatchNestedFling(velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {
+    override fun dispatchNestedFling(
+        velocityX: Float,
+        velocityY: Float,
+        consumed: Boolean
+    ): Boolean {
         return mChildHelper.dispatchNestedFling(velocityX, velocityY, consumed)
     }
 

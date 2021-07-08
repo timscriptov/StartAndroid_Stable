@@ -25,8 +25,8 @@ import static com.startandroid.utils.LessonUtils.isRead;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> implements Filterable {
     private final SearchFilter filter;
-    private ArrayList<String> items;
     private final MainView mainView;
+    private ArrayList<String> items;
 
     public ListAdapter(ArrayList<String> items, MainView mainView) {
         this.items = items;

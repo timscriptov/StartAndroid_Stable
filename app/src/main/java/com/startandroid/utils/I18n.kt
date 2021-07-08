@@ -22,6 +22,9 @@ object I18n {
             5 -> config.setLocale(Locale.SIMPLIFIED_CHINESE)
             else -> config.setLocale(Locale.getDefault())
         }
-        if (defaultLocale != config.locale) context.resources.updateConfiguration(config, context.resources.displayMetrics)
+        if (defaultLocale != config.locale) context.resources.updateConfiguration(
+            config,
+            context.resources.displayMetrics
+        )
     }
 }

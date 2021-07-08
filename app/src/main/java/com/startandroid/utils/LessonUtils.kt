@@ -8,7 +8,8 @@ import java.util.regex.Pattern
 object LessonUtils {
     @JvmStatic
     fun isRead(num: Int): Boolean {
-        @SuppressLint("Recycle") val cursor = Database.getDatabase().rawQuery("SELECT Number FROM ReadLessons WHERE Number = $num", null)
+        @SuppressLint("Recycle") val cursor = Database.getDatabase()
+            .rawQuery("SELECT Number FROM ReadLessons WHERE Number = $num", null)
         return cursor.count != 0
     }
 

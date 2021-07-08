@@ -26,7 +26,8 @@ object Bookmarks {
 
     @JvmStatic
     fun isBookmarked(num: Int): Boolean {
-        @SuppressLint("Recycle") val cursor = Database.getDatabase().rawQuery("SELECT Number FROM Bookmarks WHERE Number = $num", null)
+        @SuppressLint("Recycle") val cursor = Database.getDatabase()
+            .rawQuery("SELECT Number FROM Bookmarks WHERE Number = $num", null)
         return cursor.count != 0
     }
 }
