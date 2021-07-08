@@ -21,7 +21,6 @@ import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Dialogs;
 import com.startandroid.data.Preferences;
 import com.startandroid.module.HtmlRenderer;
-import com.startandroid.utils.Ads;
 import com.startandroid.utils.FileReader;
 import com.startandroid.utils.LessonUtils;
 import com.startandroid.utils.Utils;
@@ -96,7 +95,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         adLayout = findViewById(R.id.ad_view);
         if (!isPremium) {
-            adLayout.addView(Ads.getBanner());
+            adLayout.addView(AdsAdmob.showBannerAd(this));
         }
         ctl = findViewById(R.id.collapsing_toolbar);
         webView = findViewById(R.id.webView);

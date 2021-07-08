@@ -2,13 +2,13 @@ package com.mcal.mcpelauncher.utils
 
 import android.app.Activity
 import android.content.Context
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.startandroid.App
 import com.startandroid.data.Constants
 
-object AdsAdmob {
+object AdsAdmob : AdListener() {
     private var interstitialAd: InterstitialAd? = null
 
     @JvmStatic
@@ -36,5 +36,15 @@ object AdsAdmob {
         } else {
             callback?.invoke()
         }
+    }
+
+    @JvmStatic
+    fun showBannerAd(context: Context): AdView {
+        val adView = AdView(context)
+        adView.adSize = AdSize.SMART_BANNER
+        adView.adUnitId = Constants.bannerId
+        adView.adListener = AdsAdmob
+        adView.loadAd(AdRequest.Builder().build())
+        return adView
     }
 }
