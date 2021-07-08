@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.mcal.mcpelauncher.utils.AdsAdmob;
+import com.startandroid.data.BillingRepository;
 import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Dialogs;
@@ -37,6 +39,7 @@ import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
 import static com.startandroid.utils.LessonUtils.isRead;
 
 public class LessonActivity extends BaseActivity implements OnClickListener {
+    @SuppressLint("StaticFieldLeak")
     public static LinearLayout adLayout;
     private MCProgressBar progressBar;
     private NestedWebView webView;
@@ -87,12 +90,12 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
 
-        isPremium = getIntent().getBooleanExtra("isPremium", false);
+        isPremium = BillingRepository.INSTANCE.isPremium();
 
         setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         adLayout = findViewById(R.id.ad_view);
-        if (isPremium) {
+        if (!isPremium) {
             adLayout.addView(Ads.getBanner());
         }
         ctl = findViewById(R.id.collapsing_toolbar);
@@ -111,6 +114,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         next_lesson.setOnClickListener(this);
         bookmark.setOnClickListener(this);
         itemPosition = getIntent().getIntExtra("position", 0);
+
 
         new PageLoader(getIntent().getStringExtra("url")).execute();
     }
@@ -198,7 +202,9 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         protected void onPreExecute() {
             super.onPreExecute();
             progressBar.setVisibility(View.VISIBLE);
-
+            if(!isPremium) {
+                AdsAdmob.showInterestialAd(LessonActivity.this, null);
+            }
             if (Preferences.getOffline()) {
                 webView.loadDataWithBaseURL("file:///" + mLink, HtmlRenderer.renderHtml(FileReader.fromStorage(mLink)), "text/html", "UTF-8", "file:///" + mLink);
                 cancel(true);

@@ -22,7 +22,9 @@ public final class Database extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(@NotNull SQLiteDatabase db) {
+        // Номер урока
         db.execSQL("CREATE TABLE ReadLessons (Number INTEGER PRIMARY KEY)");
+        // Название урока
         db.execSQL("CREATE TABLE Bookmarks (Number INTEGER PRIMARY KEY, Title TEXT)");
     }
 

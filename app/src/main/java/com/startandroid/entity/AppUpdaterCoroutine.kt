@@ -3,7 +3,6 @@ package com.startandroid.entity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import com.startandroid.App.Companion.getContext
 import com.startandroid.BuildConfig
 import com.startandroid.R

@@ -56,6 +56,7 @@ public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.View
         // ставим галочку если урок прочитанный
         holder.checkMark.setVisibility(isRead(number) ? View.VISIBLE : View.GONE);
 
+        // Удаление закладки
         holder.removeBookmarkButton.setOnClickListener(v -> {
             Bookmarks.remove(number);
             items.remove(holder.getAdapterPosition());

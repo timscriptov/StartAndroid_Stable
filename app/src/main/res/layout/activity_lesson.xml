@@ -66,6 +66,7 @@
         tools:ignore="RtlHardcoded" />
 
     <LinearLayout
+        android:layout_weight="1.0"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -79,14 +80,15 @@
         <com.startandroid.view.NestedWebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            android:layout_weight="1.0"/>
 
         <LinearLayout
             android:id="@+id/ad_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="5dp"
-            tools:ignore="Orientation" />
+            android:layout_gravity="bottom"
+            android:orientation="vertical" />
 
     </LinearLayout>
 

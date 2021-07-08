@@ -3,12 +3,12 @@ package com.startandroid.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.SearchView;
@@ -16,11 +16,15 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.BillingProcessor.IBillingHandler;
-import com.anjlab.android.iab.v3.TransactionDetails;
+import com.android.billingclient.api.AcknowledgePurchaseParams;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.SkuDetailsParams;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.textfield.TextInputLayout;
+import com.mcal.mcpelauncher.utils.AdsAdmob;
+import com.startandroid.data.BillingRepository;
 import com.startandroid.BuildConfig;
 import com.startandroid.R;
 import com.startandroid.adapters.ListAdapter;
@@ -32,6 +36,8 @@ import com.startandroid.interfaces.MainView;
 import com.startandroid.module.ListParser;
 import com.startandroid.utils.Utils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
@@ -40,17 +46,14 @@ import ru.svolf.melissa.MainMenuItem;
 import ru.svolf.melissa.MainMenuItems;
 import ru.svolf.melissa.sheet.SweetContentDialog;
 
-import static com.anjlab.android.iab.v3.Constants.BILLING_RESPONSE_RESULT_USER_CANCELED;
-import static com.startandroid.data.Constants.LK;
-import static com.startandroid.data.Constants.PREMIUM;
+public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener {
 
-public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, IBillingHandler {
-
-    private BillingProcessor billing;
     private ListAdapter listAdapter;
     private BottomSheetBehavior sheetBehavior;
-    private boolean isPremium;
     private SearchView sv;
+    //    private IapConnector iapConnector;
+    //    private BillingProcessor billing;
+    private BillingClient billingClient;
 
     @Override
     public boolean onQueryTextSubmit(String p1) {
@@ -79,6 +82,92 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AdsAdmob.loadInterestialAd(this);
+//        isPremium = this.getIntent().getBooleanExtra("isPremium", false);
+        billingClient = BillingClient.newBuilder(this)
+                .enablePendingPurchases()
+                .setListener((billingResult, list) -> {
+                    if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                        billingClient.acknowledgePurchase(
+                                AcknowledgePurchaseParams.newBuilder()
+                                        .setPurchaseToken(list.get(0).getPurchaseToken()).build(),
+                                billingResult1 -> {
+                                    Toasty.success(this, "Premium activated!").show();
+                                    // Do other stuff: e.g. disable ads!
+                                });
+                    }
+                })
+                .build();
+
+        billingClient.startConnection(new BillingClientStateListener() {
+            @Override
+            public void onBillingServiceDisconnected() {
+                Log.e(getLocalClassName(), "Billing disconnected");
+            }
+
+            @Override
+            public void onBillingSetupFinished(@NonNull @NotNull BillingResult billingResult) {
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    billingClient.queryPurchasesAsync(BillingClient.SkuType.INAPP, (billingResult1, list) -> {
+                        if (billingResult1.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                            if (list.isEmpty()) {
+                                // премиума нет! show ads!
+                            } else {
+                                // Premium
+                                BillingRepository.INSTANCE.setPremium(true);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+
+        /*List<String> nonConsumablesList = Collections.singletonList("premium");
+        List<String> consumablesList = Arrays.asList("base", "moderate", "quite", "plenty", "yearly");
+        List<String> subsList = Collections.singletonList("subscription");
+
+        iapConnector = new IapConnector(
+                this,
+                nonConsumablesList,
+                consumablesList,
+                subsList,
+                Constants.LK,
+                BuildConfig.DEBUG
+        );
+
+        iapConnector.addPurchaseListener(new PurchaseServiceListener() {
+            public void onPricesUpdated(@NotNull Map<String, String> iapKeyPrices) {
+
+            }
+
+            public void onProductPurchased(DataWrappers.@NotNull PurchaseInfo purchaseInfo) {
+                if (purchaseInfo.getSku().equals("premium")) {
+
+                }
+            }
+
+            public void onProductRestored(DataWrappers.@NotNull PurchaseInfo purchaseInfo) {
+
+            }
+        });
+        iapConnector.addSubscriptionListener(new SubscriptionServiceListener() {
+            public void onSubscriptionRestored(DataWrappers.@NotNull PurchaseInfo purchaseInfo) {
+            }
+
+            public void onSubscriptionPurchased(DataWrappers.@NotNull PurchaseInfo purchaseInfo) {
+                if (purchaseInfo.getSku().equals("subscription")) {
+
+                }
+            }
+
+            public void onPricesUpdated(@NotNull Map<String, String> iapKeyPrices) {
+
+            }
+        });*/
+
+
+        // Подключение метода проверки обновлений
         update();
 
         sheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottomView));
@@ -86,24 +175,26 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
         RecyclerView lessons = (RecyclerView) getLayoutInflater().inflate(R.layout.recycler_view, null);
 
+        // Проверка типа списка уроков
         if (Preferences.getGridMode()) {
+            // Список в одну колонку
             lessons.setLayoutManager(new GridLayoutManager(this, 3));
             lessons.setAdapter(listAdapter = new ListParser(this).getListAdapter());
             ((LinearLayout) findViewById(R.id.listContainer)).addView(lessons);
         } else {
+            // Список в три колонки
             lessons.setLayoutManager(new LinearLayoutManager(this));
             lessons.setAdapter(listAdapter = new ListParser(this).getListAdapter());
             ((LinearLayout) findViewById(R.id.listContainer)).addView(lessons);
         }
 
+        // Подключение метода поиска уроков
         setupSearchView();
+        // Подключение метода меню
         setupBottomSheet();
 
-        billing = new BillingProcessor(this, LK, this);
         if (savedInstanceState == null)
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-
-        isPremium = getIntent().getBooleanExtra("isPremium", false);
     }
 
     private void update() {
@@ -128,7 +219,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        billing.handleActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_IS_READ) {
 
             if (resultCode == RESULT_OK) {
@@ -149,33 +239,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                 putExtra("url", Preferences.getBookmark()), REQUEST_CODE_IS_READ);
     }
 
-    @Override
-    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
-        Toasty.success(this, getString(R.string.p_a)).show();// premium_activated
-        // FIXME: Рефрешнуть адаптер
-        setupBottomSheet();
-    }
-
-    @Override
-    public void onPurchaseHistoryRestored() {
-
-    }
-
-    @Override
-    public void onBillingError(int errorCode, @Nullable Throwable error) {
-        if (errorCode == BILLING_RESPONSE_RESULT_USER_CANCELED) {
-            Toasty.error(this, getString(R.string.purchase_canceled)).show();
-        }
-    }
-
-    @Override
-    public void onBillingInitialized() {
-        if (!billing.isPurchased(PREMIUM)) {
-            // FIXME: Рефрешнуть адаптер
-            setupBottomSheet();
-        }
-    }
-
+    // Метод меню на главной странице
     private void setupBottomSheet() {
         TextView caption = findViewById(R.id.caption);
         RecyclerView recycler = findViewById(R.id.list);
@@ -192,7 +256,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         menuItems.add(new MainMenuItem(R.drawable.star_bookmark, "#fdd835", getString(R.string.bookmarks), MainMenuItems.BOOKMARKS));
         menuItems.add(new MainMenuItem(R.drawable.settings, "#546e7a", getString(R.string.settings), MainMenuItems.SETTINGS));
         //if (isPremium) {
-            menuItems.add(new MainMenuItem(R.drawable.cash_multiple, "#43a047", getString(R.string.p), MainMenuItems.PREMIUM));
+        menuItems.add(new MainMenuItem(R.drawable.cash_multiple, "#43a047", getString(R.string.p), MainMenuItems.PREMIUM));
         //}
         menuItems.add(new MainMenuItem(R.drawable.information, "#3949ab", getString(R.string.about), MainMenuItems.ABOUT));
         menuItems.add(new MainMenuItem(R.drawable.exit, "#e53935", getString(R.string.exit), MainMenuItems.EXIT));
@@ -200,26 +264,44 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         MainMenuAdapter adapter = new MainMenuAdapter(menuItems);
         adapter.setItemClickListener((menuItem, position) -> {
             switch (menuItem.getAction()) {
+                // Закладки
                 case MainMenuItems.BOOKMARKS: {
                     new BookmarksFragment().show(getSupportFragmentManager(), null);
                     break;
                 }
+                // О приложении
                 case MainMenuItems.ABOUT: {
                     showAboutSheet();
                     break;
                 }
+                // Настройки
                 case MainMenuItems.SETTINGS: {
-                    startActivityForResult(new Intent(MainActivity.this, SettingsActivity.class).putExtra("isPremium", billing.isPurchased(PREMIUM)), REQUEST_CODE_SETTINGS);
+                    startActivityForResult(new Intent(MainActivity.this, SettingsActivity.class), REQUEST_CODE_SETTINGS);
                     break;
                 }
+                // Выход из приложения
                 case MainMenuItems.EXIT: {
                     finish();
                     break;
                 }
+                // Покупка платных функций
                 case MainMenuItems.PREMIUM: {
-                    billing.purchase(MainActivity.this, PREMIUM);
+                    //iapConnector.purchase(this, "premium");
+                    ArrayList<String> list = new ArrayList<>();
+                    list.add("premium");
+                    billingClient.querySkuDetailsAsync(
+                            SkuDetailsParams.newBuilder()
+                                    .setType(BillingClient.SkuType.INAPP)
+                                    .setSkusList(list).build(),
+                            (billingResult, list1) -> {
+                                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                                    billingClient.launchBillingFlow(this,
+                                            BillingFlowParams.newBuilder().setSkuDetails(list1.get(0)).build());
+                                }
+                            });
                     break;
                 }
+                // Продолжить чтение с последнего урока
                 case MainMenuItems.CONTINUE: {
                     //if (isOffline() && Utils.isNetworkAvailable()) {
                     resumeLesson();

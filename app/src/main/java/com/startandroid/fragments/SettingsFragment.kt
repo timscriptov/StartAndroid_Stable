@@ -11,11 +11,9 @@ import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
-import com.startandroid.BuildConfig
 import com.startandroid.R
 import com.startandroid.activities.MainActivity
 import com.startandroid.data.Dialogs.noConnectionError
-import com.startandroid.data.Dialogs.show
 import com.startandroid.data.Preferences
 import com.startandroid.entity.OfflineCoroutine
 import com.startandroid.interfaces.OfflineListener
@@ -27,7 +25,6 @@ import java.io.File
 import java.lang.Integer.parseInt
 
 class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeListener {
-    private var isPremium = false
     private var offline: SwitchPreference? = null
     private var languagePreference: ListPreference? = null
     private var webViewCore: Preference? = null
@@ -49,31 +46,37 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
 
     override fun onCreatePreferences(bundle: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
-        isPremium = requireActivity().intent.getBooleanExtra("isPremium", false)
 
+        // Смена сервиса WebKit
         webViewCore = findPreference("webview_core")
-        webViewCore!!.onPreferenceClickListener = Preference.OnPreferenceClickListener { p1: Preference? ->
-            if(Build.VERSION.SDK_INT >= 24) {
-                val intent = Intent(Settings.ACTION_WEBVIEW_SETTINGS)
-                if (context?.let { intent.resolveActivity(it.packageManager) } != null) {
-                    startActivity(intent)
+        webViewCore!!.onPreferenceClickListener =
+            Preference.OnPreferenceClickListener { p1: Preference? ->
+                if (Build.VERSION.SDK_INT >= 24) {
+                    val intent = Intent(Settings.ACTION_WEBVIEW_SETTINGS)
+                    if (context?.let { intent.resolveActivity(it.packageManager) } != null) {
+                        startActivity(intent)
+                    }
+                } else {
+                    Toasty.success(
+                        requireContext(),
+                        getString(R.string.not_supported_on_your_device)
+                    ).show()
                 }
-            } else {
-                Toasty.success(requireContext(), getString(R.string.not_supported_on_your_device)).show()
+                true
             }
-            true
-        }
 
+        // Смена языка приложения
         languagePreference = findPreference("language")
-        languagePreference!!.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { p1: Preference?, p2: Any ->
-            val type: Int = parseInt(p2 as String)
-            Preferences.languageType = type
-            activity?.let { I18n.setLanguage(it) }
-            val intent = Intent(activity, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-            true
-        }
+        languagePreference!!.onPreferenceChangeListener =
+            Preference.OnPreferenceChangeListener { p1: Preference?, p2: Any ->
+                val type: Int = parseInt(p2 as String)
+                Preferences.languageType = type
+                activity?.let { I18n.setLanguage(it) }
+                val intent = Intent(activity, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
+                true
+            }
     }
 
     override fun onResume() {
@@ -88,25 +91,23 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         when (key) {
-            "offline" ->  {
+            // Установка оффлайн чтения
+            "offline" -> {
                 val resourcesDir = File(requireContext().filesDir, "resources")
                 try {
+                    // Проверка наличия Интернет
                     if (Utils.isNetworkAvailable()) {
-                        if (isPremium || BuildConfig.DEBUG) {
-                            try {
-                                OfflineCoroutine(mListener, requireActivity()).execute()
-                            } finally {
-                                if (resourcesDir.exists()) {
-                                    restartPerfect(requireActivity().intent)
-                                } else {
-                                    offline!!.isChecked = false
-                                    Toasty.success(requireContext(), R.string.not_installed_offline).show()
-                                }
+                        try {
+                            // Загрузка архива с уроками
+                            OfflineCoroutine(mListener, requireActivity()).execute()
+                        } finally {
+                            if (resourcesDir.exists()) {
+                                restartPerfect(requireActivity().intent)
+                            } else {
+                                offline!!.isChecked = false
+                                Toasty.success(requireContext(), R.string.not_installed_offline)
+                                    .show()
                             }
-                        } else {
-                            offline!!.isChecked = false
-                            FileUtils.deleteOffline(requireContext())
-                            show(activity, getString(R.string.only_prem))
                         }
                     } else {
                         offline!!.isChecked = false
@@ -117,7 +118,9 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                     offline!!.isChecked = false
                 }
             }
+            // Полноэкранный режим
             "fullscreen_mode" -> restartPerfect(requireActivity().intent)
+            // Тип списка уроков
             "grid_mode" -> requireActivity().setResult(Activity.RESULT_OK)
         }
     }
