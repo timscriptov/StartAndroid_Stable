@@ -66,6 +66,9 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
     @Override
     public void openLesson(String url, int position) {
+        if(!BillingRepository.INSTANCE.isPremium()) {
+            AdsAdmob.showInterestialAd(this, null);
+        }
         if (!Preferences.getOffline() & !Utils.isNetworkAvailable()) {
             Dialogs.noConnectionError(this);
             return;
@@ -235,7 +238,6 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                 }
                 // Покупка платных функций
                 case MainMenuItems.PREMIUM: {
-                    //iapConnector.purchase(this, "premium");
                     ArrayList<String> list = new ArrayList<>();
                     list.add("premium");
                     billingClient.querySkuDetailsAsync(

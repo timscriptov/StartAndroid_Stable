@@ -70,7 +70,7 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
                 progressDialog.setMax(connection.getContentLength());
                 progressDialog.show();
 
-                File offline = new File(settingsActivity.getFilesDir(), "startandroid.zip");
+                File offline = new File(settingsActivity.getFilesDir(), "offline.zip");
                 File resourcesDir = new File(settingsActivity.getFilesDir(), "resources");
 
                 InputStream inputStream = new BufferedInputStream(connection.getInputStream());
