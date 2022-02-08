@@ -67,6 +67,7 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
                 URL url = new URL("https://timscriptov.github.io/lessons/startandroid.zip");
                 URLConnection connection = url.openConnection();
 
+
                 progressDialog.setMax(connection.getContentLength());
                 progressDialog.show();
 
@@ -88,7 +89,6 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
 
                 ZipUtil.unpack(offline, resourcesDir);
                 offline.delete();
-                progressDialog.dismiss();
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -105,7 +105,9 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
 
         if (values[0] == -1) {
             progressDialog.setTitle("Unpacking");
-        } else progressDialog.setProgress(values[0]);
+        } else {
+            progressDialog.setProgress(values[0]);
+        }
     }
 
     @Override

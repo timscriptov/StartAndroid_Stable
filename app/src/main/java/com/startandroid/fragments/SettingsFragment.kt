@@ -82,12 +82,12 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
 
     override fun onResume() {
         super.onResume()
-        preferenceScreen.sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+        preferenceScreen.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
     }
 
     override fun onPause() {
         super.onPause()
-        preferenceScreen.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this)
+        preferenceScreen.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
     }
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
@@ -99,13 +99,9 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             "offline" -> {
                 if(!Preferences.offlineInstalled) {
                     if (Utils.isNetworkAvailable()) {
-                        try {
-                            val progressDialog = ProgressDialog(context)
-                            progressDialog.setTitle("Downloading")
-                            Offline(activity, mListener).execute()
-                        } finally {
-                            restartPerfect(requireActivity().intent)
-                        }
+                        val progressDialog = ProgressDialog(context)
+                        progressDialog.setTitle("Downloading")
+                        Offline(activity, mListener).execute()
                     } else {
                         offline!!.isChecked = false
                         noConnectionError(activity)

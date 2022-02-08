@@ -13,7 +13,7 @@
         android:layout_marginBottom="4dp"
         android:background="@drawable/corners_all" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/content_caption"
         style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
 
     <FrameLayout
         android:id="@+id/content_frame"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -40,9 +40,9 @@
             android:fadingEdgeLength="8dp"
             android:maxHeight="250dp">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/content"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:textSize="14sp" />

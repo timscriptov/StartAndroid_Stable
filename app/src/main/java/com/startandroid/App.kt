@@ -49,7 +49,7 @@ class App : Application() {
         @Nullable
         fun getPreferences(): SharedPreferences {
             if (preferences == null) {
-                preferences = PreferenceManager.getDefaultSharedPreferences(this.getContext())
+                preferences = PreferenceManager.getDefaultSharedPreferences(context!!)
             }
             return preferences!!
         }

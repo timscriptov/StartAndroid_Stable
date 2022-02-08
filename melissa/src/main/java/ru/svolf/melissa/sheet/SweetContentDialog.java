@@ -89,6 +89,15 @@ public class SweetContentDialog extends BottomSheetDialog {
         setView(LayoutInflater.from(getContext()).inflate(resId, null));
     }
 
+    /**
+     * @param activity parent activity
+     * @param percent  percentage of the screen height to which the dialog box will be expanded
+     */
+    public void peekFullScreen(Activity activity, int percent){
+        int peekLimit = ((percent * 100) / Render.getScreenHeight(activity));
+        getBehavior().setPeekHeight(peekLimit, true);
+    }
+
     public void setPositive(@DrawableRes int resId, CharSequence text, View.OnClickListener listener) {
         mControls.add(new ControlsItem(resId, text, listener));
     }
@@ -120,7 +129,7 @@ public class SweetContentDialog extends BottomSheetDialog {
     public void makeBlur() {
         if (mContext instanceof Activity) {
             Bitmap screen = Render.takeScreenShot((Activity) mContext);
-            Bitmap fast = Render.fastblur(screen, 70, 50);
+            Bitmap fast = Render.fastblur(screen, 20, 50);
             final Drawable draw = new BitmapDrawable(mContext.getResources(), fast);
             getWindow().setBackgroundDrawable(draw);
         }
@@ -139,16 +148,13 @@ public class SweetContentDialog extends BottomSheetDialog {
         super.show();
         if (mControls.size() > 0) {
             final DialogControlsAdapter adapter = new DialogControlsAdapter(mControls);
-            adapter.setItemClickListener(new DialogControlsAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(ControlsItem menuItem, int position) {
-                    if (menuItem.getAction() != null) {
-                        menuItem.getAction().onClick(null);
-                        if (mDismissOnTouch)
-                            dismiss();
-                    } else {
+            adapter.setItemClickListener((menuItem, position) -> {
+                if (menuItem.getAction() != null) {
+                    menuItem.getAction().onClick(null);
+                    if (mDismissOnTouch)
                         dismiss();
-                    }
+                } else {
+                    dismiss();
                 }
             });
             mControllerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -162,42 +168,42 @@ public class SweetContentDialog extends BottomSheetDialog {
         }
 
         public Builder setTitle(CharSequence title) {
-            SweetContentDialog.this.setTitle(title);
+            setTitle(title);
             return this;
         }
 
         public Builder setTitle(@StringRes int resId) {
-            SweetContentDialog.this.setTitle(resId);
+            setTitle(resId);
             return this;
         }
 
         public Builder setMessage(CharSequence message) {
-            SweetContentDialog.this.setMessage(message);
+            setMessage(message);
             return this;
         }
 
         public Builder setMessage(@StringRes int resId) {
-            SweetContentDialog.this.setMessage(resId);
+            setMessage(resId);
             return this;
         }
 
         public Builder setMessage(Spanned text) {
-            SweetContentDialog.this.setMessage(text);
+            setMessage(text);
             return this;
         }
 
         public Builder setMessage(StringBuilder text) {
-            SweetContentDialog.this.setMessage(text);
+            setMessage(text);
             return this;
         }
 
         public Builder makeBlur() {
-            SweetContentDialog.this.makeBlur();
+            makeBlur();
             return this;
         }
 
         public Builder addAction(@DrawableRes int resId, CharSequence text, View.OnClickListener listener) {
-            SweetContentDialog.this.addAction(resId, text, listener);
+            addAction(resId, text, listener);
             return this;
         }
 
@@ -207,22 +213,22 @@ public class SweetContentDialog extends BottomSheetDialog {
         }
 
         public Builder setView(View view) {
-            SweetContentDialog.this.setView(view);
+            setView(view);
             return this;
         }
 
         public Builder setIcon(@DrawableRes int resId) {
-            SweetContentDialog.this.setIcon(resId);
+            setIcon(resId);
             return this;
         }
 
         public Builder setIcon(Drawable icon) {
-            SweetContentDialog.this.setIcon(icon);
+            setIcon(icon);
             return this;
         }
 
         public Builder setDismissible(boolean dismissible) {
-            SweetContentDialog.this.setDismissOnTouch(dismissible);
+            setDismissOnTouch(dismissible);
             return this;
         }
 
@@ -233,5 +239,14 @@ public class SweetContentDialog extends BottomSheetDialog {
         public void show() {
             create().show();
         }
+    }
+
+    @Override
+    public void dismiss() {
+        mControls = null;
+        mContentFrame = null;
+        mCaption = null;
+        mControllerView = null;
+        super.dismiss();
     }
 }
