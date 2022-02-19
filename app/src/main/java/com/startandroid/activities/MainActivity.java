@@ -3,10 +3,12 @@ package com.startandroid.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -22,6 +24,10 @@ import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.SkuDetailsParams;
+import com.applovin.mediation.MaxAd;
+import com.applovin.mediation.MaxAdListener;
+import com.applovin.mediation.MaxError;
+import com.applovin.mediation.ads.MaxInterstitialAd;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.mcal.mcpelauncher.utils.AdsAdmob;
 import com.startandroid.BuildConfig;
@@ -39,19 +45,22 @@ import com.startandroid.utils.Utils;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
-import es.dmoral.toasty.Toasty;
 import ru.svolf.melissa.MainMenuAdapter;
 import ru.svolf.melissa.MainMenuItem;
 import ru.svolf.melissa.MainMenuItems;
 import ru.svolf.melissa.sheet.SweetContentDialog;
 
-public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener {
+public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener, MaxAdListener {
 
     private ListAdapter listAdapter;
     private BottomSheetBehavior sheetBehavior;
     private SearchView sv;
     private BillingClient billingClient;
+
+    private MaxInterstitialAd interstitialAd;
+    private int retryAttempt;
 
     @Override
     public boolean onQueryTextSubmit(String p1) {
@@ -66,8 +75,13 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
     @Override
     public void openLesson(String url, int position) {
-        if(!BillingRepository.INSTANCE.isPremium()) {
+        if (!BillingRepository.INSTANCE.isPremium()) {
             AdsAdmob.showInterestialAd(this, null);
+        }
+        if (!BillingRepository.INSTANCE.isPremium()) {
+            if (interstitialAd.isReady()) {
+                interstitialAd.showAd();
+            }
         }
         if (!Preferences.getOffline() & !Utils.isNetworkAvailable()) {
             Dialogs.noConnectionError(this);
@@ -83,6 +97,12 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        interstitialAd = new MaxInterstitialAd("7a078240912f2529", this);
+        interstitialAd.setListener(this);
+
+        // Load the first ad
+        interstitialAd.loadAd();
+
         AdsAdmob.loadInterestialAd(this);
         billingClient = BillingClient.newBuilder(this)
                 .enablePendingPurchases()
@@ -92,7 +112,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
                                 AcknowledgePurchaseParams.newBuilder()
                                         .setPurchaseToken(list.get(0).getPurchaseToken()).build(),
                                 billingResult1 -> {
-                                    Toasty.success(this, "Premium activated!").show();
+                                    Toast.makeText(this, "Premium activated!", Toast.LENGTH_LONG).show();
                                 });
                     }
                 })
@@ -145,8 +165,54 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         // Подключение метода меню
         setupBottomSheet();
 
-        if (savedInstanceState == null)
+        if (savedInstanceState == null) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        }
+    }
+
+    // MAX Ad Listener
+    @Override
+    public void onAdLoaded(final MaxAd maxAd) {
+        // Interstitial ad is ready to be shown. interstitialAd.isReady() will now return 'true'
+
+        // Reset retry attempt
+        retryAttempt = 0;
+    }
+
+    @Override
+    public void onAdLoadFailed(final String adUnitId, final MaxError error) {
+        // Interstitial ad failed to load
+        // AppLovin recommends that you retry with exponentially higher delays up to a maximum delay (in this case 64 seconds)
+
+        retryAttempt++;
+        long delayMillis = TimeUnit.SECONDS.toMillis((long) Math.pow(2, Math.min(6, retryAttempt)));
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                interstitialAd.loadAd();
+            }
+        }, delayMillis);
+    }
+
+    @Override
+    public void onAdDisplayFailed(final MaxAd maxAd, final MaxError error) {
+        // Interstitial ad failed to display. AppLovin recommends that you load the next ad.
+        interstitialAd.loadAd();
+    }
+
+    @Override
+    public void onAdDisplayed(final MaxAd maxAd) {
+    }
+
+    @Override
+    public void onAdClicked(final MaxAd maxAd) {
+    }
+
+    @Override
+    public void onAdHidden(final MaxAd maxAd) {
+        // Interstitial ad is hidden. Pre-load the next ad
+        interstitialAd.loadAd();
     }
 
     private void update() {
@@ -162,7 +228,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         } else {
             if (time + 2000 > System.currentTimeMillis()) super.onBackPressed();
             else {
-                Toasty.info(this, getString(R.string.press_back_once_more)).show();
+                Toast.makeText(this, getString(R.string.press_back_once_more), Toast.LENGTH_LONG).show();
                 time = System.currentTimeMillis();
             }
         }
@@ -187,6 +253,11 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
     }
 
     private void resumeLesson() {
+        if (!BillingRepository.INSTANCE.isPremium()) {
+            if (interstitialAd.isReady()) {
+                interstitialAd.showAd();
+            }
+        }
         startActivityForResult(new Intent(this, LessonActivity.class).
                 putExtra("url", Preferences.getBookmark()), REQUEST_CODE_IS_READ);
     }

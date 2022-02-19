@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import com.startandroid.data.Database
 import com.startandroid.data.Preferences
-import es.dmoral.toasty.Toasty
 import org.jetbrains.annotations.Nullable
 
 class App : Application() {
@@ -56,12 +56,12 @@ class App : Application() {
 
         @JvmStatic
         fun toast(msg: String?) {
-            Toasty.info(context!!, msg!!).show()
+            Toast.makeText(context!!, msg!!, Toast.LENGTH_LONG).show()
         }
 
         @JvmStatic
         fun toast(res: Int) {
-            Toasty.info(context!!, context!!.resources.getString(res)).show()
+            Toast.makeText(context!!, context!!.resources.getString(res), Toast.LENGTH_LONG).show()
         }
     }
 }

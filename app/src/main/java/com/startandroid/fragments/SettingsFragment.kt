@@ -8,6 +8,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.Toast
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -21,7 +22,6 @@ import com.startandroid.interfaces.OfflineListener
 import com.startandroid.utils.FileUtils
 import com.startandroid.utils.I18n
 import com.startandroid.utils.Utils
-import es.dmoral.toasty.Toasty
 import java.lang.Integer.parseInt
 
 
@@ -33,7 +33,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     private var mListener: OfflineListener = object : OfflineListener {
         override fun onProcess() {}
         override fun onCompleted() {
-            Toasty.success(context!!, R.string.offline_activated).show()
+            Toast.makeText(context!!, R.string.offline_activated, Toast.LENGTH_LONG).show()
         }
 
         override fun onFailed() {
@@ -58,9 +58,10 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
                         startActivity(intent)
                     }
                 } else {
-                    Toasty.success(
+                    Toast.makeText(
                         requireContext(),
-                        getString(R.string.not_supported_on_your_device)
+                        getString(R.string.not_supported_on_your_device),
+                        Toast.LENGTH_LONG
                     ).show()
                 }
                 true

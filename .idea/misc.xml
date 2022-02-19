@@ -3,13 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/drawable-night/toolbar_bg.xml" value="0.2985" />
         <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/drawable/done.xml" value="0.2985" />
+        <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/drawable/toolbar_bg.xml" value="0.2985" />
+        <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/layout/activity_browser.xml" value="0.36666666666666664" />
+        <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/layout/activity_lesson.xml" value="0.36666666666666664" />
+        <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/layout/bookmarks_item.xml" value="0.36666666666666664" />
         <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/layout/g.xml" value="0.5" />
         <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/layout/item.xml" value="0.36666666666666664" />
         <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/layout/rate.xml" value="0.36666666666666664" />
         <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/layout/recycler_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/layout/toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/AppProjects/StartAndroid_Stable/app/src/main/res/xml/network_security_config.xml" value="0.36666666666666664" />
+        <entry key="..\:/AppProjects/StartAndroid_Stable/melissa/src/main/res/drawable-night/bottom_sheet_background.xml" value="0.2985" />
+        <entry key="..\:/AppProjects/StartAndroid_Stable/melissa/src/main/res/drawable/bottom_sheet_background.xml" value="0.2985" />
       </map>
     </option>
   </component>

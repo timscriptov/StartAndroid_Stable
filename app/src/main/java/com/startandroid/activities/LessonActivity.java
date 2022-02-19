@@ -1,10 +1,15 @@
 package com.startandroid.activities;
 
+import static com.startandroid.data.Constants.getResPath;
+import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
+import static com.startandroid.utils.LessonUtils.isRead;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebChromeClient;
@@ -12,6 +17,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
+import com.applovin.mediation.MaxAd;
+import com.applovin.mediation.MaxAdListener;
+import com.applovin.mediation.MaxError;
+import com.applovin.mediation.ads.MaxInterstitialAd;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.mcal.mcpelauncher.utils.AdsAdmob;
@@ -32,10 +41,6 @@ import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
-
-import static com.startandroid.data.Constants.getResPath;
-import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
-import static com.startandroid.utils.LessonUtils.isRead;
 
 public class LessonActivity extends BaseActivity implements OnClickListener {
     @SuppressLint("StaticFieldLeak")

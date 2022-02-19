@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import com.startandroid.R;
 import com.startandroid.data.Preferences;
@@ -21,8 +22,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
-
-import es.dmoral.toasty.Toasty;
 
 public class Offline extends AsyncTask<Void, Integer, Boolean> {
     @SuppressLint("StaticFieldLeak")
@@ -118,7 +117,7 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
             progressDialog.dismiss();
             Preferences.setOffline(true);
             Preferences.setOfflineInstalled(true);
-            Toasty.success(settingsActivity, settingsActivity.getString(R.string.offline_activated)).show();
+            Toast.makeText(settingsActivity, settingsActivity.getString(R.string.offline_activated), Toast.LENGTH_LONG).show();
         } else {
             mListener.onFailed();
             progressDialog.dismiss();

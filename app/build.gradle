@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'applovin-quality-service'
+
+applovin {
+    apiKey "BO6DpSm55CZ1mCteqM8qs3tFy1LXCp5q-TEHbi2MwruVAbgTBd1fFvenwZiZKhNiIaHohRuGfqw6T-pwTIT1Ap"
+}
 
 android {
     compileSdkVersion 32
@@ -9,8 +14,8 @@ android {
         applicationId "com.startandroid"
         minSdkVersion 23
         targetSdkVersion 32
-        versionCode 1192
-        versionName "1.19.2"
+        versionCode 1193
+        versionName "1.19.3"
         vectorDrawables.useSupportLibrary true
         multiDexEnabled = true
     }
@@ -56,10 +61,8 @@ dependencies {
     // Google libs
     implementation 'com.google.android.material:material:1.5.0'
     //implementation 'com.google.android.gms:play-services:12.0.1'
-    implementation 'com.google.android.gms:play-services-ads:20.2.0'
     //implementation 'com.google.android.play:core-ktx:1.8.1'
 
-    implementation 'com.github.GrenderG:Toasty:1.4.2'
     implementation 'com.daimajia.swipelayout:library:1.2.0'
     implementation 'com.madgag.spongycastle:pkix:1.54.0.0'
 
@@ -71,4 +74,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0-native-mt'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0-native-mt'
+
+    // ADS
+    implementation 'com.google.android.gms:play-services-ads:20.2.0'
+    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1'
+    implementation 'com.applovin:applovin-sdk:11.0.0'
 }

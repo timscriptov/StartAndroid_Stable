@@ -5,4 +5,5 @@
     <color name="colorAccent">#448aff</color>
     <color name="app_background">#303030</color>
     <color name="dialog_style">#FF202125</color>
+    <color name="line">#FF3C4043</color>
 </resources>
