@@ -3,9 +3,7 @@ package com.startandroid.data;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-
 import com.startandroid.App;
-
 import org.jetbrains.annotations.NotNull;
 
 public final class Database extends SQLiteOpenHelper {

@@ -13,7 +13,7 @@
     <string name="appearance">Appearance</string>
     <string name="font_size">ขนาด</string>
     <string name="font">Font</string>
-    <string name="copyright">©2018–2020 Ivan Timashkov</string>
+    <string name="copyright">©2018–2023 Ivan Timashkov</string>
     <string name="grid_view">มุมมองแบบ Grid</string>
     <string name="bookmarks">Bookmarks</string>
     <string name="fullscreen_mode">โหมดเต็มจอ</string>
@@ -29,7 +29,7 @@
     <string name="content_language">ภาษาของเนื้อหา</string>
     <string name="added_to_bookmarks">บทเรียน %d ถูกเพิ่มเข้า bookmark</string>
     <string name="removed_from_bookmarks">บทเรียน %d ถูกลบออกจาก bookmarks</string>
-    <string name="marked_as_read">บทเรียน %d  ถูกทำเครื่องหมายอ่านแล้ว</string>
+    <string name="marked_as_read">บทเรียน %d ถูกทำเครื่องหมายอ่านแล้ว</string>
     <string name="press_back_once_more">กดอีกครั้งเพื่อออก</string>
     <string name="p_a">เปิดใช้งาน Premium!</string>
     <string name="purchase_canceled">การซื้อถูกยกเลิก!</string>

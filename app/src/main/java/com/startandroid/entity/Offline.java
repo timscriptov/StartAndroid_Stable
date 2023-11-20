@@ -6,20 +6,13 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
 import com.startandroid.R;
 import com.startandroid.data.Preferences;
 import com.startandroid.interfaces.OfflineListener;
-
 import org.zeroturnaround.zip.ZipUtil;
 import org.zeroturnaround.zip.commons.FileUtilsV2_2;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -65,7 +58,6 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
             try {
                 URL url = new URL("https://timscriptov.github.io/lessons/startandroid.zip");
                 URLConnection connection = url.openConnection();
-
 
                 progressDialog.setMax(connection.getContentLength());
                 progressDialog.show();

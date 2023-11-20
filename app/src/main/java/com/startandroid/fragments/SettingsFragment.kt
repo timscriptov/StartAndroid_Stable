@@ -33,52 +33,52 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
     private var mListener: OfflineListener = object : OfflineListener {
         override fun onProcess() {}
         override fun onCompleted() {
-            Toast.makeText(context!!, R.string.offline_activated, Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), R.string.offline_activated, Toast.LENGTH_LONG).show()
         }
 
         override fun onFailed() {
-            FileUtils.deleteOffline(context!!)
+            FileUtils.deleteOffline(requireContext())
         }
 
         override fun onCanceled() {
-            FileUtils.deleteOffline(context!!)
+            FileUtils.deleteOffline(requireContext())
         }
     }
 
     override fun onCreatePreferences(bundle: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings, rootKey)
+        val activity = requireActivity()
 
         // Смена сервиса WebKit
-        webViewCore = findPreference("webview_core")
-        webViewCore!!.onPreferenceClickListener =
-            Preference.OnPreferenceClickListener { p1: Preference? ->
+        webViewCore = findPreference<Preference?>("webview_core")?.apply {
+            onPreferenceClickListener = Preference.OnPreferenceClickListener {
                 if (Build.VERSION.SDK_INT >= 24) {
                     val intent = Intent(Settings.ACTION_WEBVIEW_SETTINGS)
-                    if (context?.let { intent.resolveActivity(it.packageManager) } != null) {
+                    if (intent.resolveActivity(activity.packageManager) != null) {
                         startActivity(intent)
                     }
                 } else {
                     Toast.makeText(
-                        requireContext(),
+                        activity,
                         getString(R.string.not_supported_on_your_device),
                         Toast.LENGTH_LONG
                     ).show()
                 }
                 true
             }
+        }
 
         // Смена языка приложения
-        languagePreference = findPreference("language")
-        languagePreference!!.onPreferenceChangeListener =
-            Preference.OnPreferenceChangeListener { p1: Preference?, p2: Any ->
-                val type: Int = parseInt(p2 as String)
-                Preferences.languageType = type
-                activity?.let { I18n.setLanguage(it) }
-                val intent = Intent(activity, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                startActivity(intent)
+        languagePreference = findPreference<ListPreference?>("language")?.apply {
+            onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, p2: Any ->
+                Preferences.languageType = parseInt(p2 as String)
+                I18n.setLanguage(activity)
+                startActivity(Intent(activity, MainActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                })
                 true
             }
+        }
     }
 
     override fun onResume() {
@@ -91,20 +91,21 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         preferenceScreen.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
     }
 
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         when (key) {
             // Полноэкранный режим
             "fullscreen_mode" -> restartPerfect(requireActivity().intent)
             // Тип списка уроков
             "grid_mode" -> requireActivity().setResult(Activity.RESULT_OK)
             "offline" -> {
-                if(!Preferences.offlineInstalled) {
+                if (!Preferences.offlineInstalled) {
+                    val activity = requireActivity()
                     if (Utils.isNetworkAvailable()) {
                         val progressDialog = ProgressDialog(context)
                         progressDialog.setTitle("Downloading")
                         Offline(activity, mListener).execute()
                     } else {
-                        offline!!.isChecked = false
+                        offline?.isChecked = false
                         noConnectionError(activity)
                     }
                 }

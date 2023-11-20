@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="52dp"
-    android:background="?selectableItemBackground">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="52dp"
+              android:background="?selectableItemBackground">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/list_item_icon"
@@ -16,7 +16,7 @@
         android:background="@drawable/circle"
         tools:backgroundTint="#607d8b"
         tools:src="@drawable/test_drawable"
-        tools:tint="#ffffff" />
+        tools:tint="#ffffff"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/list_item_content"
@@ -27,5 +27,5 @@
         android:layout_margin="8dp"
         android:maxLines="1"
         android:textSize="16sp"
-        tools:text="Test" />
+        tools:text="Test"/>
 </LinearLayout>

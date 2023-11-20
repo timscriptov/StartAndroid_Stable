@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.startandroid">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="com.android.vending.BILLING" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.android.vending.BILLING"/>
 
     <application
         android:name="com.startandroid.App"
-        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:resizeableActivity="true"
@@ -26,31 +24,24 @@
             android:windowSoftInputMode="stateHidden|adjustResize|stateAlwaysHidden"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <activity
             android:name="com.startandroid.activities.LessonActivity"
-            android:configChanges="screenSize|orientation" />
+            android:configChanges="screenSize|orientation"/>
 
         <activity
             android:name="com.startandroid.activities.SettingsActivity"
-            android:label="@string/settings" />
-
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1411495427741055~3216954118" />
+            android:label="@string/settings"/>
 
         <meta-data
             android:name="android.webkit.WebView.EnableSafeBrowsing"
-            android:value="true" />
-
-        <meta-data android:name="applovin.sdk.key"
-            android:value="JaJHyxq_d_Au8f5bHtOuUMHOZOA1ub-ISqVnxKoxP4gxG3eps1KOD3qLV1Wo8RaqovBt4LBHgJ9ThPqoaDNmtV"/>
+            android:value="true"/>
 
     </application>
 

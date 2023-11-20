@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coordinator"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-    <include layout="@layout/activity_browser" />
+    <include layout="@layout/activity_browser"/>
 
     <FrameLayout
         android:id="@+id/bottomView"
@@ -16,7 +17,7 @@
         app:behavior_peekHeight="@dimen/menu_sheet_height"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-        <include layout="@layout/dialog_pilled" />
+        <include layout="@layout/dialog_pilled"/>
 
     </FrameLayout>
 

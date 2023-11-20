@@ -3,18 +3,11 @@ package com.startandroid.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.startandroid.R;
 import com.startandroid.interfaces.MainView;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

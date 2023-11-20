@@ -3,9 +3,7 @@ package com.startandroid.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
 import com.startandroid.App;
-
 import org.jetbrains.annotations.NotNull;
 
 public class Utils {

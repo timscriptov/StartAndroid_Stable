@@ -12,7 +12,6 @@ import com.startandroid.adapters.BookmarksAdapter
 import com.startandroid.data.Bookmarks.allBookmarks
 import com.startandroid.interfaces.MainView
 import ru.svolf.melissa.sheet.SweetViewDialog
-import java.util.*
 
 class BookmarksFragment : BottomSheetDialogFragment() {
     private val items = ArrayList<String>()

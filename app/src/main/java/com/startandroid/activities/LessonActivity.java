@@ -1,31 +1,20 @@
 package com.startandroid.activities;
 
-import static com.startandroid.data.Constants.getResPath;
-import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
-import static com.startandroid.utils.LessonUtils.isRead;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-
-import com.applovin.mediation.MaxAd;
-import com.applovin.mediation.MaxAdListener;
-import com.applovin.mediation.MaxError;
-import com.applovin.mediation.ads.MaxInterstitialAd;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.mcal.mcpelauncher.utils.AdsAdmob;
 import com.startandroid.R;
-import com.startandroid.data.BillingRepository;
 import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Dialogs;
 import com.startandroid.data.Preferences;
@@ -35,12 +24,14 @@ import com.startandroid.utils.LessonUtils;
 import com.startandroid.utils.Utils;
 import com.startandroid.view.MCProgressBar;
 import com.startandroid.view.NestedWebView;
-
-import net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout;
-
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.TimeUnit;
+
+import static com.startandroid.data.Constants.getResPath;
+import static com.startandroid.utils.LessonUtils.getLessonNumberByUrl;
+import static com.startandroid.utils.LessonUtils.isRead;
 
 public class LessonActivity extends BaseActivity implements OnClickListener {
     @SuppressLint("StaticFieldLeak")
@@ -48,9 +39,8 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
     private MCProgressBar progressBar;
     private NestedWebView webView;
     private FloatingActionButton prev_lesson, next_lesson, bookmark;
-    private CollapsingToolbarLayout ctl;
+    private MaterialToolbar toolbar;
     private int itemPosition;
-    private boolean isPremium;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -63,7 +53,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Bookmarks.remove(num);
                     Snackbar.make(webView, getString(R.string.removed_from_bookmarks, num), Snackbar.LENGTH_LONG).show();
                     bookmark.setImageResource(R.drawable.star_bookmark);
-                } else if (Bookmarks.add(num, ctl.getTitle().toString())) {
+                } else if (Bookmarks.add(num, toolbar.getTitle().toString())) {
                     Snackbar.make(webView, getString(R.string.added_to_bookmarks, num), Snackbar.LENGTH_LONG).show();
                     bookmark.setImageResource(R.drawable.star_bookmarked);
                 }
@@ -93,16 +83,10 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
-
-        isPremium = BillingRepository.INSTANCE.isPremium();
-
-        setSupportActionBar(findViewById(R.id.toolbar));
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         adLayout = findViewById(R.id.ad_view);
-        if (!isPremium) {
-            adLayout.addView(AdsAdmob.showBannerAd(this));
-        }
-        ctl = findViewById(R.id.collapsing_toolbar);
         webView = findViewById(R.id.webView);
         webView.setWebViewClient(new WebClient());
         webView.setWebChromeClient(new ChromeClient());
@@ -187,7 +171,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            ctl.setTitle(title);
+            toolbar.setTitle(title);
         }
     }
 
@@ -205,9 +189,6 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         protected void onPreExecute() {
             super.onPreExecute();
             progressBar.setVisibility(View.VISIBLE);
-            if (!isPremium) {
-                AdsAdmob.showInterestialAd(LessonActivity.this, null);
-            }
             if (Preferences.getOffline()) {
                 webView.loadDataWithBaseURL("file:///" + mLink, HtmlRenderer.renderHtml(FileReader.fromStorage(mLink)), "text/html", "UTF-8", "file:///" + mLink);
                 cancel(true);
@@ -215,7 +196,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         }
 
         @Override
-        protected Void doInBackground(Void... strings) {
+        protected @Nullable Void doInBackground(Void... strings) {
             html = HtmlRenderer.renderHtml(FileReader.fromUrl(mLink));
             return null;
         }

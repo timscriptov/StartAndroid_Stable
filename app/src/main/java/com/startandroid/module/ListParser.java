@@ -4,15 +4,13 @@ import com.startandroid.App;
 import com.startandroid.R;
 import com.startandroid.adapters.ListAdapter;
 import com.startandroid.interfaces.MainView;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import java.io.InputStream;
-import java.util.ArrayList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.InputStream;
+import java.util.ArrayList;
 
 public class ListParser {
     private final ArrayList<String> items = new ArrayList<>();

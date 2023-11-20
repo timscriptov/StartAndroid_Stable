@@ -50,12 +50,14 @@ class NestedWebView @JvmOverloads constructor(
                     mLastY -= mScrollOffset[1]
                 }
             }
+
             MotionEvent.ACTION_DOWN -> {
                 returnValue = super.onTouchEvent(event)
                 mLastY = eventY
                 // start NestedScroll
                 startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL)
             }
+
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                 returnValue = super.onTouchEvent(event)
                 // end NestedScroll

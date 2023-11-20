@@ -6,18 +6,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.daimajia.swipe.SwipeLayout;
 import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Preferences;
 import com.startandroid.fragments.BookmarksFragment;
 import com.startandroid.interfaces.MainView;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;

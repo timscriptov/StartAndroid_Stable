@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center"
+              android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="55dp"
@@ -13,12 +13,12 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         app:srcCompat="@drawable/google_play"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"/>
 
     <androidx.appcompat.widget.AppCompatRatingBar
         android:id="@+id/rating_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:stepSize="1" />
+        android:stepSize="1"/>
 
 </LinearLayout>
