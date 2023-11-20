@@ -17,7 +17,6 @@
     <string name="bookmarks">书签</string>
     <string name="fullscreen_mode">全屏模式</string>
     <string name="font_type">类型</string>
-    <string name="update">更新</string>
     <string name="p">专业版</string>
     <string name="error">错误</string>
     <string name="no_connection">没有网络连接！</string>
@@ -30,19 +29,14 @@
     <string name="removed_from_bookmarks">课程 %d 已从书签中移除</string>
     <string name="marked_as_read">课程 %d 已经被标记已阅</string>
     <string name="press_back_once_more">再按一次返回以退出</string>
-    <string name="p_a">专业版已被激活！</string>
-    <string name="purchase_canceled">购买已取消！</string>
     <string name="no_bookmarks">没有书签</string>
     <string name="thanks">谢谢！</string>
-    <string name="version_available">可用版本</string>
     <string name="offline">离线</string>
-    <string name="only_prem">只对专业版用户开放</string>
     <string name="loading">Loading</string>
     <string name="offline_activated">Offline activated</string>
     <string name="caption_lessons">Lessons</string>
     <string name="pref_sys_lang">App language</string>
     <string name="source_materials">Source materials - startandroid.ru</string>
-    <string name="not_installed_offline">You do not have an offline resource pack installed!</string>
     <string name="webview_core">WebView Core</string>
     <string name="not_supported_on_your_device">Not supported on your device</string>
 </resources>

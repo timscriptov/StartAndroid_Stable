@@ -18,7 +18,6 @@
     <string name="bookmarks">Закладки</string>
     <string name="fullscreen_mode">Полноэкранный режим</string>
     <string name="font_type">Тип</string>
-    <string name="update">Обновить</string>
     <string name="p">Premium</string>
     <string name="error">Ошибка</string>
     <string name="no_connection">Подключение к Интернету отсутствует!</string>
@@ -31,19 +30,14 @@
     <string name="removed_from_bookmarks">Урок %d удалён из закладок</string>
     <string name="marked_as_read">Урок %d помечен прочитанным</string>
     <string name="press_back_once_more">Нажмите еще раз чтобы выйти</string>
-    <string name="p_a">Premium активирован!</string>
-    <string name="purchase_canceled">Покупка отменена!</string>
     <string name="no_bookmarks">Закладок нет</string>
     <string name="thanks">Спасибо!</string>
-    <string name="version_available">Доступна версия</string>
     <string name="offline">Оффлайн</string>
-    <string name="only_prem">Доступно только Premium пользователям!</string>
     <string name="loading">Загрузка</string>
     <string name="offline_activated">Оффлайн активирован</string>
     <string name="caption_lessons">Lessons</string>
     <string name="pref_sys_lang">Язык приложения</string>
     <string name="source_materials">Источник материалов - startandroid.ru</string>
-    <string name="not_installed_offline">У вас не установлен оффлайн ресурс пак!</string>
     <string name="webview_core">Ядро WebView</string>
     <string name="not_supported_on_your_device">Не поддерживается на вашем устройстве</string>
 
