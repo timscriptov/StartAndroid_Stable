@@ -39,4 +39,5 @@
     <string name="source_materials">Source materials - startandroid.ru</string>
     <string name="webview_core">WebView Core</string>
     <string name="not_supported_on_your_device">Not supported on your device</string>
+    <string name="privacy_police">Privacy police</string>
 </resources>

@@ -36,13 +36,10 @@ import ru.svolf.melissa.sheet.SweetContentDialog;
 import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity implements MainView, SearchView.OnQueryTextListener {
-
     private ListAdapter listAdapter;
     private BottomSheetBehavior sheetBehavior;
     private SearchView sv;
     private BillingClient billingClient;
-
-    private int retryAttempt;
 
     @Override
     public boolean onQueryTextSubmit(String p1) {
@@ -277,6 +274,10 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         });
         dialog.addAction(R.drawable.google_play, this.getString(R.string.more_apps), view -> {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://search?q=pub:Иван Тимашков")));
+            dialog.cancel();
+        });
+        dialog.addAction(R.drawable.ic_privacy_police, getString(R.string.privacy_police), view -> {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://timscriptov.ru/privacy/startandroid/index.html")));
             dialog.cancel();
         });
         dialog.addAction(R.drawable.web, getString(R.string.source_materials), view -> {

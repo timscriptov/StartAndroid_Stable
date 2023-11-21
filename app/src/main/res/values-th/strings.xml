@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">StartAndroid</string>
     <string name="about">เกี่ยวกับ</string>
     <string name="settings">การตั้งค่า</string>
@@ -40,5 +39,5 @@
     <string name="source_materials">Source materials - startandroid.ru</string>
     <string name="webview_core">WebView Core</string>
     <string name="not_supported_on_your_device">Not supported on your device</string>
-
+    <string name="privacy_police">Privacy police</string>
 </resources>
