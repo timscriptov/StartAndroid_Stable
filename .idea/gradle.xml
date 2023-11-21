@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/melissa" />
+            <option value="$PROJECT_DIR$/multiline-collapsing-toolbar" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

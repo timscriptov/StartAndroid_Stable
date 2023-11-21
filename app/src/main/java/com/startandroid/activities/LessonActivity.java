@@ -11,9 +11,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.mcal.multilinecollapsingtoolbar.CollapsingToolbarLayout;
 import com.startandroid.R;
 import com.startandroid.data.Bookmarks;
 import com.startandroid.data.Dialogs;
@@ -39,7 +39,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
     private MCProgressBar progressBar;
     private NestedWebView webView;
     private FloatingActionButton prev_lesson, next_lesson, bookmark;
-    private MaterialToolbar toolbar;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
     private int itemPosition;
 
     @SuppressLint("NonConstantResourceId")
@@ -53,7 +53,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
                     Bookmarks.remove(num);
                     Snackbar.make(webView, getString(R.string.removed_from_bookmarks, num), Snackbar.LENGTH_LONG).show();
                     bookmark.setImageResource(R.drawable.star_bookmark);
-                } else if (Bookmarks.add(num, toolbar.getTitle().toString())) {
+                } else if (Bookmarks.add(num, collapsingToolbarLayout.getTitle().toString())) {
                     Snackbar.make(webView, getString(R.string.added_to_bookmarks, num), Snackbar.LENGTH_LONG).show();
                     bookmark.setImageResource(R.drawable.star_bookmarked);
                 }
@@ -83,8 +83,8 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lesson);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
+        setSupportActionBar(findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         adLayout = findViewById(R.id.ad_view);
         webView = findViewById(R.id.webView);
@@ -171,7 +171,7 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            toolbar.setTitle(title);
+            collapsingToolbarLayout.setTitle(title);
         }
     }
 

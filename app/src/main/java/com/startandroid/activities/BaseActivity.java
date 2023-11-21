@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
+import com.startandroid.data.Dialogs;
 import com.startandroid.data.ScreenMode;
 import com.startandroid.utils.I18n;
 import org.jetbrains.annotations.NotNull;
@@ -29,6 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
+        Dialogs.showAgreement(this);
     }
 
     @Override

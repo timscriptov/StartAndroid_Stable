@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.svolf.melissa"
+    namespace = "com.mcal.multilinecollapsingtoolbar"
     compileSdk = 34
 
     defaultConfig {
@@ -36,6 +36,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.interpolator)
+
 }

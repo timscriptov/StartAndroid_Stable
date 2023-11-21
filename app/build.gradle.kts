@@ -11,8 +11,8 @@ android {
         applicationId = "com.startandroid"
         minSdk = 24
         targetSdk = 33
-        versionCode = 1195
-        versionName = "1.19.5"
+        versionCode = 1196
+        versionName = "1.19.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -42,6 +42,7 @@ android {
 
 dependencies {
     implementation(project(":melissa"))
+    implementation(project(":multiline-collapsing-toolbar"))
 
     // Android libs
     implementation(libs.androidx.appcompat)

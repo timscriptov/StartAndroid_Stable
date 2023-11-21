@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "StartAndroid_Stable"
 include(":app")
 include(":melissa")
+include(":multiline-collapsing-toolbar")
