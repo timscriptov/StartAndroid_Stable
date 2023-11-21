@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -170,15 +171,16 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
 
     // Метод меню на главной странице
     private void setupBottomSheet() {
-        TextView caption = findViewById(R.id.caption);
-        RecyclerView recycler = findViewById(R.id.list);
+        final TextView caption = findViewById(R.id.caption);
+        caption.setVisibility(View.GONE);
+
+        final RecyclerView recycler = findViewById(R.id.list);
         if (recycler.getAdapter() != null) {
             recycler.setAdapter(null);
         }
 
-        ArrayList<MainMenuItem> menuItems = new ArrayList<>();
+        final ArrayList<MainMenuItem> menuItems = new ArrayList<>();
 
-        caption.setText(R.string.caption_lessons);
         if (Preferences.getBookmark() != null) {
             menuItems.add(new MainMenuItem(R.drawable.bookmark, "#fad805", getString(R.string.continue_lesson), MainMenuItems.CONTINUE));
         }
@@ -188,7 +190,7 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         menuItems.add(new MainMenuItem(R.drawable.information, "#3949ab", getString(R.string.about), MainMenuItems.ABOUT));
         menuItems.add(new MainMenuItem(R.drawable.exit, "#e53935", getString(R.string.exit), MainMenuItems.EXIT));
 
-        MainMenuAdapter adapter = new MainMenuAdapter(menuItems);
+        final MainMenuAdapter adapter = new MainMenuAdapter(menuItems);
         adapter.setItemClickListener((menuItem, position) -> {
             switch (menuItem.getAction()) {
                 // Закладки
