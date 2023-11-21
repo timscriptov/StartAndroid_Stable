@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <View
         android:layout_width="22dp"
@@ -15,7 +16,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/content_caption"
-        style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+        style="@style/TextAppearance.Material3.ActionBar.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -58,4 +59,3 @@
         android:layout_marginBottom="16dp"/>
 
 </LinearLayout>
-

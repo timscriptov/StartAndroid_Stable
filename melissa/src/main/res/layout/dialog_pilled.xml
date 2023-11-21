@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="wrap_content"
@@ -14,11 +16,13 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/caption"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="0dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAppearance="@style/TextAppearance.Material3.ActionBar.Title"
+        tools:text="@string/app_name"/>
 
     <include layout="@layout/dialog_exp_items"/>
 
