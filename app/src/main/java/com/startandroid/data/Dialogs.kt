@@ -50,7 +50,7 @@ object Dialogs : BaseActivity() {
     @JvmStatic
     @SuppressLint("WrongConstant")
     fun showAgreement(activity: Activity) {
-        if(Preferences.hasUserAcceptedAgreement()) {
+        if (Preferences.hasUserAcceptedAgreement()) {
             return
         }
         val scrollView = ScrollView(activity)

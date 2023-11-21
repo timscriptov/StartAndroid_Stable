@@ -7,12 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
 import ru.svolf.melissa.R;
 import ru.svolf.melissa.util.Render;
 
@@ -47,7 +43,7 @@ public class SweetViewDialog extends BottomSheetDialog {
         mCaption.setText(title);
     }
 
-    public void setTitleTextSize(float size){
+    public void setTitleTextSize(float size) {
         mCaption.setTextSize(size);
     }
 
@@ -56,10 +52,10 @@ public class SweetViewDialog extends BottomSheetDialog {
     }
 
     /**
-     * @param percent  percentage of the screen height to which the dialog box will be expanded
+     * @param percent percentage of the screen height to which the dialog box will be expanded
      */
-    public void peekFullScreen(int percent){
-        if (mContext instanceof Activity){
+    public void peekFullScreen(int percent) {
+        if (mContext instanceof Activity) {
             int peekLimit = (Render.getScreenHeight((Activity) mContext) / 100) * percent;
             getBehavior().setPeekHeight(peekLimit, true);
         } else {

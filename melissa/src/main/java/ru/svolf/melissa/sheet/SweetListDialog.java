@@ -8,17 +8,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
-
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-import java.util.ArrayList;
-
+import org.jetbrains.annotations.NotNull;
 import ru.svolf.melissa.R;
 import ru.svolf.melissa.util.Render;
+
+import java.util.ArrayList;
 
 /**
  * Created by Snow Volf on 20.08.2017, 19:56
@@ -61,7 +59,7 @@ public class SweetListDialog extends BottomSheetDialog {
         mItems = items;
     }
 
-    public void setItems(ArrayList<String> items) {
+    public void setItems(@NotNull ArrayList<String> items) {
         mItems = items.toArray(new String[0]);
     }
 
@@ -82,7 +80,7 @@ public class SweetListDialog extends BottomSheetDialog {
      * @param activity parent activity
      * @param percent  percentage of the screen height to which the dialog box will be expanded
      */
-    public void peekFullScreen(Activity activity, int percent){
+    public void peekFullScreen(Activity activity, int percent) {
         int peekLimit = ((percent * 100) / Render.getScreenHeight(activity));
         getBehavior().setPeekHeight(peekLimit, true);
     }
@@ -99,6 +97,16 @@ public class SweetListDialog extends BottomSheetDialog {
             setAdapter();
         }
         super.show();
+    }
+
+    @Override
+    public void dismiss() {
+        mItems = null;
+        mAdapter = null;
+        mContext = null;
+        mTitle = null;
+        mList = null;
+        super.dismiss();
     }
 
     public class Builder {
@@ -139,15 +147,5 @@ public class SweetListDialog extends BottomSheetDialog {
         public void show() {
             SweetListDialog.this.show();
         }
-    }
-
-    @Override
-    public void dismiss() {
-        mItems = null;
-        mAdapter = null;
-        mContext = null;
-        mTitle = null;
-        mList = null;
-        super.dismiss();
     }
 }

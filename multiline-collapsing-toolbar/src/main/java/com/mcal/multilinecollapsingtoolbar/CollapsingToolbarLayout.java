@@ -1,7 +1,6 @@
 package com.mcal.multilinecollapsingtoolbar;
 
 import android.animation.ValueAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -1183,6 +1182,7 @@ public class CollapsingToolbarLayout extends FrameLayout {
         private static final float DEFAULT_PARALLAX_MULTIPLIER = 0.5f;
         int mCollapseMode = COLLAPSE_MODE_OFF;
         float mParallaxMult = DEFAULT_PARALLAX_MULTIPLIER;
+
         public LayoutParams(Context c, AttributeSet attrs) {
             super(c, attrs);
 

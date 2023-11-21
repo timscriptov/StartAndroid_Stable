@@ -3,7 +3,6 @@ package ru.svolf.melissa.util;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.TypedValue;
-
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
 
@@ -31,5 +30,4 @@ public class Swatcher {
         else
             return Color.RED;
     }
-
 }

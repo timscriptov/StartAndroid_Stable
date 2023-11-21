@@ -10,9 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowMetrics;
-
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class Render {
 
@@ -45,7 +45,8 @@ public class Render {
      * Stack Blur Algorithm by Mario Klingemann <mario@quasimondo.com>
      */
 
-    public static Bitmap fastblur(Bitmap sentBitmap, float scale, int radius) {
+    @Nullable
+    public static Bitmap fastblur(@NotNull Bitmap sentBitmap, float scale, int radius) {
 
         int width = Math.round(sentBitmap.getWidth() * scale);
         int height = Math.round(sentBitmap.getHeight() * scale);

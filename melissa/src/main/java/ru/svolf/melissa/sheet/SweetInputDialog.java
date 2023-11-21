@@ -5,10 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialog;
-
 import ru.svolf.melissa.R;
 
 /**

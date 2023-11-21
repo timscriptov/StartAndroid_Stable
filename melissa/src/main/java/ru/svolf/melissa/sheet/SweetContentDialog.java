@@ -11,24 +11,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import androidx.annotation.DrawableRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.annotation.StringRes;
+import androidx.annotation.*;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-import java.util.ArrayList;
-
 import ru.svolf.melissa.R;
 import ru.svolf.melissa.data.ControlsItem;
 import ru.svolf.melissa.dto.DialogControlsAdapter;
 import ru.svolf.melissa.util.Render;
+
+import java.util.ArrayList;
 
 
 /**
@@ -93,7 +86,7 @@ public class SweetContentDialog extends BottomSheetDialog {
      * @param activity parent activity
      * @param percent  percentage of the screen height to which the dialog box will be expanded
      */
-    public void peekFullScreen(Activity activity, int percent){
+    public void peekFullScreen(Activity activity, int percent) {
         int peekLimit = ((percent * 100) / Render.getScreenHeight(activity));
         getBehavior().setPeekHeight(peekLimit, true);
     }
@@ -146,7 +139,7 @@ public class SweetContentDialog extends BottomSheetDialog {
     @Override
     public void show() {
         super.show();
-        if (mControls.size() > 0) {
+        if (!mControls.isEmpty()) {
             final DialogControlsAdapter adapter = new DialogControlsAdapter(mControls);
             adapter.setItemClickListener((menuItem, position) -> {
                 if (menuItem.getAction() != null) {
@@ -160,6 +153,15 @@ public class SweetContentDialog extends BottomSheetDialog {
             mControllerView.setLayoutManager(new LinearLayoutManager(getContext()));
             mControllerView.setAdapter(adapter);
         }
+    }
+
+    @Override
+    public void dismiss() {
+        mControls = null;
+        mContentFrame = null;
+        mCaption = null;
+        mControllerView = null;
+        super.dismiss();
     }
 
     public class Builder {
@@ -239,14 +241,5 @@ public class SweetContentDialog extends BottomSheetDialog {
         public void show() {
             create().show();
         }
-    }
-
-    @Override
-    public void dismiss() {
-        mControls = null;
-        mContentFrame = null;
-        mCaption = null;
-        mControllerView = null;
-        super.dismiss();
     }
 }

@@ -1,15 +1,14 @@
 package ru.svolf.melissa;
 
 import android.graphics.Color;
-
 import androidx.annotation.DrawableRes;
 
 public class MainMenuItem {
-    private @DrawableRes
-    int icon;
-    private String title;
-    private int action;
-    private String tintColor;
+    @DrawableRes
+    private final int icon;
+    private final String title;
+    private final int action;
+    private final String tintColor;
 
 
     public MainMenuItem(@DrawableRes int icon, String tintColor, String title, int action) {

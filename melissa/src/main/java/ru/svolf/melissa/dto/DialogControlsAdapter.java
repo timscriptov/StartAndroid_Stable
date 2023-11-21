@@ -5,14 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
-
+import org.jetbrains.annotations.NotNull;
 import ru.svolf.melissa.R;
 import ru.svolf.melissa.data.ControlsItem;
+
+import java.util.List;
 
 public class DialogControlsAdapter extends RecyclerView.Adapter<DialogControlsAdapter.ViewHolder> {
     List<ControlsItem> items;
@@ -43,7 +42,7 @@ public class DialogControlsAdapter extends RecyclerView.Adapter<DialogControlsAd
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(@NotNull ViewHolder holder, int position) {
         ControlsItem item = getItem(position);
         assert item != null;
 

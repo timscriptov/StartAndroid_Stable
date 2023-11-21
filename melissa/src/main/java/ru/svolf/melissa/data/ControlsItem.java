@@ -1,7 +1,6 @@
 package ru.svolf.melissa.data;
 
 import android.view.View;
-
 import androidx.annotation.DrawableRes;
 
 public class ControlsItem {

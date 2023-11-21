@@ -3,13 +3,11 @@ package com.startandroid.data
 import com.startandroid.App
 
 object Preferences {
-    fun hasUserAcceptedAgreement(): Boolean
-    {
+    fun hasUserAcceptedAgreement(): Boolean {
         return App.getPreferences().getBoolean("agreement_accepted", false)
     }
 
-    fun setUserAcceptedAgreement()
-    {
+    fun setUserAcceptedAgreement() {
         App.getPreferences().edit().putBoolean("agreement_accepted", true).apply()
     }
 
