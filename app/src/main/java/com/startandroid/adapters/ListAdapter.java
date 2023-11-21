@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.startandroid.R;
 import com.startandroid.interfaces.MainView;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -38,22 +39,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
     }
 
     @Override
-    public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ListAdapter.@NotNull ViewHolder holder, final int position) {
         final String text = items.get(position);
         final int number = getLessonNumberByTitle(text);
 
-        try {
-            if (getClass().forName("cc.binmt.signature.PmsHookApplication") != null ||
-                    getClass().forName("anymy.sign.BinSignatureFix") != null ||
-                    getClass().forName("apkeditor.patch.signature.Fix") != null ||
-                    getClass().forName("com.anymy.reflection") != null ||
-                    getClass().forName("bin.mt.apksignaturekillerplus.HookApplication") != null ||
-                    getClass().forName("np.App") != null ||
-                    getClass().forName("cc.binmt.signature.Hook") != null) return;
-        } catch (ClassNotFoundException e) {
-            holder.itemText.setText(text);
-            holder.item.setOnClickListener(p1 -> mainView.openLesson(getResPath() + "/lesson_" + number + ".html", holder.getAdapterPosition()));
-        }
+        holder.itemText.setText(text);
+        holder.item.setOnClickListener(p1 -> mainView.openLesson(getResPath() + "/lesson_" + number + ".html", holder.getAdapterPosition()));
 
         // ставим галочку если урок прочитанный
         holder.checkMark.setVisibility(isRead(number) ? View.VISIBLE : View.GONE);
@@ -84,13 +75,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> im
         private final ArrayList<String> filteredItems = new ArrayList<>();
 
         @Override
-        protected Filter.FilterResults performFiltering(CharSequence p1) {
+        protected Filter.@Nullable FilterResults performFiltering(CharSequence p1) {
             filteredItems.clear();
-
-            for (int x = 0; x < items_backup.size(); x++) {
+            for (String s : items_backup) {
                 String query = p1.toString().toLowerCase();
-                if (items_backup.get(x).toLowerCase().contains((query))) {
-                    filteredItems.add(items_backup.get(x));
+                if (s.toLowerCase().contains((query))) {
+                    filteredItems.add(s);
                 }
             }
             return null;

@@ -119,11 +119,14 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         } else {
             if (time + 15000 < System.currentTimeMillis()) {
                 final int num = getLessonNumberByUrl(webView.getUrl());
-
                 if (!isRead(num)) {
                     Snackbar.make(webView, R.string.mark_as_read, Snackbar.LENGTH_INDEFINITE).setAction(R.string.yes, p1 -> markAsRead(num)).show();
-                } else super.onBackPressed();
-            } else super.onBackPressed();
+                } else {
+                    super.onBackPressed();
+                }
+            } else {
+                super.onBackPressed();
+            }
         }
         time = System.currentTimeMillis();
     }
@@ -160,7 +163,9 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
 
             if (Bookmarks.isBookmarked(getLessonNumberByUrl(url))) {
                 bookmark.setImageResource(R.drawable.star_bookmarked);
-            } else bookmark.setImageResource(R.drawable.star_bookmark);
+            } else {
+                bookmark.setImageResource(R.drawable.star_bookmark);
+            }
 
             bookmark.hide();
             bookmark.show();
@@ -177,7 +182,6 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
 
     @SuppressLint("StaticFieldLeak")
     private class PageLoader extends AsyncTask<Void, Void, Void> {
-
         private String mLink;
         private String html;
 
@@ -205,7 +209,6 @@ public class LessonActivity extends BaseActivity implements OnClickListener {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             mLink += "#googtrans(ru|" + Preferences.getLang() + ")";
-
             webView.loadDataWithBaseURL(mLink, html, "text/html", "UTF-8", mLink);
         }
     }

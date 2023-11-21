@@ -26,18 +26,21 @@ class BookmarksFragment : BottomSheetDialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        @SuppressLint("InflateParams") val view =
-            requireActivity().layoutInflater.inflate(R.layout.bookmarks_fragment, null)
-        if (items.size > 0) {
-            val rcview: RecyclerView = view.findViewById(R.id.bookmarksList)
-            rcview.layoutManager = LinearLayoutManager(activity)
-            rcview.adapter = BookmarksAdapter(items, this, activity as MainView?)
-            rcview.visibility = View.VISIBLE
-        } else view.findViewById<View>(R.id.no_bookmarks).visibility = View.VISIBLE
-        val dialog = SweetViewDialog(requireContext())
-        dialog.setTitle(getString(R.string.bookmarks))
-        dialog.setView(view)
-        dialog.setPositive(android.R.string.cancel, null)
-        return dialog
+        @SuppressLint("InflateParams")
+        val view = requireActivity().layoutInflater.inflate(R.layout.bookmarks_fragment, null)
+        if (items.isNotEmpty()) {
+            view.findViewById<RecyclerView>(R.id.bookmarksList).apply {
+                layoutManager = LinearLayoutManager(activity)
+                adapter = BookmarksAdapter(items, this@BookmarksFragment, activity as MainView?)
+                visibility = View.VISIBLE
+            }
+        } else {
+            view.findViewById<View>(R.id.no_bookmarks).visibility = View.VISIBLE
+        }
+        return SweetViewDialog(requireContext()).apply {
+            setTitle(getString(R.string.bookmarks))
+            setView(view)
+            setPositive(android.R.string.cancel, null)
+        }
     }
 }

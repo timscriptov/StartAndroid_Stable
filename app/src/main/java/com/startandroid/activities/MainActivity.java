@@ -135,8 +135,9 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
         if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         } else {
-            if (time + 2000 > System.currentTimeMillis()) super.onBackPressed();
-            else {
+            if (time + 2000 > System.currentTimeMillis()) {
+                super.onBackPressed();
+            } else {
                 Toast.makeText(this, getString(R.string.press_back_once_more), Toast.LENGTH_LONG).show();
                 time = System.currentTimeMillis();
             }
@@ -147,17 +148,10 @@ public class MainActivity extends BaseActivity implements MainView, SearchView.O
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE_IS_READ) {
-
             if (resultCode == RESULT_OK) {
                 int position = data.getIntExtra("position", 0);
-
                 listAdapter.notifyItemChanged(position);
             }
-
-            //if (!Preferences.isRated()) {
-            //    Dialogs.rate(this);
-            //} else if (!billing.isPurchased(PREMIUM)) {
-            //}
         }
     }
 

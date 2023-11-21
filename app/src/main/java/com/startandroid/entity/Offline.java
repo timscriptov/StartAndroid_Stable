@@ -9,8 +9,7 @@ import android.widget.Toast;
 import com.startandroid.R;
 import com.startandroid.data.Preferences;
 import com.startandroid.interfaces.OfflineListener;
-import org.zeroturnaround.zip.ZipUtil;
-import org.zeroturnaround.zip.commons.FileUtilsV2_2;
+import com.startandroid.utils.ZipHelper;
 
 import java.io.*;
 import java.net.URL;
@@ -26,15 +25,6 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
         this.settingsActivity = settingsActivity;
         progressDialog = new ProgressDialog(settingsActivity);
         this.mListener = mListener;
-    }
-
-    private void deleteResources() {
-        try {
-            File resourcesDir = new File(settingsActivity.getPackageName(), "resources");
-            FileUtilsV2_2.deleteDirectory(resourcesDir);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -78,8 +68,7 @@ public class Offline extends AsyncTask<Void, Integer, Boolean> {
                 inputStream.close();
                 outputStream.flush();
 
-                ZipUtil.unpack(offline, resourcesDir);
-                offline.delete();
+                ZipHelper.unpack(offline, resourcesDir);
                 return true;
             } catch (IOException e) {
                 e.printStackTrace();

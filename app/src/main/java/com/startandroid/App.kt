@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import com.startandroid.data.Database
@@ -26,42 +25,18 @@ class App : Application() {
 
     companion object {
         @SuppressLint("StaticFieldLeak")
-        private var context: Context? = null
-        private var app: Application? = null
-        private var preferences: SharedPreferences? = null
+        private lateinit var context: Context
+        private lateinit var preferences: SharedPreferences
 
         @JvmStatic
-        fun getContext(): Context? {
-            if (context == null) {
-                context = App()
-            }
+        fun getContext(): Context {
             return context
-        }
-
-        fun getApp(): Application? {
-            if (app == null) {
-                app = App()
-            }
-            return app
         }
 
         @JvmStatic
         @Nullable
         fun getPreferences(): SharedPreferences {
-            if (preferences == null) {
-                preferences = PreferenceManager.getDefaultSharedPreferences(context!!)
-            }
-            return preferences!!
-        }
-
-        @JvmStatic
-        fun toast(msg: String?) {
-            Toast.makeText(context!!, msg!!, Toast.LENGTH_LONG).show()
-        }
-
-        @JvmStatic
-        fun toast(res: Int) {
-            Toast.makeText(context!!, context!!.resources.getString(res), Toast.LENGTH_LONG).show()
+            return preferences
         }
     }
 }

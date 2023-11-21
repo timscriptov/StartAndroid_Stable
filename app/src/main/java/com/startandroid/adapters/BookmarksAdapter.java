@@ -24,9 +24,9 @@ import static com.startandroid.utils.LessonUtils.getLessonNumberByTitle;
 import static com.startandroid.utils.LessonUtils.isRead;
 
 public class BookmarksAdapter extends RecyclerView.Adapter<BookmarksAdapter.ViewHolder> {
-    private ArrayList<String> items;
-    private BookmarksFragment bookmarksFragment;
-    private MainView mainView;
+    private final ArrayList<String> items;
+    private final BookmarksFragment bookmarksFragment;
+    private final MainView mainView;
 
     public BookmarksAdapter(ArrayList<String> items, BookmarksFragment bookmarksFragment, MainView mainView) {
         this.items = items;

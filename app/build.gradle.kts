@@ -62,10 +62,6 @@ dependencies {
     //implementation 'com.google.android.play:core-ktx:1.8.1'
 
     implementation(libs.library)
-    implementation(libs.pkix)
-
-    implementation(libs.zt.zip)
-    implementation(libs.xor)
 
     implementation(libs.annotations)
     implementation(libs.kotlinx.coroutines.core)

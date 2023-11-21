@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import androidx.appcompat.app.AppCompatActivity;
-import com.startandroid.data.Dialogs;
 import com.startandroid.data.ScreenMode;
 import com.startandroid.utils.I18n;
 import org.jetbrains.annotations.NotNull;

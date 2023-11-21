@@ -50,7 +50,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         val activity = requireActivity()
 
         // Смена сервиса WebKit
-        webViewCore = findPreference<Preference?>("webview_core")?.apply {
+        webViewCore = findPreference<Preference>("webview_core")?.apply {
             onPreferenceClickListener = Preference.OnPreferenceClickListener {
                 if (Build.VERSION.SDK_INT >= 24) {
                     val intent = Intent(Settings.ACTION_WEBVIEW_SETTINGS)
@@ -69,7 +69,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
         }
 
         // Смена языка приложения
-        languagePreference = findPreference<ListPreference?>("language")?.apply {
+        languagePreference = findPreference<ListPreference>("language")?.apply {
             onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _: Preference?, p2: Any ->
                 Preferences.languageType = parseInt(p2 as String)
                 I18n.setLanguage(activity)
@@ -100,7 +100,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnSharedPreferenceChangeLis
             "offline" -> {
                 if (!Preferences.offlineInstalled) {
                     val activity = requireActivity()
-                    if (Utils.isNetworkAvailable()) {
+                    if (Utils.isNetworkAvailable) {
                         val progressDialog = ProgressDialog(context)
                         progressDialog.setTitle("Downloading")
                         Offline(activity, mListener).execute()

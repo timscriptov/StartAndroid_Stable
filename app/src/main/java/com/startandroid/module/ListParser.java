@@ -18,7 +18,7 @@ public class ListParser {
 
     public ListParser(MainView mainView) {
         this.mainView = mainView;
-        if (items.size() == 0) {
+        if (items.isEmpty()) {
             try {
                 InputStream is = App.getContext().getResources().openRawResource(R.raw.lessons);
                 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
